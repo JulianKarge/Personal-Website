@@ -35,6 +35,14 @@
         position: relative; /* Notwendig, falls du z-index für Kindelemente brauchst */
       }
 
+      /* Media Query für kleinere Bildschirme (typische Mobilgeräte-Breaks) */
+      @media (max-width: 768px) {
+        /* Du kannst den Breakpoint anpassen (z.B. 1024px) */
+        .hero-bg {
+          background-attachment: scroll; /* Ändert das Verhalten auf Mobilgeräten */
+        }
+      }
+
       /* Stelle sicher, dass der direkte Inhaltscontainer in .hero-bg (falls vorhanden) über dem Overlay liegt */
       #home > .text-center {
         /* #home ist die section mit der Klasse .hero-bg */
@@ -127,9 +135,7 @@
     <header
       class="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-md shadow-lg"
     >
-      <nav
-        class="px-4 sm:px-6 py-1 md:py-2 flex justify-between items-center"
-      >
+      <nav class="px-4 sm:px-6 py-1 md:py-2 flex justify-between items-center">
         <a
           href="#home"
           class="brand-logo flex items-center text-xl md:text-2xl font-bold text-white"
@@ -306,7 +312,7 @@
             class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300"
           >
             <a
-              href="https://www.youtube.com/watch?v=3UKoYsFFwUI"
+              href="https://yt.openinapp.co/7ik7gp6"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Video zum 100.000 Abonnenten Meilenstein ansehen"
@@ -338,7 +344,7 @@
             class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300"
           >
             <a
-              href="https://www.youtube.com/watch?v=tqcm8JZCjiY"
+              href="https://yt.openinapp.co/jnajn"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Virales Video ansehen"
@@ -351,7 +357,7 @@
             </a>
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
               <a
-                href="https://www.youtube.com/watch?v=tqcm8JZCjiY"
+                href="https://yt.openinapp.co/jnajn"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hover:text-pink-400"
@@ -371,7 +377,7 @@
             class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300"
           >
             <a
-              href="https://www.youtube.com/watch?v=MQA1hVq-Qao"
+              href="https://yt.openinapp.co/rb0vd"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Video zum Community Projekt ansehen"
@@ -384,7 +390,7 @@
             </a>
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
               <a
-                href="https://www.youtube.com/watch?v=MQA1hVq-Qao"
+                href="https://yt.openinapp.co/rb0vd"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hover:text-pink-400"
