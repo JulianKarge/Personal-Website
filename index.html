@@ -65,8 +65,8 @@
             display: inline-block;
         }
         .social-icon:hover {
-            color: #6b7280; /* Tailwind gray-500 */
-            transform: scale(0.85);
+            /*color: #6b7280; /* Tailwind gray-500 */
+            transform: scale(1.2);
         }
 
         /* Mobile Menu Links Styling */
@@ -89,7 +89,7 @@
 
     <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-md shadow-lg">
         <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl md:text-2xl font-bold text-white brand-logo">Julian Karge</a>
+            <a href="#" class="text-xl md:text-2xl font-bold text-white brand-logo">Julian Lucca Karge</a>
             <div class="hidden md:flex space-x-6 text-base lg:text-lg">
                 <a href="#home" class="hover:text-pink-500">Startseite</a>
                 <a href="#about" class="hover:text-pink-500">Über Mich</a>
@@ -112,7 +112,7 @@
     <section id="home" class="hero-bg min-h-screen flex items-center justify-center pt-24 pb-12">
         <div class="text-center px-4 sm:px-6">
             <img src="Images/Profile-Pic.jpg" alt="JLZN" class="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto rounded-full object-cover border-4 border-pink-500 shadow-xl mb-6">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 text-white">Hi, it's me :) Julian Karge</h1>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 text-white">Hi, it's me :) Julian Lucca Karge</h1>
             <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8">Selbstverwirklichung | Perspektiven Wechsel | Grenzen Überschreitung</p>
             <a href="#contact" class="btn-primary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md mb-10">Kontakt aufnehmen</a>
 
@@ -166,20 +166,44 @@
                 Hier sind einige Meilensteine meiner YouTube-Reise, auf die ich stolz bin. Jeder einzelne steht für einen Schritt nach vorne bei der Verbindung mit meiner großartigen Community.
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Erste Karte: 100k Abonnenten - MIT DEINEM VIDEO -->
                 <div class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300">
-                    <img src="https://placehold.co/600x338/e94560/ffffff?text=100k+Abonnenten" alt="100k Abonnenten Play Button" class="rounded-md mb-4 w-full">
-                    <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">100.000 Abonnenten</h3>
-                    <p class="text-gray-400 text-sm md:text-base">Den Meilenstein von 100.000 Abonnenten erreicht – ein Beweis für die Community, die wir gemeinsam aufgebaut haben. So dankbar für den Silver Play Button!</p>
+                    <a href="https://www.youtube.com/watch?v=3UKoYsFFwUI" target="_blank" rel="noopener noreferrer" aria-label="Video zum 100.000 Abonnenten Meilenstein ansehen">
+                        <img src="https://img.youtube.com/vi/3UKoYsFFwUI/hqdefault.jpg" alt="Video Thumbnail: 100.000 Abonnenten erreicht" class="rounded-md mb-4 w-full">
+
+                    </a>
+                    <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
+                        <a href="https://www.youtube.com/watch?v=3UKoYsFFwUI" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400">
+                            20.000 Aufrufe
+                        </a>
+                    </h3>
+                    <p class="text-gray-400 text-sm md:text-base">Den Meilenstein von 20.000 Aufrufe erreicht – Dieses Video, dass es durch Hingabe und Gedult möglich ist auf YouTube zu wachsen </p>
                 </div>
+
+                <!-- Zweite Karte: Virales Video - ERSETZE DIE VIDEO_ID -->
                 <div class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300">
-                    <img src="https://placehold.co/600x338/16a34a/ffffff?text=Virales+Video" alt="Virales Video Thumbnail" class="rounded-md mb-4 w-full">
-                    <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">Erstes Virales Video (1 Mio.+ Aufrufe)</h3>
-                    <p class="text-gray-400 text-sm md:text-base">Mein Video über "[Platzhalter: Virales Video Thema]" erreichte über 1 Million Aufrufe und steigerte das Kanalwachstum und die Reichweite erheblich.</p>
+                    <a href="https://www.youtube.com/watch?v=tqcm8JZCjiY" target="_blank" rel="noopener noreferrer" aria-label="Virales Video ansehen">
+                        <img src="https://img.youtube.com/vi/tqcm8JZCjiY/hqdefault.jpg" alt="Video Thumbnail: Virales Video" class="rounded-md mb-4 w-full">
+                    </a>
+                    <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
+                        <a href="https://www.youtube.com/watch?v=tqcm8JZCjiY" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400">
+                            Der Start einer gesammten Video-Reihe
+                        </a>
+                    </h3>
+                    <p class="text-gray-400 text-sm md:text-base">Das ist das erste video der #ChallengeMe Reihe. Aus seiner Komfortzone raus gehen und einfach mal machen habe ich hier gelernt</p>
                 </div>
+
+                <!-- Dritte Karte: Community Projekt - ERSETZE DIE VIDEO_ID -->
                 <div class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300">
-                    <img src="https://placehold.co/600x338/0ea5e9/ffffff?text=Community+Projekt" alt="Community Projekt Grafik" class="rounded-md mb-4 w-full">
-                    <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">Erfolgreiches Community-Projekt</h3>
-                    <p class="text-gray-400 text-sm md:text-base">"[Platzhalter: Community-Projekt Name]" gestartet und abgeschlossen, bei dem Hunderte von Zuschauern in einer gemeinsamen Anstrengung engagiert wurden.</p>
+                    <a href="https://www.youtube.com/watch?v=MQA1hVq-Qao" target="_blank" rel="noopener noreferrer" aria-label="Video zum Community Projekt ansehen">
+                        <img src="https://img.youtube.com/vi/MQA1hVq-Qao/hqdefault.jpg" alt="Video Thumbnail: Community Projekt" class="rounded-md mb-4 w-full">
+                    </a>
+                    <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
+                        <a href="https://www.youtube.com/watch?v=MQA1hVq-Qao" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400">
+                            Letztes Video
+                        </a>
+                    </h3>
+                    <p class="text-gray-400 text-sm md:text-base">Ich versuche mich immer mit dem nächsten was ich herausbringe zu verbessern und ich denke mit diesem Video hab ich es wieder geschafft. (Obwohl die Views das iwie nicht so widerspiegeln :,)</p>
                 </div>
             </div>
         </div>
