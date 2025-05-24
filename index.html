@@ -1,358 +1,683 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Julian Lucca Karge</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-        .hero-bg {
-            background-color: #1a1a2e;
-            background-image: linear-gradient(45deg, #16213e, #0f3460, #1a1a2e, #533483);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .section-title {
-            /* Responsive Font Size Added via Classes */
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        .card {
-            background-color: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .btn-primary {
-            background-color: #e94560;
-            color: white;
-            transition: background-color 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #c7304a;
-        }
-        .achievement-card img {
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-        }
-        nav a:not(.brand-logo) {
-            transition: color 0.3s ease;
-        }
-        nav a:not(.brand-logo):hover {
-            color: #e94560;
-        }
+      body {
+        font-family: "Inter", sans-serif;
+        scroll-behavior: smooth;
+      }
+      .hero-bg {
+        background-image: linear-gradient(
+            rgba(26, 26, 46, 0.75),
+            rgba(26, 26, 46, 0.85)
+          ),
+          /* Dunkelvioletter Overlay (anpassbar) */
+            url("Images/MountainViewBackground.png");
 
-        /* Social Media Icon Farben & Hover-Effekt */
-        .youtube-color { color: #FF0000; }
-        .x-color { color: #FFFFFF; }
-        .instagram-color { color: #E1306C; }
-        .linkedin-color { color: #0077B5; }
-        .tiktok-color { color: #FFFFFF; }
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /*min-height: 100vh;
+        /* WICHTIG: Damit der Inhalt über dem Overlay liegt (falls nicht schon durch andere Styles) */
+        position: relative; /* Notwendig, falls du z-index für Kindelemente brauchst */
+      }
 
-        .social-icon {
-            transition: transform 0.3s ease, color 0.3s ease;
-            display: inline-block;
-        }
-        .social-icon:hover {
-            /*color: #6b7280; /* Tailwind gray-500 */
-            transform: scale(1.2);
-        }
+      /* Stelle sicher, dass der direkte Inhaltscontainer in .hero-bg (falls vorhanden) über dem Overlay liegt */
+      #home > .text-center {
+        /* #home ist die section mit der Klasse .hero-bg */
+        position: relative; /* Macht z-index wirksam */
+        z-index: 1; /* Stellt sicher, dass dieser Inhalt über dem (impliziten) Overlay des Elternelements liegt */
+      }
 
-        /* Mobile Menu Links Styling */
-        #mobile-menu a {
-            transition: background-color 0.2s ease, color 0.2s ease;
-            color: #d1d5db;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-         #mobile-menu a:last-child {
-             border-bottom: none;
-         }
-        #mobile-menu a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #e94560;
-        }
+      #home h1 {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* x-Offset, y-Offset, Weichzeichner, Farbe (Schwarz mit 70% Deckkraft) */
+      }
 
+      /* Textschatten für die Tagline/Unterüberschrift im Hero-Bereich */
+      #home p.text-lg {
+        /* Diese Klasse wird für deine Tagline verwendet */
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8); /* Etwas dezenterer Schatten für kleineren Text */
+      }
+
+      .section-title {
+        /* Responsive Font Size Added via Classes */
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+      .card {
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .btn-primary {
+        background-color: #e94560;
+        color: white;
+        transition: background-color 0.3s ease;
+      }
+      .btn-primary:hover {
+        background-color: #c7304a;
+      }
+      .achievement-card img {
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+      }
+      nav a:not(.brand-logo) {
+        transition: color 0.3s ease;
+      }
+      nav a:not(.brand-logo):hover {
+        color: #e94560;
+      }
+
+      /* Social Media Icon Farben & Hover-Effekt */
+      .youtube-color {
+        color: #ff0000;
+      }
+      .x-color {
+        color: #ffffff;
+      }
+      .instagram-color {
+        color: #e1306c;
+      }
+      .linkedin-color {
+        color: #0077b5;
+      }
+      .tiktok-color {
+        color: #ffffff;
+      }
+
+      .social-icon {
+        transition: transform 0.3s ease, color 0.3s ease;
+        display: inline-block;
+      }
+      .social-icon:hover {
+        /*color: #6b7280; /* Tailwind gray-500 */
+        transform: scale(1.2);
+      }
+
+      /* Mobile Menu Links Styling */
+      #mobile-menu a {
+        transition: background-color 0.2s ease, color 0.2s ease;
+        color: #d1d5db;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      #mobile-menu a:last-child {
+        border-bottom: none;
+      }
+      #mobile-menu a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #e94560;
+      }
     </style>
-</head>
-<body class="bg-gray-900 text-gray-100">
+  </head>
+  <body class="bg-gray-900 text-gray-100">
+    <header
+      class="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-md shadow-lg"
+    >
+      <nav
+        class="px-4 sm:px-6 py-1 md:py-2 flex justify-between items-center"
+      >
+        <a
+          href="#home"
+          class="brand-logo flex items-center text-xl md:text-2xl font-bold text-white"
+        >
+          <img
+            src="Images/Logo.png"
+            alt="Julian Karge Logo"
+            class="h-12 md:h-16 w-auto mr-2 md:mr-3"
+          />
+          <span>Julian Lucca Karge</span>
+        </a>
 
-    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-md shadow-lg">
-        <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl md:text-2xl font-bold text-white brand-logo">Julian Lucca Karge</a>
-            <div class="hidden md:flex space-x-6 text-base lg:text-lg">
-                <a href="#home" class="hover:text-pink-500">Startseite</a>
-                <a href="#about" class="hover:text-pink-500">Über Mich</a>
-                <a href="#achievements" class="hover:text-pink-500">Errungenschaften</a>
-                <a href="#portfolio" class="hover:text-pink-500">Portfolio</a>
-                <a href="#contact" class="hover:text-pink-500">Kontakt</a>
-            </div>
-            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
-                <i class="fas fa-bars fa-xl"></i> </button>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#home" class="block text-center py-3 px-6 text-lg">Startseite</a>
-            <a href="#about" class="block text-center py-3 px-6 text-lg">Über Mich</a>
-            <a href="#achievements" class="block text-center py-3 px-6 text-lg">Errungenschaften</a>
-            <a href="#portfolio" class="block text-center py-3 px-6 text-lg">Portfolio</a>
-            <a href="#contact" class="block text-center py-3 px-6 text-lg">Kontakt</a>
+        <div class="hidden md:flex space-x-6 text-base lg:text-lg">
+          <a href="#home" class="hover:text-pink-500">Startseite</a>
+          <a href="#about" class="hover:text-pink-500">Über Mich</a>
+          <a href="#achievements" class="hover:text-pink-500"
+            >Errungenschaften</a
+          >
+          <a href="#portfolio" class="hover:text-pink-500">Portfolio</a>
+          <a href="#contact" class="hover:text-pink-500">Kontakt</a>
         </div>
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-white focus:outline-none"
+        >
+          <i class="fas fa-bars fa-xl"></i>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden">
+        <!-- Mobile menu links -->
+        <a href="#home" class="block text-center py-3 px-6 text-lg"
+          >Startseite</a
+        >
+        <a href="#about" class="block text-center py-3 px-6 text-lg"
+          >Über Mich</a
+        >
+        <a href="#achievements" class="block text-center py-3 px-6 text-lg"
+          >Errungenschaften</a
+        >
+        <a href="#portfolio" class="block text-center py-3 px-6 text-lg"
+          >Portfolio</a
+        >
+        <a href="#contact" class="block text-center py-3 px-6 text-lg"
+          >Kontakt</a
+        >
+      </div>
     </header>
 
-    <section id="home" class="hero-bg min-h-screen flex items-center justify-center pt-24 pb-12">
-        <div class="text-center px-4 sm:px-6">
-            <img src="Images/Profile-Pic.jpg" alt="JLZN" class="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto rounded-full object-cover border-4 border-pink-500 shadow-xl mb-6">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 text-white">Hi, it's me :) Julian Lucca Karge</h1>
-            <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8">Selbstverwirklichung | Perspektiven Wechsel | Grenzen Überschreitung</p>
-            <a href="#contact" class="btn-primary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md mb-10">Kontakt aufnehmen</a>
+    <section
+      id="home"
+      class="hero-bg min-h-screen flex items-center justify-center pt-24 pb-12"
+      min-height:
+      100vh;
+    >
+      <div class="text-center px-4 sm:px-6">
+        <img
+          src="Images/Profile-Pic.jpg"
+          alt="JLZN"
+          class="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto rounded-full object-cover border-4 border-pink-500 shadow-xl hover:shadow-2xl transition-shadow mb-6"
+        />
+        <h1
+          class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 text-white"
+        >
+          Hi, it's me :) Julian Lucca Karge
+        </h1>
+        <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8">
+          Selbstverwirklichung | Perspektiven Wechsel | Grenzen Überschreitung
+        </p>
+        <a
+          href="#contact"
+          class="btn-primary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md mb-10"
+          >Kontakt aufnehmen</a
+        >
 
-            <div class="flex justify-center space-x-4 sm:space-x-6 md:space-x-8">
-                <a href="https://www.youtube.com/@juliankarge" target="_blank" rel="noopener noreferrer" class="youtube-color social-icon">
-                    <i class="fab fa-youtube text-4xl md:text-5xl"></i>
-                </a>
-                <a href="https://x.com/_JLZN_" target="_blank" rel="noopener noreferrer" class="x-color social-icon">
-                    <i class="fab fa-x-twitter text-4xl md:text-5xl"></i>
-                </a>
-                <a href="https://www.instagram.com/julian.karge/" target="_blank" rel="noopener noreferrer" class="instagram-color social-icon">
-                    <i class="fab fa-instagram text-4xl md:text-5xl"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/julian-ai-flowstate/" target="_blank" rel="noopener noreferrer" class="linkedin-color social-icon">
-                    <i class="fab fa-linkedin text-4xl md:text-5xl"></i>
-                </a>
-                <a href="https://www.tiktok.com/@official.jlzn" target="_blank" rel="noopener noreferrer" class="tiktok-color social-icon">
-                    <i class="fab fa-tiktok text-4xl md:text-5xl"></i>
-                </a>
-            </div>
+        <div class="flex justify-center space-x-4 sm:space-x-6 md:space-x-8">
+          <a
+            href="https://www.youtube.com/@juliankarge"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-color social-icon"
+          >
+            <i class="fab fa-youtube text-4xl md:text-5xl"></i>
+          </a>
+          <a
+            href="https://x.com/_JLZN_"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="x-color social-icon"
+          >
+            <i class="fab fa-x-twitter text-4xl md:text-5xl"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/julian.karge/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="instagram-color social-icon"
+          >
+            <i class="fab fa-instagram text-4xl md:text-5xl"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/julian-ai-flowstate/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="linkedin-color social-icon"
+          >
+            <i class="fab fa-linkedin text-4xl md:text-5xl"></i>
+          </a>
+          <a
+            href="https://www.tiktok.com/@official.jlzn"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="tiktok-color social-icon"
+          >
+            <i class="fab fa-tiktok text-4xl md:text-5xl"></i>
+          </a>
         </div>
+      </div>
     </section>
 
     <section id="about" class="py-16 md:py-24 bg-gray-800">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="section-title text-white text-3xl md:text-4xl">Über Mich</h2>
-            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div class="rounded-lg overflow-hidden shadow-2xl">
-                    <img src="Images/SchwimmBild.jpg" alt="Über Julian Karge" class="w-full h-auto object-cover">
-                </div>
-                <div class="text-gray-300 text-base md:text-lg">
-                    <p class="mb-4">
-                        Hi! ich bins Julian, ein leidenschaftlicher Content Creator mit Fokus auf die sportliche Entwicklung und persönliche Selbstverwirklichung.
-                    </p>
-                    <p class="mb-4">
-                       Seit fast 2 Jahren versuche ich für euch, ansprechende und informative Inhalte zu erstellen, hauptsächlich auf YouTube. Ich liebe es neue Sachen auszuprobieren und sportlich neue Grenzen zu überschreiten.
-                    </p>
-                    <p class="mb-6">
-                        Wenn ich nicht gerade Inhalte erstelle, bin ich dual Wirtschaftsinformatik IMBIT am studieren. Diese Seite ist eine Möglichkeit für euch, all meine Arbeit auf einem Blick zu entdecken.
-                    </p>
-                    <a href="#portfolio" class="btn-primary font-semibold py-3 px-6 rounded-lg text-base md:text-lg inline-block shadow-md">Meine Arbeit ansehen</a>
-                </div>
-            </div>
+      <div class="container mx-auto px-4 sm:px-6">
+        <h2 class="section-title text-white text-3xl md:text-4xl">Über Mich</h2>
+        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div class="rounded-lg overflow-hidden shadow-2xl">
+            <img
+              src="Images/SchwimmBild.jpg"
+              alt="Über Julian Karge"
+              class="w-full h-auto object-cover"
+            />
+          </div>
+          <div class="text-gray-300 text-base md:text-lg">
+            <p class="mb-4">
+              Hi! ich bins Julian, ein leidenschaftlicher Content Creator mit
+              Fokus auf die sportliche Entwicklung und persönliche
+              Selbstverwirklichung.
+            </p>
+            <p class="mb-4">
+              Seit fast 2 Jahren versuche ich für euch, ansprechende und
+              informative Inhalte zu erstellen, hauptsächlich auf YouTube. Ich
+              liebe es neue Sachen auszuprobieren und sportlich neue Grenzen zu
+              überschreiten.
+            </p>
+            <p class="mb-6">
+              Wenn ich nicht gerade Inhalte erstelle, bin ich dual
+              Wirtschaftsinformatik IMBIT am studieren. Diese Seite ist eine
+              Möglichkeit für euch, all meine Arbeit auf einem Blick zu
+              entdecken.
+            </p>
+            <a
+              href="#portfolio"
+              class="btn-primary font-semibold py-3 px-6 rounded-lg text-base md:text-lg inline-block shadow-md"
+              >Meine Arbeit ansehen</a
+            >
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="achievements" class="py-16 md:py-24 bg-gray-900">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="section-title text-white text-3xl md:text-4xl">YouTube Meilensteine</h2>
-            <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-base md:text-lg">
-                Hier sind einige Meilensteine meiner YouTube-Reise, auf die ich stolz bin. Jeder einzelne steht für einen Schritt nach vorne bei der Verbindung mit meiner großartigen Community.
+      <div class="container mx-auto px-4 sm:px-6">
+        <h2 class="section-title text-white text-3xl md:text-4xl">
+          YouTube Meilensteine
+        </h2>
+        <p
+          class="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-base md:text-lg"
+        >
+          Hier sind einige Meilensteine meiner YouTube-Reise, auf die ich stolz
+          bin. Jeder einzelne steht für einen Schritt nach vorne bei der
+          Verbindung mit meiner großartigen Community.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Erste Karte: 100k Abonnenten - MIT DEINEM VIDEO -->
+          <div
+            class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300"
+          >
+            <a
+              href="https://www.youtube.com/watch?v=3UKoYsFFwUI"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Video zum 100.000 Abonnenten Meilenstein ansehen"
+            >
+              <img
+                src="https://img.youtube.com/vi/3UKoYsFFwUI/hqdefault.jpg"
+                alt="Video Thumbnail: 100.000 Abonnenten erreicht"
+                class="rounded-md mb-4 w-full"
+              />
+            </a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
+              <a
+                href="https://www.youtube.com/watch?v=3UKoYsFFwUI"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-pink-400"
+              >
+                20.000 Aufrufe
+              </a>
+            </h3>
+            <p class="text-gray-400 text-sm md:text-base">
+              Den Meilenstein von 20.000 Aufrufe erreicht – Dieses Video, dass
+              es durch Hingabe und Gedult möglich ist auf YouTube zu wachsen
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Erste Karte: 100k Abonnenten - MIT DEINEM VIDEO -->
-                <div class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300">
-                    <a href="https://www.youtube.com/watch?v=3UKoYsFFwUI" target="_blank" rel="noopener noreferrer" aria-label="Video zum 100.000 Abonnenten Meilenstein ansehen">
-                        <img src="https://img.youtube.com/vi/3UKoYsFFwUI/hqdefault.jpg" alt="Video Thumbnail: 100.000 Abonnenten erreicht" class="rounded-md mb-4 w-full">
+          </div>
 
-                    </a>
-                    <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
-                        <a href="https://www.youtube.com/watch?v=3UKoYsFFwUI" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400">
-                            20.000 Aufrufe
-                        </a>
-                    </h3>
-                    <p class="text-gray-400 text-sm md:text-base">Den Meilenstein von 20.000 Aufrufe erreicht – Dieses Video, dass es durch Hingabe und Gedult möglich ist auf YouTube zu wachsen </p>
-                </div>
+          <!-- Zweite Karte: Virales Video - ERSETZE DIE VIDEO_ID -->
+          <div
+            class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300"
+          >
+            <a
+              href="https://www.youtube.com/watch?v=tqcm8JZCjiY"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Virales Video ansehen"
+            >
+              <img
+                src="https://img.youtube.com/vi/tqcm8JZCjiY/hqdefault.jpg"
+                alt="Video Thumbnail: Virales Video"
+                class="rounded-md mb-4 w-full"
+              />
+            </a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
+              <a
+                href="https://www.youtube.com/watch?v=tqcm8JZCjiY"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-pink-400"
+              >
+                Der Start einer gesammten Video-Reihe
+              </a>
+            </h3>
+            <p class="text-gray-400 text-sm md:text-base">
+              Das ist das erste video der #ChallengeMe Reihe. Aus seiner
+              Komfortzone raus gehen und einfach mal machen habe ich hier
+              gelernt
+            </p>
+          </div>
 
-                <!-- Zweite Karte: Virales Video - ERSETZE DIE VIDEO_ID -->
-                <div class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300">
-                    <a href="https://www.youtube.com/watch?v=tqcm8JZCjiY" target="_blank" rel="noopener noreferrer" aria-label="Virales Video ansehen">
-                        <img src="https://img.youtube.com/vi/tqcm8JZCjiY/hqdefault.jpg" alt="Video Thumbnail: Virales Video" class="rounded-md mb-4 w-full">
-                    </a>
-                    <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
-                        <a href="https://www.youtube.com/watch?v=tqcm8JZCjiY" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400">
-                            Der Start einer gesammten Video-Reihe
-                        </a>
-                    </h3>
-                    <p class="text-gray-400 text-sm md:text-base">Das ist das erste video der #ChallengeMe Reihe. Aus seiner Komfortzone raus gehen und einfach mal machen habe ich hier gelernt</p>
-                </div>
-
-                <!-- Dritte Karte: Community Projekt - ERSETZE DIE VIDEO_ID -->
-                <div class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300">
-                    <a href="https://www.youtube.com/watch?v=MQA1hVq-Qao" target="_blank" rel="noopener noreferrer" aria-label="Video zum Community Projekt ansehen">
-                        <img src="https://img.youtube.com/vi/MQA1hVq-Qao/hqdefault.jpg" alt="Video Thumbnail: Community Projekt" class="rounded-md mb-4 w-full">
-                    </a>
-                    <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
-                        <a href="https://www.youtube.com/watch?v=MQA1hVq-Qao" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400">
-                            Letztes Video
-                        </a>
-                    </h3>
-                    <p class="text-gray-400 text-sm md:text-base">Ich versuche mich immer mit dem nächsten was ich herausbringe zu verbessern und ich denke mit diesem Video hab ich es wieder geschafft. (Obwohl die Views das iwie nicht so widerspiegeln :,)</p>
-                </div>
-            </div>
+          <!-- Dritte Karte: Community Projekt - ERSETZE DIE VIDEO_ID -->
+          <div
+            class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300"
+          >
+            <a
+              href="https://www.youtube.com/watch?v=MQA1hVq-Qao"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Video zum Community Projekt ansehen"
+            >
+              <img
+                src="https://img.youtube.com/vi/MQA1hVq-Qao/hqdefault.jpg"
+                alt="Video Thumbnail: Community Projekt"
+                class="rounded-md mb-4 w-full"
+              />
+            </a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
+              <a
+                href="https://www.youtube.com/watch?v=MQA1hVq-Qao"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-pink-400"
+              >
+                Letztes Video
+              </a>
+            </h3>
+            <p class="text-gray-400 text-sm md:text-base">
+              Ich versuche mich immer mit dem nächsten was ich herausbringe zu
+              verbessern und ich denke mit diesem Video hab ich es wieder
+              geschafft. (Obwohl die Views das iwie nicht so widerspiegeln :,)
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="portfolio" class="py-16 md:py-24 bg-gray-800">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="section-title text-white text-3xl md:text-4xl">Vorgestellte Inhalte</h2>
-            <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-base md:text-lg">
-                Schau dir einige meiner beliebtesten oder neuesten Arbeiten an. Klicke auf ein Video, um es direkt auf YouTube anzusehen.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-transform duration-300">
-                    <a href="YOUR_YOUTUBE_VIDEO_LINK_1" target="_blank" rel="noopener noreferrer">
-                        <img src="https://placehold.co/600x338/5b21b6/ffffff?text=Video+1+Thumbnail" alt="Video 1 Thumbnail" class="w-full h-48 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 text-white"><a href="YOUR_YOUTUBE_VIDEO_LINK_1" target="_blank" rel="noopener noreferrer">Titel deines tollen Videos 1</a></h3>
-                        <p class="text-gray-400 text-sm md:text-base mb-3">Eine kurze Beschreibung, worum es in diesem Video geht. Halte es eingängig und informativ.</p>
-                        <a href="YOUR_YOUTUBE_VIDEO_LINK_1" target="_blank" rel="noopener noreferrer" class="text-pink-400 hover:text-pink-300 font-medium">Auf YouTube ansehen →</a>
-                    </div>
-                </div>
-                 <div class="card rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-transform duration-300">
-                    <a href="YOUR_YOUTUBE_VIDEO_LINK_2" target="_blank" rel="noopener noreferrer">
-                        <img src="https://placehold.co/600x338/1d4ed8/ffffff?text=Video+2+Thumbnail" alt="Video 2 Thumbnail" class="w-full h-48 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 text-white"><a href="YOUR_YOUTUBE_VIDEO_LINK_2" target="_blank" rel="noopener noreferrer">Ein weiteres großartiges Video 2</a></h3>
-                        <p class="text-gray-400 text-sm md:text-base mb-3">Dieses Video erkundet [Thema]. Es ist eines meiner persönlichen Favoriten oder ein Fan-Favorit.</p>
-                        <a href="YOUR_YOUTUBE_VIDEO_LINK_2" target="_blank" rel="noopener noreferrer" class="text-pink-400 hover:text-pink-300 font-medium">Auf YouTube ansehen →</a>
-                    </div>
-                </div>
-                 <div class="card rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-transform duration-300">
-                    <a href="YOUR_YOUTUBE_VIDEO_LINK_3" target="_blank" rel="noopener noreferrer">
-                        <img src="https://placehold.co/600x338/047857/ffffff?text=Video+3+Thumbnail" alt="Video 3 Thumbnail" class="w-full h-48 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 text-white"><a href="YOUR_YOUTUBE_VIDEO_LINK_3" target="_blank" rel="noopener noreferrer">Unbedingt ansehen: Video 3</a></h3>
-                        <p class="text-gray-400 text-sm md:text-base mb-3">Tauche tief in [Thema] ein mit diesem umfassenden Leitfaden oder unterhaltsamen Beitrag.</p>
-                        <a href="YOUR_YOUTUBE_VIDEO_LINK_3" target="_blank" rel="noopener noreferrer" class="text-pink-400 hover:text-pink-300 font-medium">Auf YouTube ansehen →</a>
-                    </div>
-                </div>
+      <div class="container mx-auto px-4 sm:px-6">
+        <h2 class="section-title text-white text-3xl md:text-4xl">
+          Vorgestellte Inhalte
+        </h2>
+        <p
+          class="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-base md:text-lg"
+        >
+          Schau dir einige meiner beliebtesten oder neuesten Arbeiten an. Klicke
+          auf ein Video, um es direkt auf YouTube anzusehen.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            class="card rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-transform duration-300"
+          >
+            <a
+              href="YOUR_YOUTUBE_VIDEO_LINK_1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://placehold.co/600x338/5b21b6/ffffff?text=Video+1+Thumbnail"
+                alt="Video 1 Thumbnail"
+                class="w-full h-48 object-cover"
+              />
+            </a>
+            <div class="p-6">
+              <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
+                <a
+                  href="YOUR_YOUTUBE_VIDEO_LINK_1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Titel deines tollen Videos 1</a
+                >
+              </h3>
+              <p class="text-gray-400 text-sm md:text-base mb-3">
+                Eine kurze Beschreibung, worum es in diesem Video geht. Halte es
+                eingängig und informativ.
+              </p>
+              <a
+                href="YOUR_YOUTUBE_VIDEO_LINK_1"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-pink-400 hover:text-pink-300 font-medium"
+                >Auf YouTube ansehen →</a
+              >
             </div>
-             <div class="text-center mt-12">
-                 <a href="https://www.youtube.com/@juliankarge" target="_blank" rel="noopener noreferrer" class="btn-primary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md">
-                    Besuche meinen YouTube-Kanal
-                </a>
+          </div>
+          <div
+            class="card rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-transform duration-300"
+          >
+            <a
+              href="YOUR_YOUTUBE_VIDEO_LINK_2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://placehold.co/600x338/1d4ed8/ffffff?text=Video+2+Thumbnail"
+                alt="Video 2 Thumbnail"
+                class="w-full h-48 object-cover"
+              />
+            </a>
+            <div class="p-6">
+              <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
+                <a
+                  href="YOUR_YOUTUBE_VIDEO_LINK_2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Ein weiteres großartiges Video 2</a
+                >
+              </h3>
+              <p class="text-gray-400 text-sm md:text-base mb-3">
+                Dieses Video erkundet [Thema]. Es ist eines meiner persönlichen
+                Favoriten oder ein Fan-Favorit.
+              </p>
+              <a
+                href="YOUR_YOUTUBE_VIDEO_LINK_2"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-pink-400 hover:text-pink-300 font-medium"
+                >Auf YouTube ansehen →</a
+              >
             </div>
+          </div>
+          <div
+            class="card rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-transform duration-300"
+          >
+            <a
+              href="YOUR_YOUTUBE_VIDEO_LINK_3"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://placehold.co/600x338/047857/ffffff?text=Video+3+Thumbnail"
+                alt="Video 3 Thumbnail"
+                class="w-full h-48 object-cover"
+              />
+            </a>
+            <div class="p-6">
+              <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
+                <a
+                  href="YOUR_YOUTUBE_VIDEO_LINK_3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Unbedingt ansehen: Video 3</a
+                >
+              </h3>
+              <p class="text-gray-400 text-sm md:text-base mb-3">
+                Tauche tief in [Thema] ein mit diesem umfassenden Leitfaden oder
+                unterhaltsamen Beitrag.
+              </p>
+              <a
+                href="YOUR_YOUTUBE_VIDEO_LINK_3"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-pink-400 hover:text-pink-300 font-medium"
+                >Auf YouTube ansehen →</a
+              >
+            </div>
+          </div>
         </div>
+        <div class="text-center mt-12">
+          <a
+            href="https://www.youtube.com/@juliankarge"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md"
+          >
+            Besuche meinen YouTube-Kanal
+          </a>
+        </div>
+      </div>
     </section>
 
     <section id="contact" class="py-16 md:py-24 hero-bg">
-        <div class="container mx-auto px-4 sm:px-6 text-center">
-            <h2 class="section-title text-white text-3xl md:text-4xl">Verbinde dich mit mir</h2>
-            <p class="text-gray-300 mb-8 text-base md:text-lg max-w-xl mx-auto">
-                Hast du eine Frage, eine Idee für eine Zusammenarbeit oder möchtest einfach nur Hallo sagen? Zögere nicht, dich zu melden!
-                Du findest mich auch auf diesen Plattformen:
-            </p>
-            <div class="flex justify-center space-x-4 sm:space-x-6 mb-10">
-                 <a href="https://www.youtube.com/@juliankarge" target="_blank" rel="noopener noreferrer" class="youtube-color social-icon">
-                    <i class="fab fa-youtube text-3xl md:text-4xl"></i>
-                </a>
-                <a href="https://x.com/_JLZN_" target="_blank" rel="noopener noreferrer" class="x-color social-icon">
-                    <i class="fab fa-x-twitter text-3xl md:text-4xl"></i>
-                </a>
-                <a href="https://www.instagram.com/julian.karge/" target="_blank" rel="noopener noreferrer" class="instagram-color social-icon">
-                    <i class="fab fa-instagram text-3xl md:text-4xl"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/julian-ai-flowstate/" target="_blank" rel="noopener noreferrer" class="linkedin-color social-icon">
-                    <i class="fab fa-linkedin text-3xl md:text-4xl"></i>
-                </a>
-                <a href="https://www.tiktok.com/@official.jlzn" target="_blank" rel="noopener noreferrer" class="tiktok-color social-icon">
-                     <i class="fab fa-tiktok text-3xl md:text-4xl"></i>
-                </a>
-            </div>
+      <div class="container mx-auto px-4 sm:px-6 text-center">
+        <h2 class="section-title text-white text-3xl md:text-4xl">
+          Verbinde dich mit mir
+        </h2>
+        <p class="text-gray-300 mb-8 text-base md:text-lg max-w-xl mx-auto">
+          Hast du eine Frage, eine Idee für eine Zusammenarbeit oder möchtest
+          einfach nur Hallo sagen? Zögere nicht, dich zu melden! Du findest mich
+          auch auf diesen Plattformen:
+        </p>
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-10">
+          <a
+            href="https://www.youtube.com/@juliankarge"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-color social-icon"
+          >
+            <i class="fab fa-youtube text-3xl md:text-4xl"></i>
+          </a>
+          <a
+            href="https://x.com/_JLZN_"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="x-color social-icon"
+          >
+            <i class="fab fa-x-twitter text-3xl md:text-4xl"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/julian.karge/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="instagram-color social-icon"
+          >
+            <i class="fab fa-instagram text-3xl md:text-4xl"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/julian-ai-flowstate/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="linkedin-color social-icon"
+          >
+            <i class="fab fa-linkedin text-3xl md:text-4xl"></i>
+          </a>
+          <a
+            href="https://www.tiktok.com/@official.jlzn"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="tiktok-color social-icon"
+          >
+            <i class="fab fa-tiktok text-3xl md:text-4xl"></i>
+          </a>
+        </div>
 
-            <p class="text-gray-400 mb-4 text-base md:text-lg">Für geschäftliche Anfragen, sende mir bitte eine E-Mail an:</p>
-            <a href="mailto:JLZNkontakt@gmail.com" class="text-lg sm:text-xl text-pink-400 hover:text-pink-300 font-semibold break-words">
-                JLZNkontakt@gmail.com
-            </a>
-            </div>
+        <p class="text-gray-400 mb-4 text-base md:text-lg">
+          Für geschäftliche Anfragen, sende mir bitte eine E-Mail an:
+        </p>
+        <a
+          href="mailto:JLZNkontakt@gmail.com"
+          class="text-lg sm:text-xl text-pink-400 hover:text-pink-300 font-semibold break-words"
+        >
+          JLZNkontakt@gmail.com
+        </a>
+      </div>
     </section>
 
     <footer class="bg-gray-900 py-8 text-center px-4">
-        <p class="text-gray-500 text-sm md:text-base">© <span id="currentYear"></span> Julian Karge. Alle Rechte vorbehalten.</p>
-        <p class="text-gray-600 text-xs md:text-sm">Webseite gehostet auf juliankarge.de</p>
+      <p class="text-gray-500 text-sm md:text-base">
+        © <span id="currentYear"></span> Julian Karge. Alle Rechte vorbehalten.
+      </p>
+      <p class="text-gray-600 text-xs md:text-sm">
+        Webseite gehostet auf juliankarge.com
+      </p>
     </footer>
 
     <script>
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+      // Set current year in footer
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
 
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuIcon = mobileMenuButton.querySelector('i');
+      // Mobile Menu Toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileMenuIcon = mobileMenuButton.querySelector("i");
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            // Change icon (Bars to X and vice-versa)
-            mobileMenuIcon.classList.toggle('fa-bars');
-            mobileMenuIcon.classList.toggle('fa-times');
-        });
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        // Change icon (Bars to X and vice-versa)
+        mobileMenuIcon.classList.toggle("fa-bars");
+        mobileMenuIcon.classList.toggle("fa-times");
+      });
 
-        // Smooth scrolling & Close mobile menu when a link is clicked
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetElement = document.querySelector(this.getAttribute('href'));
-                if(targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-                // Close mobile menu if open and it's a mobile link
-                if (!mobileMenu.classList.contains('hidden') && this.closest('#mobile-menu')) {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuIcon.classList.remove('fa-times');
-                    mobileMenuIcon.classList.add('fa-bars');
-                } else if (!mobileMenu.classList.contains('hidden') && this.closest('#desktop-menu a')) {
-                    // Also close if a desktop link is somehow clicked? (Good practice)
-                     mobileMenu.classList.add('hidden');
-                     mobileMenuIcon.classList.remove('fa-times');
-                     mobileMenuIcon.classList.add('fa-bars');
-                } else if (!mobileMenu.classList.contains('hidden')) {
-                     // Check if it's a link *ikargenside* the mobile menu.
-                    let parent = this.parentNode;
-                    while (parent) {
-                        if (parent.id === 'mobile-menu') {
-                            mobileMenu.classList.add('hidden');
-                            mobileMenuIcon.classList.remove('fa-times');
-                            mobileMenuIcon.classList.add('fa-bars');
-                            break; // Exit loop once found
-                        }
-                        parent = parent.parentNode;
-                    }
-                }
+      // Smooth scrolling & Close mobile menu when a link is clicked
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetElement = document.querySelector(
+            this.getAttribute("href")
+          );
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: "smooth",
             });
+          }
+          // Close mobile menu if open and it's a mobile link
+          if (
+            !mobileMenu.classList.contains("hidden") &&
+            this.closest("#mobile-menu")
+          ) {
+            mobileMenu.classList.add("hidden");
+            mobileMenuIcon.classList.remove("fa-times");
+            mobileMenuIcon.classList.add("fa-bars");
+          } else if (
+            !mobileMenu.classList.contains("hidden") &&
+            this.closest("#desktop-menu a")
+          ) {
+            // Also close if a desktop link is somehow clicked? (Good practice)
+            mobileMenu.classList.add("hidden");
+            mobileMenuIcon.classList.remove("fa-times");
+            mobileMenuIcon.classList.add("fa-bars");
+          } else if (!mobileMenu.classList.contains("hidden")) {
+            // Check if it's a link *ikargenside* the mobile menu.
+            let parent = this.parentNode;
+            while (parent) {
+              if (parent.id === "mobile-menu") {
+                mobileMenu.classList.add("hidden");
+                mobileMenuIcon.classList.remove("fa-times");
+                mobileMenuIcon.classList.add("fa-bars");
+                break; // Exit loop once found
+              }
+              parent = parent.parentNode;
+            }
+          }
         });
-        // Refined closing logic for mobile menu links
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-             link.addEventListener('click', () => {
-                  mobileMenu.classList.add('hidden');
-                  mobileMenuIcon.classList.remove('fa-times');
-                  mobileMenuIcon.classList.add('fa-bars');
-             })
+      });
+      // Refined closing logic for mobile menu links
+      document.querySelectorAll("#mobile-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          mobileMenuIcon.classList.remove("fa-times");
+          mobileMenuIcon.classList.add("fa-bars");
         });
-
+      });
     </script>
-
-</body>
+  </body>
 </html>
