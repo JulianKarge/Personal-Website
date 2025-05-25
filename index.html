@@ -9,6 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -131,7 +132,7 @@
       /* Music Player Styling */
       #music-player {
         font-family: "Inter", sans-serif;
-        transition: width 0.3s ease, height 0.3s ease; /* For smooth minimize/maximize */
+        transition: width 0.3s ease, height 0.3s ease, padding 0.3s ease; /* For smooth minimize/maximize */
       }
 
       #playlist-list {
@@ -162,7 +163,12 @@
       /* Minimized Player Styles */
       #music-player.player-minimized {
         width: auto; /* Shrink to content */
-        min-width: 200px; /* Minimum width for title */
+        min-width: 180px; /* Minimum width for title on mobile */
+      }
+       @media (min-width: 640px) { /* sm breakpoint */
+        #music-player.player-minimized {
+            min-width: 200px; 
+        }
       }
       #music-player.player-minimized #player-main-controls,
       #music-player.player-minimized #playlist-container {
@@ -171,6 +177,33 @@
       #music-player.player-minimized .flex.items-center.mb-3 { /* Top bar with song info */
         margin-bottom: 0; /* Remove bottom margin when minimized */
       }
+
+      /* Text Animation Styles */
+      #animated-name-placeholder {
+        display: inline-block; /* Important for proper layout */
+        position: relative; /* For cursor positioning if needed */
+         min-height: 1.2em; /* Prevent layout jump during deletion, adjust if needed */
+      }
+
+      .jlzn-font-style {
+        font-family: 'Audiowide', sans-serif;
+        color: #e94560; /* Your primary pink color */
+      }
+
+      /* Blinking Cursor Effect */
+      #animated-name-placeholder::after {
+        content: '|';
+        display: inline-block;
+        margin-left: 3px; /* Adjust spacing as needed */
+        animation: blink-caret 0.75s step-end infinite;
+        color: var(--cursor-color, white); /* Use CSS variable, default to white */
+      }
+
+      @keyframes blink-caret {
+        from, to { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
     </style>
   </head>
   <body class="bg-gray-900 text-gray-100">
@@ -221,20 +254,20 @@
       </div>
     </header>
 
-    <section
+   <section
       id="home"
       class="hero-bg min-h-screen flex items-center justify-center pt-24 pb-12"
     >
       <div class="text-center px-4 sm:px-6">
         <img
-          src="Images/Profile-Pic.jpg"
+          src="Images/Profile-Pic.png"
           alt="JLZN"
-          class="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto rounded-full object-cover border-4 border-pink-500 shadow-xl hover:shadow-2xl transition-shadow mb-6"
+          class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto h-auto mb-6"
         />
         <h1
           class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 text-white"
         >
-          Hi, it's me :)<br class="sm:hidden"> Julian Lucca Karge
+          Hi, it's me :)<br class="sm:hidden"> <span id="animated-name-placeholder"></span>
         </h1>
         <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8">
           Selbstverwirklichung | Perspektiven Wechsel | Grenzen Überschreitung
@@ -478,7 +511,7 @@
               Wenn ich nicht gerade Inhalte erstelle, bin ich dual
               Wirtschaftsinformatik IMBIT am studieren. Diese Seite ist eine
               Möglichkeit für euch, all meine Arbeit auf einem Blick zu
-              entdecken.
+              entdecken. Ich hab schon ein paar Ideen, was ich mit der Website so anstellen kann und bin gespannt zu was sich die Website entwickelt. 
             </p>
             <a
               href="#achievements" 
@@ -565,12 +598,12 @@
     </footer>
 
     <!-- Music Player START -->
-    <div id="music-player" class="fixed bottom-4 right-4 bg-gray-800 p-4 rounded-lg shadow-lg text-white w-72 z-50">
+    <div id="music-player" class="fixed bottom-4 right-4 bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg text-white w-60 sm:w-72 z-50">
       <button id="player-minimize-btn" class="absolute top-2 right-2 text-gray-400 hover:text-white p-1 z-10">
         <i class="fas fa-chevron-down"></i>
       </button>
       <div class="flex items-center mb-3 relative">
-        <img id="player-album-art" src="Images/Logo.png" alt="Album Art" class="w-12 h-12 rounded mr-3 object-cover">
+        <img id="player-album-art" src="Images/Logo.png" alt="Album Art" class="w-10 h-10 sm:w-12 sm:h-12 rounded mr-2 sm:mr-3 object-cover">
         <div>
           <h4 id="player-song-title" class="font-semibold text-sm">No Song Loaded</h4>
           <p id="player-song-artist" class="text-xs text-gray-400">---</p>
@@ -790,7 +823,8 @@
         if (audioPlayer) audioPlayer.addEventListener('ended', nextSong);
 
         if (minimizeBtn) {
-            minimizeBtn.addEventListener('click', () => {
+            minimizeBtn.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent click from bubbling to document
                 musicPlayerEl.classList.toggle('player-minimized');
                 if (musicPlayerEl.classList.contains('player-minimized')) {
                     minimizeIcon.classList.remove('fa-chevron-down');
@@ -802,23 +836,100 @@
             });
         }
 
+        // Minimize player on click outside (mobile only)
+        document.addEventListener('click', function(event) {
+            const isMobile = window.innerWidth < 640; // Tailwind 'sm' breakpoint (640px)
+
+            if (isMobile && 
+                musicPlayerEl && 
+                !musicPlayerEl.contains(event.target) && 
+                (!minimizeBtn || !minimizeBtn.contains(event.target)) && 
+                !musicPlayerEl.classList.contains('player-minimized') 
+            ) {
+                musicPlayerEl.classList.add('player-minimized');
+                if (minimizeIcon) {
+                    minimizeIcon.classList.remove('fa-chevron-down');
+                    minimizeIcon.classList.add('fa-chevron-up');
+                }
+            }
+        });
+
         // Initial setup & Attempt Autoplay
         if (songs.length > 0 && songs[0].src) {
             loadSong(currentSongIndex);
             populatePlaylist();
-            // Attempt to autoplay. Browser might block this if sound is involved and no prior user interaction.
-            // Marking dataset.userInteracted as false initially. It will be set to true on first click.
             playPauseBtn.dataset.userInteracted = "false"; 
-            // For true autoplay attempt, one might try:
-            // audioPlayer.muted = true; // Start muted for higher chance of autoplay
-            // playSong(); // Then try to play
-            // // Then, on first *actual* user click on play button, unmute: audioPlayer.muted = false;
-            // For now, directly attempting unmuted play.
-            playSong(); 
         } else {
-             populatePlaylist(); // Still populate if songs array is empty or first song has no src
+             populatePlaylist(); 
         }
       });
+
+      // Name Typewriter Animation Script
+      const namePlaceholder = document.getElementById('animated-name-placeholder');
+      if (namePlaceholder) {
+        const phrases = [
+          { text: "Julian Lucca Karge", isJLZN: false },
+          { text: "JLZN", isJLZN: true }
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 120; // milliseconds
+        const deletingSpeed = 70; // milliseconds
+        const pauseBetweenPhrases = 3000; // 3 seconds
+
+        function typeWriter() {
+          const currentPhraseObj = phrases[phraseIndex];
+          const currentText = currentPhraseObj.text;
+          let displayedText = "";
+
+          if (isDeleting) {
+            displayedText = currentText.substring(0, charIndex - 1);
+            namePlaceholder.textContent = displayedText;
+            charIndex--;
+          } else {
+            displayedText = currentText.substring(0, charIndex + 1);
+            namePlaceholder.textContent = displayedText;
+            charIndex++;
+          }
+
+          if (currentPhraseObj.isJLZN) {
+            namePlaceholder.classList.add('jlzn-font-style');
+            namePlaceholder.style.setProperty('--cursor-color', '#e94560'); // Pink cursor
+          } else {
+            namePlaceholder.classList.remove('jlzn-font-style');
+            namePlaceholder.style.setProperty('--cursor-color', 'white'); // White cursor
+          }
+
+          let timeToNextChar = isDeleting ? deletingSpeed : typingSpeed;
+
+          if (!isDeleting && charIndex === currentText.length) {
+            timeToNextChar = pauseBetweenPhrases;
+            isDeleting = true;
+          } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            // Set style for the new phrase *before* typing starts
+            const nextPhraseObj = phrases[phraseIndex];
+             if (nextPhraseObj.isJLZN) {
+                namePlaceholder.classList.add('jlzn-font-style');
+                namePlaceholder.style.setProperty('--cursor-color', '#e94560');
+            } else {
+                namePlaceholder.classList.remove('jlzn-font-style');
+                namePlaceholder.style.setProperty('--cursor-color', 'white');
+            }
+            timeToNextChar = 500; 
+          }
+          setTimeout(typeWriter, timeToNextChar);
+        }
+        // Initial cursor color based on the first phrase
+        if (phrases[0].isJLZN) {
+            namePlaceholder.style.setProperty('--cursor-color', '#e94560');
+        } else {
+            namePlaceholder.style.setProperty('--cursor-color', 'white');
+        }
+        typeWriter();
+      }
     </script>
   </body>
 </html>
