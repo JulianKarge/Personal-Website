@@ -127,6 +127,50 @@
         background-color: rgba(255, 255, 255, 0.1);
         color: #e94560;
       }
+
+      /* Music Player Styling */
+      #music-player {
+        font-family: "Inter", sans-serif;
+        transition: width 0.3s ease, height 0.3s ease; /* For smooth minimize/maximize */
+      }
+
+      #playlist-list {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+      #playlist-list::-webkit-scrollbar {
+        display: none; /* For Chrome, Safari, and Opera */
+      }
+
+      #playlist-list li {
+        padding: 4px 8px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+      }
+
+      #playlist-list li:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      #playlist-list li.active-song {
+        background-color: #e94560; /* Your primary pink color */
+        color: white;
+        font-weight: 600;
+      }
+
+      /* Minimized Player Styles */
+      #music-player.player-minimized {
+        width: auto; /* Shrink to content */
+        min-width: 200px; /* Minimum width for title */
+      }
+      #music-player.player-minimized #player-main-controls,
+      #music-player.player-minimized #playlist-container {
+        display: none;
+      }
+      #music-player.player-minimized .flex.items-center.mb-3 { /* Top bar with song info */
+        margin-bottom: 0; /* Remove bottom margin when minimized */
+      }
     </style>
   </head>
   <body class="bg-gray-900 text-gray-100">
@@ -152,7 +196,6 @@
           <a href="#achievements" class="hover:text-pink-500"
             >Errungenschaften</a
           >
-          <!-- Portfolio link removed -->
           <a href="#contact" class="hover:text-pink-500">Kontakt</a>
         </div>
         <button
@@ -163,7 +206,6 @@
         </button>
       </nav>
       <div id="mobile-menu" class="hidden md:hidden">
-        <!-- Mobile menu links -->
         <a href="#home" class="block text-center py-3 px-6 text-lg"
           >Startseite</a
         >
@@ -173,7 +215,6 @@
         <a href="#achievements" class="block text-center py-3 px-6 text-lg"
           >Errungenschaften</a
         >
-        <!-- Portfolio link removed -->
         <a href="#contact" class="block text-center py-3 px-6 text-lg"
           >Kontakt</a
         >
@@ -183,8 +224,6 @@
     <section
       id="home"
       class="hero-bg min-h-screen flex items-center justify-center pt-24 pb-12"
-      min-height:
-      100vh;
     >
       <div class="text-center px-4 sm:px-6">
         <img
@@ -195,11 +234,17 @@
         <h1
           class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 text-white"
         >
-          Hi, it's me :)<br class="sm:hidden"> Julian Lucca Karge <!-- Added <br> for better break on small screens -->
+          Hi, it's me :)<br class="sm:hidden"> Julian Lucca Karge
         </h1>
         <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8">
           Selbstverwirklichung | Perspektiven Wechsel | Grenzen Überschreitung
         </p>
+        <a
+          href="#latest-video"
+          class="btn-primary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md mb-4"
+        >
+          Schau dir mein neuestes Video an! <i class="fas fa-play ml-2"></i>
+        </a>
         <a
           href="#contact"
           class="btn-primary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md mb-10"
@@ -251,7 +296,6 @@
       </div>
     </section>
 
-    <!-- START: NEUES VIDEO SECTION -->
     <section id="latest-video" class="py-16 md:py-24 bg-gray-800">
       <div class="container mx-auto px-4 sm:px-6">
         <h2 class="section-title text-white text-3xl md:text-4xl">
@@ -262,7 +306,7 @@
         >
           Schau dir hier mein aktuellstes Video direkt an und verpasse keine neuen Uploads!
         </p>
-        <div class="max-w-2xl mx-auto"> <!-- Center the card and limit its width -->
+        <div class="max-w-2xl mx-auto">
           <div
             class="latest-video-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300"
           >
@@ -285,7 +329,7 @@
                 rel="noopener noreferrer"
                 class="hover:text-pink-400"
               >
-                Titel deines neuesten Videos hier <!-- Optional: Du kannst den Titel hier manuell einfügen oder generisch lassen -->
+                Titel deines neuesten Videos hier
               </a>
             </h3>
             <p class="text-gray-400 text-sm md:text-base">
@@ -296,7 +340,6 @@
         </div>
       </div>
     </section>
-    <!-- END: NEUES VIDEO SECTION -->
 
     <section id="achievements" class="py-16 md:py-24 bg-gray-900">
       <div class="container mx-auto px-4 sm:px-6">
@@ -311,7 +354,6 @@
           Verbindung mit meiner großartigen Community.
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Erste Karte: 100k Abonnenten - MIT DEINEM VIDEO -->
           <div
             class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300"
           >
@@ -338,12 +380,11 @@
               </a>
             </h3>
             <p class="text-gray-400 text-sm md:text-base">
-              Den Meilenstein von 20.000 Aufrufe erreicht – Dieses Video, dass
-              es durch Hingabe und Gedult möglich ist auf YouTube zu wachsen
+              Den Meilenstein von 20.000 Aufrufe erreicht – Dieses Video zeigt mir, dass
+              es durch Hingabe und Gedult möglich ist auf YouTube zu wachsen (Auch ohne sich fast umzbringen)
             </p>
           </div>
 
-          <!-- Zweite Karte: Virales Video - ERSETZE DIE VIDEO_ID -->
           <div
             class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300"
           >
@@ -376,43 +417,41 @@
             </p>
           </div>
 
-          <!-- Dritte Karte: Community Projekt - ERSETZE DIE VIDEO_ID -->
           <div
             class="achievement-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300"
           >
             <a
-              href="https://yt.openinapp.co/rb0vd"
+              href="https://yt.openinapp.co/b74ij"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Video zum Community Projekt ansehen"
             >
               <img
-                src="https://img.youtube.com/vi/MQA1hVq-Qao/hqdefault.jpg"
+                src="https://img.youtube.com/vi/ksAGbAdZye8/hqdefault.jpg"
                 alt="Video Thumbnail: Community Projekt"
                 class="rounded-md mb-4 w-full"
               />
             </a>
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
               <a
-                href="https://yt.openinapp.co/rb0vd"
+                href="https://yt.openinapp.co/b74ij"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hover:text-pink-400"
               >
-                Letztes Video
+                Erstes Video
               </a>
             </h3>
             <p class="text-gray-400 text-sm md:text-base">
-              Ich versuche mich immer mit dem nächsten was ich herausbringe zu
-              verbessern und ich denke mit diesem Video hab ich es wieder
-              geschafft. (Obwohl die Views das iwie nicht so widerspiegeln :,)
+              Der wichtigste Schritt ist überhaupt anzufangen. Das ist auch der Schritt, am dem die meißten Leute scheitern. 
+              Darum ist dieses Video so wichtig für mich, weil es der Beginn meiner YouTube Ära ist.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-  <section id="about" class="py-16 md:py-24 bg-gray-800"> <!-- Changed bg to gray-800 for consistency with new section -->
+  <section id="about" class="py-16 md:py-24 bg-gray-800">
       <div class="container mx-auto px-4 sm:px-6">
         <h2 class="section-title text-white text-3xl md:text-4xl">Über Mich</h2>
         <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -525,24 +564,50 @@
       </p>
     </footer>
 
+    <!-- Music Player START -->
+    <div id="music-player" class="fixed bottom-4 right-4 bg-gray-800 p-4 rounded-lg shadow-lg text-white w-72 z-50">
+      <button id="player-minimize-btn" class="absolute top-2 right-2 text-gray-400 hover:text-white p-1 z-10">
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="flex items-center mb-3 relative">
+        <img id="player-album-art" src="Images/Logo.png" alt="Album Art" class="w-12 h-12 rounded mr-3 object-cover">
+        <div>
+          <h4 id="player-song-title" class="font-semibold text-sm">No Song Loaded</h4>
+          <p id="player-song-artist" class="text-xs text-gray-400">---</p>
+        </div>
+      </div>
+      <div id="player-main-controls" class="flex justify-around items-center mb-3">
+        <button id="player-prev-btn" class="text-gray-300 hover:text-white"><i class="fas fa-step-backward fa-lg"></i></button>
+        <button id="player-play-pause-btn" class="text-pink-500 hover:text-pink-400 text-2xl">
+          <i class="fas fa-play fa-lg"></i>
+        </button>
+        <button id="player-next-btn" class="text-gray-300 hover:text-white"><i class="fas fa-step-forward fa-lg"></i></button>
+      </div>
+      <audio id="audio-element"></audio>
+
+      <div id="playlist-container" class="mt-2">
+          <p class="text-xs text-gray-500 mb-1">Playlist:</p>
+          <ul id="playlist-list" class="text-xs max-h-24 overflow-y-auto">
+              <!-- Playlist items will be populated by JavaScript -->
+          </ul>
+      </div>
+    </div>
+    <!-- Music Player END -->
+
     <script>
-      // Set current year in footer
       document.getElementById("currentYear").textContent =
         new Date().getFullYear();
 
-      // Mobile Menu Toggle
       const mobileMenuButton = document.getElementById("mobile-menu-button");
       const mobileMenu = document.getElementById("mobile-menu");
       const mobileMenuIcon = mobileMenuButton.querySelector("i");
 
       mobileMenuButton.addEventListener("click", () => {
         mobileMenu.classList.toggle("hidden");
-        // Change icon (Bars to X and vice-versa)
         mobileMenuIcon.classList.toggle("fa-bars");
         mobileMenuIcon.classList.toggle("fa-times");
       });
 
-      // Smooth scrolling & Close mobile menu when a link is clicked
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
@@ -550,7 +615,6 @@
           const targetElement = document.querySelector(targetId);
 
           if (targetElement) {
-             // Calculate offset for fixed header
             const headerOffset = document.querySelector("header").offsetHeight;
             const elementPosition = targetElement.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -561,7 +625,6 @@
             });
           }
           
-          // Close mobile menu if open and a link inside it was clicked
           if (!mobileMenu.classList.contains("hidden") && mobileMenu.contains(this)) {
             mobileMenu.classList.add("hidden");
             mobileMenuIcon.classList.remove("fa-times");
@@ -569,8 +632,193 @@
           }
         });
       });
-      // This refined closing logic ensures any link inside the mobile menu closes it.
-      // The previous logic had multiple conditions that could be simplified.
+
+      // Music Player JavaScript
+      document.addEventListener('DOMContentLoaded', () => {
+        const musicPlayerEl = document.getElementById('music-player');
+        const audioPlayer = document.getElementById('audio-element');
+        const playPauseBtn = document.getElementById('player-play-pause-btn');
+        const playIcon = playPauseBtn.querySelector('i');
+        const prevBtn = document.getElementById('player-prev-btn');
+        const nextBtn = document.getElementById('player-next-btn');
+        const albumArtImg = document.getElementById('player-album-art');
+        const songTitleEl = document.getElementById('player-song-title');
+        const songArtistEl = document.getElementById('player-song-artist');
+        const playlistListEl = document.getElementById('playlist-list');
+        const minimizeBtn = document.getElementById('player-minimize-btn');
+        const minimizeIcon = minimizeBtn.querySelector('i');
+
+        const songs = [
+          {
+            title: "Wacuka",
+            artist: "AVAION",
+            src: "music/AVAION, Sofiya Nzau - Wacuka (Official Visualizer).mp3",
+            cover: "Images/MusikCover/Wacuka.jpg"
+          },
+          {
+            title: "Heatwave",
+            artist: "Nyck Caution",
+            src: "music/ES_Heatwave (Clean Version) - Nyck Caution.wav",
+            cover: "Images/MusikCover/Heatwave.jpg"
+          },
+          {
+            title: "Need it",
+            artist: "dreem",
+            src: "music/ES_need it - dreem.wav",
+            cover: "Images/MusikCover/NeedIt.jpg"
+          },
+          {
+            title: "Weaver",
+            artist: "dreem",
+            src: "music/ES_weaver - dreem.wav",
+            cover: "Images/MusikCover/Weaver.jpg"
+          },
+          {
+            title: "Take Me To U",
+            artist: "LeDorean",
+            src: "music/ES_Take Me to U - LeDorean.wav",
+            cover: "Images/MusikCover/TakeMeToU.jpg"
+          }
+        ];
+
+        let currentSongIndex = 0;
+        let isPlaying = false;
+
+        function loadSong(songIndex) {
+          if (songs.length === 0) return;
+          const song = songs[songIndex];
+          audioPlayer.src = song.src;
+          songTitleEl.textContent = song.title;
+          songArtistEl.textContent = song.artist;
+          if (albumArtImg && song.cover) {
+            albumArtImg.src = song.cover;
+          } else if (albumArtImg) {
+            albumArtImg.src = "Images/Logo.png";
+          }
+          updatePlaylistUI();
+        }
+
+        function playSong() {
+          if (songs.length === 0 || !audioPlayer.src) return;
+          const playPromise = audioPlayer.play();
+          if (playPromise !== undefined) {
+            playPromise.then(_ => {
+              isPlaying = true;
+              playIcon.classList.remove('fa-play');
+              playIcon.classList.add('fa-pause');
+            }).catch(error => {
+              console.warn("Audio play prevented by browser:", error);
+              isPlaying = false;
+              playIcon.classList.remove('fa-pause');
+              playIcon.classList.add('fa-play');
+            });
+          }
+        }
+
+        function pauseSong() {
+          audioPlayer.pause();
+          isPlaying = false;
+          playIcon.classList.remove('fa-pause');
+          playIcon.classList.add('fa-play');
+        }
+
+        function prevSong() {
+          if (songs.length === 0) return;
+          currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+          loadSong(currentSongIndex);
+          if (playPauseBtn.dataset.userInteracted === "true") playSong();
+        }
+
+        function nextSong() {
+          if (songs.length === 0) return;
+          currentSongIndex = (currentSongIndex + 1) % songs.length;
+          loadSong(currentSongIndex);
+          if (playPauseBtn.dataset.userInteracted === "true") playSong();
+        }
+        
+        function populatePlaylist() {
+          if (songs.length === 0) {
+              playlistListEl.innerHTML = '<li>No songs in playlist.</li>';
+              return;
+          };
+          playlistListEl.innerHTML = '';
+          songs.forEach((song, index) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${song.title} - ${song.artist}`;
+            listItem.setAttribute('data-index', index);
+            if (index === currentSongIndex) {
+              listItem.classList.add('active-song');
+            }
+            listItem.addEventListener('click', () => {
+              currentSongIndex = index;
+              loadSong(currentSongIndex);
+              playPauseBtn.dataset.userInteracted = "true"; 
+              playSong();
+            });
+            playlistListEl.appendChild(listItem);
+          });
+        }
+        
+        function updatePlaylistUI() {
+          if (songs.length === 0) return;
+          const items = playlistListEl.querySelectorAll('li');
+          items.forEach((item) => {
+              if (item.getAttribute('data-index') == currentSongIndex) {
+                  item.classList.add('active-song');
+              } else {
+                  item.classList.remove('active-song');
+              }
+          });
+        }
+
+        if (playPauseBtn) {
+            playPauseBtn.addEventListener('click', () => {
+                if (songs.length === 0) return;
+                playPauseBtn.dataset.userInteracted = "true"; 
+                if (!audioPlayer.src || audioPlayer.src !== songs[currentSongIndex].src) {
+                    loadSong(currentSongIndex);
+                }
+                if (isPlaying) {
+                    pauseSong();
+                } else {
+                    playSong();
+                }
+            });
+        }
+        if (prevBtn) prevBtn.addEventListener('click', prevSong);
+        if (nextBtn) nextBtn.addEventListener('click', nextSong);
+        if (audioPlayer) audioPlayer.addEventListener('ended', nextSong);
+
+        if (minimizeBtn) {
+            minimizeBtn.addEventListener('click', () => {
+                musicPlayerEl.classList.toggle('player-minimized');
+                if (musicPlayerEl.classList.contains('player-minimized')) {
+                    minimizeIcon.classList.remove('fa-chevron-down');
+                    minimizeIcon.classList.add('fa-chevron-up');
+                } else {
+                    minimizeIcon.classList.remove('fa-chevron-up');
+                    minimizeIcon.classList.add('fa-chevron-down');
+                }
+            });
+        }
+
+        // Initial setup & Attempt Autoplay
+        if (songs.length > 0 && songs[0].src) {
+            loadSong(currentSongIndex);
+            populatePlaylist();
+            // Attempt to autoplay. Browser might block this if sound is involved and no prior user interaction.
+            // Marking dataset.userInteracted as false initially. It will be set to true on first click.
+            playPauseBtn.dataset.userInteracted = "false"; 
+            // For true autoplay attempt, one might try:
+            // audioPlayer.muted = true; // Start muted for higher chance of autoplay
+            // playSong(); // Then try to play
+            // // Then, on first *actual* user click on play button, unmute: audioPlayer.muted = false;
+            // For now, directly attempting unmuted play.
+            playSong(); 
+        } else {
+             populatePlaylist(); // Still populate if songs array is empty or first song has no src
+        }
+      });
     </script>
   </body>
 </html>
