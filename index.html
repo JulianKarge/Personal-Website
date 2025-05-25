@@ -30,8 +30,6 @@
         background-position: center center;
         background-repeat: no-repeat;
         background-attachment: fixed;
-        /*min-height: 100vh;
-        /* WICHTIG: Damit der Inhalt über dem Overlay liegt (falls nicht schon durch andere Styles) */
         position: relative; /* Notwendig, falls du z-index für Kindelemente brauchst */
       }
 
@@ -79,7 +77,7 @@
       .btn-primary:hover {
         background-color: #c7304a;
       }
-      .achievement-card img {
+      .achievement-card img, .latest-video-card img { /* Added .latest-video-card */
         aspect-ratio: 16 / 9;
         object-fit: cover;
       }
@@ -154,7 +152,7 @@
           <a href="#achievements" class="hover:text-pink-500"
             >Errungenschaften</a
           >
-          <a href="#portfolio" class="hover:text-pink-500">Portfolio</a>
+          <!-- Portfolio link removed -->
           <a href="#contact" class="hover:text-pink-500">Kontakt</a>
         </div>
         <button
@@ -175,9 +173,7 @@
         <a href="#achievements" class="block text-center py-3 px-6 text-lg"
           >Errungenschaften</a
         >
-        <a href="#portfolio" class="block text-center py-3 px-6 text-lg"
-          >Portfolio</a
-        >
+        <!-- Portfolio link removed -->
         <a href="#contact" class="block text-center py-3 px-6 text-lg"
           >Kontakt</a
         >
@@ -199,7 +195,7 @@
         <h1
           class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 text-white"
         >
-          Hi, it's me :) Julian Lucca Karge
+          Hi, it's me :)<br class="sm:hidden"> Julian Lucca Karge <!-- Added <br> for better break on small screens -->
         </h1>
         <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8">
           Selbstverwirklichung | Perspektiven Wechsel | Grenzen Überschreitung
@@ -255,44 +251,52 @@
       </div>
     </section>
 
-    <section id="about" class="py-16 md:py-24 bg-gray-800">
+    <!-- START: NEUES VIDEO SECTION -->
+    <section id="latest-video" class="py-16 md:py-24 bg-gray-800">
       <div class="container mx-auto px-4 sm:px-6">
-        <h2 class="section-title text-white text-3xl md:text-4xl">Über Mich</h2>
-        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div class="rounded-lg overflow-hidden shadow-2xl">
-            <img
-              src="Images/SchwimmBild.jpg"
-              alt="Über Julian Karge"
-              class="w-full h-auto object-cover"
-            />
-          </div>
-          <div class="text-gray-300 text-base md:text-lg">
-            <p class="mb-4">
-              Hi! ich bins Julian, ein leidenschaftlicher Content Creator mit
-              Fokus auf die sportliche Entwicklung und persönliche
-              Selbstverwirklichung.
-            </p>
-            <p class="mb-4">
-              Seit fast 2 Jahren versuche ich für euch, ansprechende und
-              informative Inhalte zu erstellen, hauptsächlich auf YouTube. Ich
-              liebe es neue Sachen auszuprobieren und sportlich neue Grenzen zu
-              überschreiten.
-            </p>
-            <p class="mb-6">
-              Wenn ich nicht gerade Inhalte erstelle, bin ich dual
-              Wirtschaftsinformatik IMBIT am studieren. Diese Seite ist eine
-              Möglichkeit für euch, all meine Arbeit auf einem Blick zu
-              entdecken.
-            </p>
+        <h2 class="section-title text-white text-3xl md:text-4xl">
+          Mein neuestes Video
+        </h2>
+        <p
+          class="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-base md:text-lg"
+        >
+          Schau dir hier mein aktuellstes Video direkt an und verpasse keine neuen Uploads!
+        </p>
+        <div class="max-w-2xl mx-auto"> <!-- Center the card and limit its width -->
+          <div
+            class="latest-video-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300"
+          >
             <a
-              href="#portfolio"
-              class="btn-primary font-semibold py-3 px-6 rounded-lg text-base md:text-lg inline-block shadow-md"
-              >Meine Arbeit ansehen</a
+              href="https://yt.openinapp.co/wilev"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Mein neuestes Video ansehen"
             >
+              <img
+                src="https://img.youtube.com/vi/MQA1hVq-Qao/hqdefault.jpg" 
+                alt="Thumbnail meines neuesten Videos"
+                class="rounded-md mb-4 w-full"
+              />
+            </a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
+              <a
+                href="https://yt.openinapp.co/wilev"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-pink-400"
+              >
+                Titel deines neuesten Videos hier <!-- Optional: Du kannst den Titel hier manuell einfügen oder generisch lassen -->
+              </a>
+            </h3>
+            <p class="text-gray-400 text-sm md:text-base">
+              Eine kurze Beschreibung deines neuesten Videos oder ein allgemeiner Satz.
+              Klicke, um es direkt auf YouTube anzusehen!
+            </p>
           </div>
         </div>
       </div>
     </section>
+    <!-- END: NEUES VIDEO SECTION -->
 
     <section id="achievements" class="py-16 md:py-24 bg-gray-900">
       <div class="container mx-auto px-4 sm:px-6">
@@ -315,11 +319,11 @@
               href="https://yt.openinapp.co/7ik7gp6"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Video zum 100.000 Abonnenten Meilenstein ansehen"
+              aria-label="Video zum 20.000 Aufrufe Meilenstein ansehen"
             >
               <img
                 src="https://img.youtube.com/vi/3UKoYsFFwUI/hqdefault.jpg"
-                alt="Video Thumbnail: 100.000 Abonnenten erreicht"
+                alt="Video Thumbnail: 20.000 Aufrufe erreicht"
                 class="rounded-md mb-4 w-full"
               />
             </a>
@@ -408,136 +412,41 @@
       </div>
     </section>
 
-    <section id="portfolio" class="py-16 md:py-24 bg-gray-800">
+  <section id="about" class="py-16 md:py-24 bg-gray-800"> <!-- Changed bg to gray-800 for consistency with new section -->
       <div class="container mx-auto px-4 sm:px-6">
-        <h2 class="section-title text-white text-3xl md:text-4xl">
-          Vorgestellte Inhalte
-        </h2>
-        <p
-          class="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-base md:text-lg"
-        >
-          Schau dir einige meiner beliebtesten oder neuesten Arbeiten an. Klicke
-          auf ein Video, um es direkt auf YouTube anzusehen.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            class="card rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-transform duration-300"
-          >
-            <a
-              href="YOUR_YOUTUBE_VIDEO_LINK_1"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="https://placehold.co/600x338/5b21b6/ffffff?text=Video+1+Thumbnail"
-                alt="Video 1 Thumbnail"
-                class="w-full h-48 object-cover"
-              />
-            </a>
-            <div class="p-6">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
-                <a
-                  href="YOUR_YOUTUBE_VIDEO_LINK_1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Titel deines tollen Videos 1</a
-                >
-              </h3>
-              <p class="text-gray-400 text-sm md:text-base mb-3">
-                Eine kurze Beschreibung, worum es in diesem Video geht. Halte es
-                eingängig und informativ.
-              </p>
-              <a
-                href="YOUR_YOUTUBE_VIDEO_LINK_1"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-pink-400 hover:text-pink-300 font-medium"
-                >Auf YouTube ansehen →</a
-              >
-            </div>
+        <h2 class="section-title text-white text-3xl md:text-4xl">Über Mich</h2>
+        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div class="rounded-lg overflow-hidden shadow-2xl">
+            <img
+              src="Images/SchwimmBild.jpg"
+              alt="Über Julian Karge"
+              class="w-full h-auto object-cover"
+            />
           </div>
-          <div
-            class="card rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-transform duration-300"
-          >
+          <div class="text-gray-300 text-base md:text-lg">
+            <p class="mb-4">
+              Hi! ich bins Julian, ein leidenschaftlicher Content Creator mit
+              Fokus auf die sportliche Entwicklung und persönliche
+              Selbstverwirklichung.
+            </p>
+            <p class="mb-4">
+              Seit fast 2 Jahren versuche ich für euch, ansprechende und
+              informative Inhalte zu erstellen, hauptsächlich auf YouTube. Ich
+              liebe es neue Sachen auszuprobieren und sportlich neue Grenzen zu
+              überschreiten.
+            </p>
+            <p class="mb-6">
+              Wenn ich nicht gerade Inhalte erstelle, bin ich dual
+              Wirtschaftsinformatik IMBIT am studieren. Diese Seite ist eine
+              Möglichkeit für euch, all meine Arbeit auf einem Blick zu
+              entdecken.
+            </p>
             <a
-              href="YOUR_YOUTUBE_VIDEO_LINK_2"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#achievements" 
+              class="btn-primary font-semibold py-3 px-6 rounded-lg text-base md:text-lg inline-block shadow-md"
+              >Meine Arbeit ansehen</a
             >
-              <img
-                src="https://placehold.co/600x338/1d4ed8/ffffff?text=Video+2+Thumbnail"
-                alt="Video 2 Thumbnail"
-                class="w-full h-48 object-cover"
-              />
-            </a>
-            <div class="p-6">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
-                <a
-                  href="YOUR_YOUTUBE_VIDEO_LINK_2"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Ein weiteres großartiges Video 2</a
-                >
-              </h3>
-              <p class="text-gray-400 text-sm md:text-base mb-3">
-                Dieses Video erkundet [Thema]. Es ist eines meiner persönlichen
-                Favoriten oder ein Fan-Favorit.
-              </p>
-              <a
-                href="YOUR_YOUTUBE_VIDEO_LINK_2"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-pink-400 hover:text-pink-300 font-medium"
-                >Auf YouTube ansehen →</a
-              >
-            </div>
           </div>
-          <div
-            class="card rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-transform duration-300"
-          >
-            <a
-              href="YOUR_YOUTUBE_VIDEO_LINK_3"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="https://placehold.co/600x338/047857/ffffff?text=Video+3+Thumbnail"
-                alt="Video 3 Thumbnail"
-                class="w-full h-48 object-cover"
-              />
-            </a>
-            <div class="p-6">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
-                <a
-                  href="YOUR_YOUTUBE_VIDEO_LINK_3"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Unbedingt ansehen: Video 3</a
-                >
-              </h3>
-              <p class="text-gray-400 text-sm md:text-base mb-3">
-                Tauche tief in [Thema] ein mit diesem umfassenden Leitfaden oder
-                unterhaltsamen Beitrag.
-              </p>
-              <a
-                href="YOUR_YOUTUBE_VIDEO_LINK_3"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-pink-400 hover:text-pink-300 font-medium"
-                >Auf YouTube ansehen →</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="text-center mt-12">
-          <a
-            href="https://yt.openinapp.co/13r01"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-primary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md"
-          >
-            Besuche meinen YouTube-Kanal
-          </a>
         </div>
       </div>
     </section>
@@ -637,53 +546,31 @@
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
-          const targetElement = document.querySelector(
-            this.getAttribute("href")
-          );
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+
           if (targetElement) {
-            targetElement.scrollIntoView({
-              behavior: "smooth",
+             // Calculate offset for fixed header
+            const headerOffset = document.querySelector("header").offsetHeight;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
             });
           }
-          // Close mobile menu if open and it's a mobile link
-          if (
-            !mobileMenu.classList.contains("hidden") &&
-            this.closest("#mobile-menu")
-          ) {
+          
+          // Close mobile menu if open and a link inside it was clicked
+          if (!mobileMenu.classList.contains("hidden") && mobileMenu.contains(this)) {
             mobileMenu.classList.add("hidden");
             mobileMenuIcon.classList.remove("fa-times");
             mobileMenuIcon.classList.add("fa-bars");
-          } else if (
-            !mobileMenu.classList.contains("hidden") &&
-            this.closest("#desktop-menu a")
-          ) {
-            // Also close if a desktop link is somehow clicked? (Good practice)
-            mobileMenu.classList.add("hidden");
-            mobileMenuIcon.classList.remove("fa-times");
-            mobileMenuIcon.classList.add("fa-bars");
-          } else if (!mobileMenu.classList.contains("hidden")) {
-            // Check if it's a link *ikargenside* the mobile menu.
-            let parent = this.parentNode;
-            while (parent) {
-              if (parent.id === "mobile-menu") {
-                mobileMenu.classList.add("hidden");
-                mobileMenuIcon.classList.remove("fa-times");
-                mobileMenuIcon.classList.add("fa-bars");
-                break; // Exit loop once found
-              }
-              parent = parent.parentNode;
-            }
           }
         });
       });
-      // Refined closing logic for mobile menu links
-      document.querySelectorAll("#mobile-menu a").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.add("hidden");
-          mobileMenuIcon.classList.remove("fa-times");
-          mobileMenuIcon.classList.add("fa-bars");
-        });
-      });
+      // This refined closing logic ensures any link inside the mobile menu closes it.
+      // The previous logic had multiple conditions that could be simplified.
     </script>
   </body>
 </html>
