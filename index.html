@@ -49,8 +49,9 @@
         min-height: 550px;
       }
 
+      /* MODIFIED CSS for .about-slide img (mobile) */
       .about-slide img {
-        height: 250px;
+        max-height: 250px; /* War vorher: height: 250px; */
       }
     }
 
@@ -230,17 +231,19 @@
     }
 
     .about-slide {
-      min-height: 450px;
+      min-height: 450px; /* Mindesthöhe für Desktop-Slide-Container */
       display: flex;
       align-items: center;
     }
 
+    /* MODIFIED CSS for .about-slide img (desktop) */
     .about-slide img {
-      height: 100%;
-      max-height: 400px;
-      width: 100%;
-      object-fit: cover;
+      display: block;
+      max-width: 100%;
+      max-height: 400px; /* Maximale Höhe für das Bild auf Desktop */
+      object-fit: contain; /* Zeigt das gesamte Bild an */
       border-radius: 0.5rem;
+      margin: 0 auto; /* Zentriert das Bild horizontal */
     }
 
     .slider-arrow {
@@ -485,9 +488,10 @@
 
       <div id="about-slider" class="relative overflow-hidden rounded-lg shadow-xl">
         <div id="slider-track" class="flex transition-transform duration-500 ease-in-out">
+          
           <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card">
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-              <div class="rounded-lg overflow-hidden shadow-2xl">
+              <div class="rounded-lg overflow-hidden shadow-2xl h-[250px] md:h-[400px] bg-black/20 flex items-center justify-center">
                 <img src="Images/SchwimmBild.jpg" alt="Über Julian Karge" />
               </div>
               <div class="text-gray-300 text-base md:text-lg">
@@ -525,7 +529,7 @@
 
           <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card">
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-              <div class="rounded-lg overflow-hidden shadow-2xl">
+              <div class="rounded-lg overflow-hidden shadow-2xl h-[250px] md:h-[400px] bg-black/20 flex items-center justify-center">
                 <img src="Images/Selbstverwirklichung.png" alt="Selbstverwirklichung" />
               </div>
               <div class="text-gray-300 text-base md:text-lg">
@@ -560,8 +564,8 @@
 
           <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card">
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-              <div class="rounded-lg overflow-hidden shadow-2xl">
-                <img src="Images/Logo.png" alt="Perspektivenwechsel" />
+              <div class="rounded-lg overflow-hidden shadow-2xl h-[250px] md:h-[400px] bg-black/20 flex items-center justify-center">
+                <img src="Images/Perspektiven Wechsel.png" alt="Perspektivenwechsel" />
               </div>
               <div class="text-gray-300 text-base md:text-lg">
                 <h3 class="text-2xl font-bold mb-4 text-white">
@@ -595,7 +599,7 @@
 
           <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card">
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-              <div class="rounded-lg overflow-hidden shadow-2xl">
+              <div class="rounded-lg overflow-hidden shadow-2xl h-[250px] md:h-[400px] bg-black/20 flex items-center justify-center">
                 <img src="Images/MountainViewBackground.png" alt="Grenzen Überschreitung" />
               </div>
               <div class="text-gray-300 text-base md:text-lg">
@@ -631,11 +635,11 @@
               </div>
             </div>
           </div>
-
+          
           <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card">
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-              <div class="rounded-lg overflow-hidden shadow-2xl">
-                <img src="Images/Logo.png" alt="Kreativität" />
+              <div class="rounded-lg overflow-hidden shadow-2xl h-[250px] md:h-[400px] bg-black/20 flex items-center justify-center">
+                <img src="Images/UeberDich.png" alt="Nachricht an dich" />
               </div>
               <div class="text-gray-300 text-base md:text-lg">
                 <h3 class="text-2xl font-bold mb-4 text-white">Nachricht an dich</h3>
@@ -669,6 +673,7 @@
               </div>
             </div>
           </div>
+
         </div>
 
         <button id="prev-slide" class="slider-arrow">
