@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Julian Lucca Karge</title>
+
+    <!-- External Libraries & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
@@ -17,304 +19,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-        scroll-behavior: smooth;
-      }
 
-      .hero-bg {
-        background-image: linear-gradient(
-            rgba(26, 26, 46, 0.75),
-            rgba(26, 26, 46, 0.85)
-          ),
-          url("Images/MountainViewBackground.png");
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        position: relative;
-      }
-
-      @media (max-width: 768px) {
-        .hero-bg {
-          background-attachment: scroll;
-        }
-
-        .slider-arrow {
-          width: 35px;
-          height: 35px;
-          font-size: 1rem;
-        }
-
-        #prev-slide {
-          left: 5px;
-        }
-
-        #next-slide {
-          right: 5px;
-        }
-
-        .about-slide {
-          min-height: 550px;
-        }
-
-        /* MODIFIED CSS for .about-slide img (mobile) */
-        .about-slide img {
-          max-height: 250px; /* War vorher: height: 250px; */
-        }
-      }
-
-      #home > .text-center {
-        position: relative;
-        z-index: 1;
-      }
-
-      #home h1 {
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-      }
-
-      #home p.text-lg {
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
-      }
-
-      .section-title {
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        text-align: center;
-      }
-
-      .card {
-        background-color: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .btn-primary {
-        background-color: #e94560;
-        color: white;
-        transition: background-color 0.3s ease;
-      }
-
-      .btn-primary:hover {
-        background-color: #c7304a;
-      }
-
-      .achievement-card img,
-      .latest-video-card img {
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
-      }
-
-      nav a:not(.brand-logo) {
-        transition: color 0.3s ease;
-      }
-
-      nav a:not(.brand-logo):hover {
-        color: #e94560;
-      }
-
-      .youtube-color {
-        color: #ff0000;
-      }
-
-      .x-color {
-        color: #ffffff;
-      }
-
-      .instagram-color {
-        color: #e1306c;
-      }
-
-      .linkedin-color {
-        color: #0077b5;
-      }
-
-      .tiktok-color {
-        color: #ffffff;
-      }
-
-      .social-icon {
-        transition: transform 0.3s ease, color 0.3s ease;
-        display: inline-block;
-      }
-
-      .social-icon:hover {
-        transform: scale(1.2);
-      }
-
-      #mobile-menu a {
-        transition: background-color 0.2s ease, color 0.2s ease;
-        color: #d1d5db;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      #mobile-menu a:last-child {
-        border-bottom: none;
-      }
-
-      #mobile-menu a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: #e94560;
-      }
-
-      #music-player {
-        font-family: "Inter", sans-serif;
-        transition: width 0.3s ease, height 0.3s ease, padding 0.3s ease;
-      }
-
-      #playlist-list {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-
-      #playlist-list::-webkit-scrollbar {
-        display: none;
-      }
-
-      #playlist-list li {
-        padding: 4px 8px;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.2s ease;
-      }
-
-      #playlist-list li:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-
-      #playlist-list li.active-song {
-        background-color: #e94560;
-        color: white;
-        font-weight: 600;
-      }
-
-      #music-player.player-minimized {
-        width: auto;
-        min-width: 180px;
-      }
-
-      @media (min-width: 640px) {
-        #music-player.player-minimized {
-          min-width: 200px;
-        }
-      }
-
-      #music-player.player-minimized #player-main-controls,
-      #music-player.player-minimized #playlist-container {
-        display: none;
-      }
-
-      #music-player.player-minimized .flex.items-center.mb-3 {
-        margin-bottom: 0;
-      }
-
-      #animated-name-placeholder {
-        display: inline-block;
-        position: relative;
-        min-height: 1.2em;
-      }
-
-      .jlzn-font-style {
-        font-family: "Audiowide", sans-serif;
-        color: #e94560;
-      }
-
-      #animated-name-placeholder::after {
-        content: "|";
-        display: inline-block;
-        margin-left: 3px;
-        animation: blink-caret 0.75s step-end infinite;
-        color: var(--cursor-color, white);
-      }
-
-      @keyframes blink-caret {
-        from,
-        to {
-          opacity: 1;
-        }
-
-        50% {
-          opacity: 0;
-        }
-      }
-
-      .about-slide {
-        min-height: 450px; /* Mindesthöhe für Desktop-Slide-Container */
-        display: flex;
-        align-items: center;
-      }
-
-      /* MODIFIED CSS for .about-slide img (desktop) */
-      .about-slide img {
-        display: block;
-        max-width: 100%;
-        max-height: 400px; /* Maximale Höhe für das Bild auf Desktop */
-        object-fit: contain; /* Zeigt das gesamte Bild an */
-        border-radius: 0.5rem;
-        margin: 0 auto; /* Zentriert das Bild horizontal */
-      }
-
-      .slider-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: rgba(0, 0, 0, 0.4);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 45px;
-        height: 45px;
-        font-size: 1.5rem;
-        cursor: pointer;
-        z-index: 10;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .slider-arrow:hover {
-        background-color: rgba(233, 69, 96, 0.7);
-        transform: translateY(-50%) scale(1.1);
-      }
-
-      #prev-slide {
-        left: 15px;
-      }
-
-      #next-slide {
-        right: 15px;
-      }
-
-      .slider-dots {
-        text-align: center;
-        margin-top: 20px;
-        position: relative;
-        z-index: 10;
-      }
-
-      .dot {
-        height: 12px;
-        width: 12px;
-        margin: 0 5px;
-        background-color: #6b7280;
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        cursor: pointer;
-      }
-
-      .dot:hover {
-        background-color: #9ca3af;
-        transform: scale(1.1);
-      }
-
-      .dot.active {
-        background-color: #e94560;
-        transform: scale(1.2);
-      }
-    </style>
+    <!-- Your Custom Stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body class="bg-gray-900 text-gray-100">
@@ -441,57 +148,50 @@
       </div>
     </section>
 
-    <section id="latest-video" class="py-16 md:py-24 bg-gray-800">
-      <div class="container mx-auto px-4 sm:px-6">
-        <h2 class="section-title text-white text-3xl md:text-4xl">
-          Mein neuestes Video
-        </h2>
-        <p
-          class="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-base md:text-lg"
-        >
-          Schau dir hier mein aktuellstes Video direkt an und verpasse keine
-          neuen Uploads!
+<!-- START: Replace this entire section in your HTML file -->
+<section id="latest-video" class="py-16 md:py-24 bg-gray-800">
+  <div class="container mx-auto px-4 sm:px-6">
+    <h2 class="section-title text-white text-3xl md:text-4xl">
+      Mein neuestes Video
+    </h2>
+    <p
+      class="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-base md:text-lg"
+    >
+      Schau dir hier mein aktuellstes Video direkt an und verpasse keine
+      neuen Uploads!
+    </p>
+    <div class="max-w-2xl mx-auto">
+      <div
+        class="latest-video-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300"
+      >
+        <!-- The ID for the main link wrapper has been added -->
+        <a id="latest-video-link-wrapper" href="#" aria-label="Mein neuestes Video ansehen">
+          <!-- The ID for the image/thumbnail has been added -->
+          <img
+            id="latest-video-thumbnail"
+            src="Images/Logo.png" 
+            alt="Thumbnail meines neuesten Videos"
+            class="rounded-md mb-4 w-full"
+          />
+        </a>
+        <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
+          <!-- The ID for the title's link has been added -->
+          <a id="latest-video-title" href="#" class="hover:text-pink-400">
+            Lade Titel...
+          </a>
+        </h3>
+        <!-- The ID for the description paragraph has been added -->
+        <p id="latest-video-description" class="text-gray-400 text-sm md:text-base">
+          Lade Details...
         </p>
-        <div class="max-w-2xl mx-auto">
-          <div
-            class="latest-video-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-transform duration-300"
-          >
-            <a
-              href="https://yt.openinapp.co/pv00r"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Mein neuestes Video ansehen"
-            >
-              <img
-                src="https://img.youtube.com/vi/3Jm-H9WkPcA/hqdefault.jpg"
-                alt="Thumbnail meines neuesten Videos"
-                class="rounded-md mb-4 w-full"
-              />
-            </a>
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
-              <a
-                href="https://yt.openinapp.co/pv00r"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hover:text-pink-400"
-              >
-                Die TOP Aktivitäten in NHA TRANG & DA NANG - Vietnam
-              </a>
-            </h3>
-            <p class="text-gray-400 text-sm md:text-base">
-              Vietnam ist wirklich nochmal ganz anders als Thailand. Die Natur
-              ist grüner, und die Menschen verhalten sich anders. All das sind
-              Dinge, die ich vorher so nicht erwartet hätte. Es war eine sehr
-              interessante Zeit, und ich hoffe, dieses Video bietet euch einen
-              Mehrwert.🤩🌴🥥
-            </p>
-          </div>
-        </div>
       </div>
-    </section>
-
+    </div>
+  </div>
+</section>
+<!-- END: Replacement section -->
     <section id="achievements" class="py-16 md:py-24 bg-gray-900">
-      <div class="container mx-auto px-4 sm:px-6">
+        <!-- ... the rest of your achievements section ... -->
+        <div class="container mx-auto px-4 sm:px-6">
         <h2 class="section-title text-white text-3xl md:text-4xl">
           YouTube Meilensteine
         </h2>
@@ -603,288 +303,121 @@
       </div>
     </section>
 
-    <section id="about" class="py-16 md:py-24 bg-gray-800">
-      <div class="container mx-auto px-4 sm:px-6 relative">
-        <h2 class="section-title text-white text-3xl md:text-4xl">Über Mich</h2>
+<section id="about" class="py-16 md:py-24 bg-gray-800">
+  <div class="container mx-auto px-4 sm:px-6 relative">
+    <h2 class="section-title text-white text-3xl md:text-4xl">Über Mich</h2>
 
-        <div
-          id="about-slider"
-          class="relative overflow-hidden rounded-lg shadow-xl"
+    <div
+      id="about-slider"
+      class="relative overflow-hidden rounded-lg shadow-xl"
+    >
+      <div
+        id="slider-track"
+        class="flex transition-transform duration-500 ease-in-out"
+      >
+
+        <!-- Slide 1: Wer bin ich? (Simplified Structure) -->
+        <div 
+          class="about-slide w-full flex-shrink-0 p-6 md:p-8 card"
+          style="--bg-image: url('Images/SchwimmBild.jpg')"
         >
-          <div
-            id="slider-track"
-            class="flex transition-transform duration-500 ease-in-out"
-          >
-            <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card">
-              <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div
-                  class="rounded-lg overflow-hidden shadow-2xl h-[250px] md:h-[400px] bg-black/20 flex items-center justify-center"
-                >
-                  <img src="Images/SchwimmBild.jpg" alt="Über Julian Karge" />
-                </div>
-                <div class="text-gray-300 text-base md:text-lg">
-                  <h3 class="text-2xl font-bold mb-4 text-white">
-                    Wer bin ich?
-                  </h3>
-                  <p class="mb-4">
-                    Hi! Ich bin <strong>Julian</strong>, ein leidenschaftlicher
-                    <strong>Content Creator</strong> mit Fokus auf
-                    <strong>sportliche Entwicklung</strong> und
-                    <strong>persönliche Selbstverwirklichung</strong>. Mein Ziel
-                    mit <strong class="text-pink-400">YouTube</strong> ist es,
-                    meine Reise zu dokumentieren und hoffentlich andere zu
-                    <strong class="text-pink-400">inspirieren</strong>, ihre
-                    eigenen Ziele zu verfolgen.
-                  </p>
-                  <p class="mb-4">
-                    Seit fast zwei Jahren versuche ich, ansprechende und
-                    informative Inhalte zu erstellen (hauptsächlich auf
-                    YouTube). Ich liebe es, neue Sachen auszuprobieren und
-                    sportlich neue
-                    <strong>Grenzen zu überschreiten</strong>. Dabei geht es
-                    nicht nur um körperliche Leistung, sondern vor allem auch um
-                    <strong>mentales Wachstum</strong>.
-                  </p>
-                  <p class="mb-6">
-                    Wenn ich nicht gerade Inhalte erstelle, studiere ich dual
-                    <strong>Wirtschaftsinformatik</strong> (IMBIT). Diese Seite
-                    ist eine Möglichkeit für euch, all meine Arbeit auf einen
-                    Blick zu entdecken. Ich habe schon ein paar Ideen, was ich
-                    mit der Website so anstellen kann, und bin gespannt, wie sie
-                    sich entwickelt.
-                    <em>Fühlt euch frei, euch umzusehen!</em> 😁
-                  </p>
-                  <a
-                    href="#achievements"
-                    class="btn-primary font-semibold py-3 px-6 rounded-lg text-base md:text-lg inline-block shadow-md"
-                    >Meine Arbeit ansehen</a
-                  >
-                </div>
-              </div>
-            </div>
-
-            <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card">
-              <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div
-                  class="rounded-lg overflow-hidden shadow-2xl h-[250px] md:h-[400px] bg-black/20 flex items-center justify-center"
-                >
-                  <img
-                    src="Images/Selbstverwirklichung.png"
-                    alt="Selbstverwirklichung"
-                  />
-                </div>
-                <div class="text-gray-300 text-base md:text-lg">
-                  <h3 class="text-2xl font-bold mb-4 text-white">
-                    Selbstverwirklichung
-                  </h3>
-                  <p class="mb-4">
-                    <strong>Selbstverwirklichung</strong> bedeutet für mich,
-                    seinen <strong>eigenen Weg</strong> zu finden und diesen zu
-                    beschreiten. Meiner Meinung nach kann jeder diesen Weg
-                    finden, wenn man lernt, <strong>in sich zu gucken</strong>.
-                    So viele unserer Wünsche werden durch
-                    <strong class="text-pink-400">äußere Einflüsse</strong>
-                    beeinflusst. Die
-                    <strong class="text-pink-400">Challenge</strong> liegt also
-                    darin, bei sich zu bleiben,
-                    <strong>sich selbst zu vertrauen</strong>
-                    und weitestgehend ohne diese Einflüsse seinen individuellen
-                    Weg zu gehen.
-                  </p>
-                  <p class="mb-4">
-                    In meinen Videos versuche ich, diesen Weg so
-                    <strong>transparent</strong> wie möglich zu zeigen –
-                    <em>mit allen <strong>Höhen und Tiefen</strong></em
-                    >. Es geht darum, zu sich selbst zu finden, seine
-                    <strong>Ängste zu überwinden</strong> und
-                    <strong>Träume</strong> in die Realität zu bringen.
-                  </p>
-                  <p class="mb-6">
-                    Ich möchte euch ermutigen, euren
-                    <strong>eigenen Weg</strong> zur Selbstverwirklichung zu
-                    finden und euch nicht von äußeren Erwartungen einschränken
-                    zu lassen.
-                    <em
-                      >Egal was eure Eltern, Freunde, Mitmenschen oder komische
-                      Leute (wie ich 😉) aus dem Internet sagen!</em
-                    >
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card">
-              <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div
-                  class="rounded-lg overflow-hidden shadow-2xl h-[250px] md:h-[400px] bg-black/20 flex items-center justify-center"
-                >
-                  <img
-                    src="Images/Perspektiven Wechsel.png"
-                    alt="Perspektivenwechsel"
-                  />
-                </div>
-                <div class="text-gray-300 text-base md:text-lg">
-                  <h3 class="text-2xl font-bold mb-4 text-white">
-                    Perspektivenwechsel
-                  </h3>
-                  <p class="mb-4">
-                    Dieser Abschnitt ist dem
-                    <strong>Perspektivenwechsel</strong> gewidmet. Oft haben wir
-                    uns ein ganzes Leben lang eine Vorstellung davon gemacht,
-                    wer wir sind – unser festes <strong>Selbstbild</strong>.
-                    Doch wenn wir im Leben <strong>wachsen</strong> möchten,
-                    kann genau diese Persönlichkeit, die wir uns tagtäglich
-                    zuschreiben, zu
-                    <strong class="text-pink-400">Konflikten</strong> führen.
-                  </p>
-                  <p class="mb-4">
-                    Sätze wie <em>"Ich bin introvertiert"</em> oder
-                    <em>"Ich bin nicht sportlich"</em> werden schnell zur
-                    <strong class="text-pink-400">Ausrede</strong>, bestimmte
-                    Dinge gar nicht erst anzugehen. Ein starres Selbstbild kann
-                    uns <strong class="text-pink-400">blockieren</strong> – weil
-                    es ja schon immer so war und man es ja schon immer so
-                    gemacht hat.
-                  </p>
-                  <p class="mb-6">
-                    Genau dieses starre Selbstbild versuche ich in meinen
-                    <strong>Challenges</strong> aufzubrechen und zu
-                    <strong>stärken</strong>. Wir sind nicht immer dieselbe
-                    Person in unterschiedlichen Situationen. Ein schwaches
-                    Selbstbild führt dazu, dass man manche Situationen meidet
-                    und sich somit wertvolle Chancen und Türen verschließt. Es
-                    geht darum, diese selbstauferlegten Grenzen zu erkennen und
-                    zu überschreiten.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card">
-              <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div
-                  class="rounded-lg overflow-hidden shadow-2xl h-[250px] md:h-[400px] bg-black/20 flex items-center justify-center"
-                >
-                  <img
-                    src="Images/MountainViewBackground.png"
-                    alt="Grenzen Überschreitung"
-                  />
-                </div>
-                <div class="text-gray-300 text-base md:text-lg">
-                  <h3 class="text-2xl font-bold mb-4 text-white">
-                    Grenzen Überschreitung
-                  </h3>
-                  <p class="mb-4">
-                    <strong>Grenzen überschreiten</strong> – ein sehr
-                    interessantes Thema für mich. Einerseits möchte ich lernen,
-                    mich immer weiter zu <strong>pushen</strong>, meine alten
-                    Grenzen zu sprengen und daran zu <strong>wachsen</strong>.
-                  </p>
-                  <p class="mb-4">
-                    Andererseits muss ich immer im Kopf behalten, dass ich nicht
-                    unzerstörbar bin. Das
-                    <strong class="text-pink-400">100-Meter-Tauchvideo</strong>
-                    hat mir das nochmal sehr klar gezeigt.
-                    <em
-                      >Ja, ich kann mich pushen, ja, ich kann einfach
-                      weitermachen.</em
-                    >
-                    Aber es ist entscheidend, mein <strong>Limit</strong> zu
-                    kennen. So lange unter Wasser zu bleiben, ist eine echte
-                    <strong>Challenge</strong>, bei der ich aber
-                    <em
-                      >nicht so weit gehen darf, dass ich dabei
-                      <strong class="text-pink-400">ertrinke</strong></em
-                    >.
-                  </p>
-                  <p class="mb-4">
-                    Es geht also nicht darum, unvorsichtig zu sein, sondern
-                    darum, sich
-                    <strong>bewusst</strong> neuen Herausforderungen zu stellen
-                    und daran zu <strong>wachsen</strong>. Es bedeutet, sich
-                    seiner eigenen <strong>Stärken</strong> und
-                    <strong>Schwächen</strong>
-                    bewusst zu sein und <strong>voranzuschreiten</strong>, ohne
-                    dabei
-                    <span class="text-pink-400">den Bogen zu überspannen</span>.
-                  </p>
-                  <p class="mb-6">
-                    <strong
-                      >Welche Grenze möchtest du als Nächstes
-                      überschreiten?</strong
-                    ><br />
-                    Lass es mich gerne in den
-                    <strong>Kommentaren</strong> meiner Videos wissen! ;)
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card">
-              <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div
-                  class="rounded-lg overflow-hidden shadow-2xl h-[250px] md:h-[400px] bg-black/20 flex items-center justify-center"
-                >
-                  <img src="Images/UeberDich.png" alt="Nachricht an dich" />
-                </div>
-                <div class="text-gray-300 text-base md:text-lg">
-                  <h3 class="text-2xl font-bold mb-4 text-white">
-                    Nachricht an dich
-                  </h3>
-                  <p class="mb-4">
-                    <strong>Bleibe dir selbst treu.</strong>
-                    <em
-                      >Ein Leben, das immer mit dem Gedanken gelebt wird, was
-                      andere darüber sagen, ist ein Leben, das dir nicht selber
-                      gehört.</em
-                    >
-                    Wenn du versuchst, jedem zu gefallen, gefällst du
-                    letztendlich <strong class="text-pink-400">keinem</strong>.
-                    <strong>Sei du selbst</strong>, dann werden auch die Leute
-                    von dir angezogen, die deine wahren Interessen teilen.
-                  </p>
-                  <p class="mb-4">
-                    Viele Menschen leben nicht ihr
-                    <strong>eigenes Leben</strong>. Viele haben sich nie selber
-                    wirklich kennengelernt – oft eine
-                    <strong class="text-pink-400">verlorene Seele</strong>, tief
-                    im Inneren einer von der Gesellschaft
-                    <strong class="text-pink-400">programmierten Fassade</strong
-                    >.
-                  </p>
-                  <p class="mb-4">
-                    Wenn dich <strong>Selbstverwirklichung</strong>,
-                    <strong>Perspektivenwechsel</strong> und
-                    <strong>Grenzen überschreiten</strong>
-                    genauso anziehen wie mich, dann bist du hier genau richtig.
-                    :) Wenn nicht, dann hör nicht auf mich und
-                    <strong>geh deinen eigenen Weg</strong> – das ist das
-                    Wichtigste!
-                  </p>
-                  <p class="mb-6">
-                    Frage dich: <strong>Wer bin ich wirklich?</strong> Was würde
-                    ich machen, wenn ich keinem gefallen müsste?
-                    <strong>Was erfüllt mich wirklich?</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
+          <!-- Desktop Image (Correctly placed) -->
+          <div class="hidden md:flex md:items-center md:justify-center md:h-full md:pr-6">
+            <img src="Images/SchwimmBild.jpg" alt="Über Julian Karge" class="about-slide-img" />
           </div>
-
-          <button id="prev-slide" class="slider-arrow">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <button id="next-slide" class="slider-arrow">
-            <i class="fas fa-chevron-right"></i>
-          </button>
+          <!-- Text Content (Now a direct child on mobile) -->
+          <div class="about-slide-text">
+            <h3 class="text-2xl font-bold mb-4 text-white">Wer bin ich?</h3>
+            <p class="mb-4">
+              Hi! Ich bin <strong>Julian</strong>, ein leidenschaftlicher
+              <strong>Content Creator</strong> mit Fokus auf
+              <strong>sportliche Entwicklung</strong> und
+              <strong>persönliche Selbstverwirklichung</strong>. Mein Ziel
+              mit <strong class="text-pink-400">YouTube</strong> ist es,
+              meine Reise zu dokumentieren und hoffentlich andere zu
+              <strong class="text-pink-400">inspirieren</strong>, ihre
+              eigenen Ziele zu verfolgen.
+            </p>
+            <p class="mb-4">
+              Seit fast zwei Jahren versuche ich, ansprechende und
+              informative Inhalte zu erstellen (hauptsächlich auf
+              YouTube). Ich liebe es, neue Sachen auszuprobieren und
+              sportlich neue
+              <strong>Grenzen zu überschreiten</strong>. Dabei geht es
+              nicht nur um körperliche Leistung, sondern vor allem auch um
+              <strong>mentales Wachstum</strong>.
+            </p>
+            <a href="#achievements" class="btn-primary font-semibold py-3 px-6 rounded-lg text-base md:text-lg inline-block shadow-md mt-4">Meine Arbeit ansehen</a>
+          </div>
         </div>
 
-        <div id="slider-dots" class="slider-dots"></div>
+        <!-- Slide 2: Selbstverwirklichung (Simplified Structure) -->
+        <div 
+          class="about-slide w-full flex-shrink-0 p-6 md:p-8 card"
+          style="--bg-image: url('Images/Selbstverwirklichung.png')"
+        >
+          <div class="hidden md:flex md:items-center md:justify-center md:h-full md:pr-6">
+              <img src="Images/Selbstverwirklichung.png" alt="Selbstverwirklichung" class="about-slide-img" />
+          </div>
+          <div class="about-slide-text">
+            <h3 class="text-2xl font-bold mb-4 text-white">Selbstverwirklichung</h3>
+            <p class="mb-4">
+                <strong>Selbstverwirklichung</strong> bedeutet für mich,
+                seinen <strong>eigenen Weg</strong> zu finden und diesen zu
+                beschreiten. Meiner Meinung nach kann jeder diesen Weg
+                finden, wenn man lernt, <strong>in sich zu gucken</strong>.
+                So viele unserer Wünsche werden durch
+                <strong class="text-pink-400">äußere Einflüsse</strong>
+                beeinflusst. Die
+                <strong class="text-pink-400">Challenge</strong> liegt also
+                darin, bei sich zu bleiben,
+                <strong>sich selbst zu vertrauen</strong>
+                und weitestgehend ohne diese Einflüsse seinen individuellen
+                Weg zu gehen.
+            </p>
+            <p>
+                In meinen Videos versuche ich, diesen Weg so
+                <strong>transparent</strong> wie möglich zu zeigen –
+                <em>mit allen <strong>Höhen und Tiefen</strong></em
+                >. Es geht darum, zu sich selbst zu finden, seine
+                <strong>Ängste zu überwinden</strong> und
+                <strong>Träume</strong> in die Realität zu bringen.
+            </p>
+          </div>
+        </div>
+
+        <!-- Add your other slides here with the same simplified structure -->
+        <!-- For example, your "Grenzen Überschreitung" and "Nachricht an dich" slides -->
+        <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card" style="--bg-image: url('Images/Perspektiven Wechsel.png')">
+            <div class="hidden md:flex md:items-center md:justify-center md:h-full md:pr-6"><img src="Images/Perspektiven Wechsel.png" alt="Perspektivenwechsel" class="about-slide-img"></div>
+            <div class="about-slide-text"><h3 class="text-2xl font-bold mb-4 text-white">Perspektivenwechsel</h3><p class="mb-4">Ein starres Selbstbild kann uns <strong class="text-pink-400">blockieren</strong> – weil es ja schon immer so war und man es ja schon immer so gemacht hat. Sätze wie <em>"Ich bin introvertiert"</em> oder <em>"Ich bin nicht sportlich"</em> werden schnell zur <strong class="text-pink-400">Ausrede</strong>, bestimmte Dinge gar nicht erst anzugehen.</p><p>Genau dieses starre Selbstbild versuche ich in meinen <strong>Challenges</strong> aufzubrechen und zu <strong>stärken</strong>. Wir sind nicht immer dieselbe Person in unterschiedlichen Situationen. Es geht darum, diese selbstauferlegten Grenzen zu erkennen und zu überschreiten.</p></div>
+        </div>
+        <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card" style="--bg-image: url('Images/MountainViewBackground.png')">
+            <div class="hidden md:flex md:items-center md:justify-center md:h-full md:pr-6"><img src="Images/MountainViewBackground.png" alt="Grenzen Überschreitung" class="about-slide-img"></div>
+            <div class="about-slide-text"><h3 class="text-2xl font-bold mb-4 text-white">Grenzen Überschreitung</h3><p class="mb-4">Es geht nicht darum, unvorsichtig zu sein, sondern darum, sich <strong>bewusst</strong> neuen Herausforderungen zu stellen und daran zu <strong>wachsen</strong>. Das <strong class="text-pink-400">100-Meter-Tauchvideo</strong> hat mir das nochmal sehr klar gezeigt.</p><p>Es ist entscheidend, mein <strong>Limit</strong> zu kennen und den Bogen nicht zu überspannen, um sich nicht selbst zu gefährden. <strong>Welche Grenze möchtest du als Nächstes überschreiten?</strong></p></div>
+        </div>
+        <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card" style="--bg-image: url('Images/UeberDich.png')">
+            <div class="hidden md:flex md:items-center md:justify-center md:h-full md:pr-6"><img src="Images/UeberDich.png" alt="Nachricht an dich" class="about-slide-img"></div>
+            <div class="about-slide-text"><h3 class="text-2xl font-bold mb-4 text-white">Nachricht an dich</h3><p class="mb-4"><strong>Bleibe dir selbst treu.</strong> <em>Ein Leben, das immer mit dem Gedanken gelebt wird, was andere darüber sagen, ist ein Leben, das dir nicht selber gehört.</em></p><p>Wenn dich <strong>Selbstverwirklichung</strong> und <strong>Grenzen überschreiten</strong> genauso anziehen wie mich, dann bist du hier genau richtig. Wenn nicht, dann <strong>geh deinen eigenen Weg</strong> – das ist das Wichtigste!</p></div>
+        </div>
+
       </div>
-    </section>
+
+      <button id="prev-slide" class="slider-arrow">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button id="next-slide" class="slider-arrow">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <div id="slider-dots" class="slider-dots"></div>
+  </div>
+</section>
 
     <section id="contact" class="py-16 md:py-24 hero-bg">
-      <div class="container mx-auto px-4 sm:px-6 text-center">
+        <!-- ... the rest of your contact section ... -->
+        <div class="container mx-auto px-4 sm:px-6 text-center">
         <h2 class="section-title text-white text-3xl md:text-4xl">
           Verbinde dich mit mir
         </h2>
@@ -946,6 +479,7 @@
         </a>
       </div>
     </section>
+
     <footer class="bg-gray-900 py-8 text-center px-4">
       <div class="mb-4">
         <a href="impressum.html" class="text-gray-400 hover:text-pink-500 mx-2"
@@ -969,7 +503,8 @@
       id="music-player"
       class="fixed bottom-4 right-4 bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg text-white w-60 sm:w-72 z-50"
     >
-      <button
+        <!-- ... the rest of your music player ... -->
+        <button
         id="player-minimize-btn"
         class="absolute top-2 right-2 text-gray-400 hover:text-white p-1 z-10"
       >
@@ -1013,361 +548,13 @@
         <ul id="playlist-list" class="text-xs max-h-24 overflow-y-auto"></ul>
       </div>
     </div>
-    <script>
-      document.getElementById("currentYear").textContent =
-        new Date().getFullYear();
 
-      const mobileMenuButton = document.getElementById("mobile-menu-button");
-      const mobileMenu = document.getElementById("mobile-menu");
-      const mobileMenuIcon = mobileMenuButton.querySelector("i");
-
-      mobileMenuButton.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-        mobileMenuIcon.classList.toggle("fa-bars");
-        mobileMenuIcon.classList.toggle("fa-times");
-      });
-
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetId = this.getAttribute("href");
-          const targetElement = document.querySelector(targetId);
-
-          if (targetElement) {
-            const headerOffset = document.querySelector("header").offsetHeight;
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition =
-              elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: "smooth",
-            });
-          }
-
-          if (
-            !mobileMenu.classList.contains("hidden") &&
-            mobileMenu.contains(this)
-          ) {
-            mobileMenu.classList.add("hidden");
-            mobileMenuIcon.classList.remove("fa-times");
-            mobileMenuIcon.classList.add("fa-bars");
-          }
-        });
-      });
-
-      // Music Player JavaScript (Keine Änderungen)
-      document.addEventListener("DOMContentLoaded", () => {
-        const musicPlayerEl = document.getElementById("music-player");
-        const audioPlayer = document.getElementById("audio-element");
-        const playPauseBtn = document.getElementById("player-play-pause-btn");
-        const playIcon = playPauseBtn.querySelector("i");
-        const prevBtn = document.getElementById("player-prev-btn");
-        const nextBtn = document.getElementById("player-next-btn");
-        const albumArtImg = document.getElementById("player-album-art");
-        const songTitleEl = document.getElementById("player-song-title");
-        const songArtistEl = document.getElementById("player-song-artist");
-        const playlistListEl = document.getElementById("playlist-list");
-        const minimizeBtn = document.getElementById("player-minimize-btn");
-        const minimizeIcon = minimizeBtn.querySelector("i");
-
-        const songs = [
-          {
-            title: "Wacuka",
-            artist: "AVAION",
-            src: "music/AVAION, Sofiya Nzau - Wacuka (Official Visualizer).mp3",
-            cover: "Images/MusikCover/Wacuka.jpg",
-          },
-          {
-            title: "Heatwave",
-            artist: "Nyck Caution",
-            src: "music/ES_Heatwave (Clean Version) - Nyck Caution.wav",
-            cover: "Images/MusikCover/Heatwave.jpg",
-          },
-          {
-            title: "Need it",
-            artist: "dreem",
-            src: "music/ES_need it - dreem.wav",
-            cover: "Images/MusikCover/NeedIt.jpg",
-          },
-          {
-            title: "Weaver",
-            artist: "dreem",
-            src: "music/ES_weaver - dreem.wav",
-            cover: "Images/MusikCover/Weaver.jpg",
-          },
-          {
-            title: "Take Me To U",
-            artist: "LeDorean",
-            src: "music/ES_Take Me to U - LeDorean.wav",
-            cover: "Images/MusikCover/TakeMeToU.jpg",
-          },
-        ];
-
-        let currentSongIndex = 0;
-        let isPlaying = false;
-
-        function loadSong(songIndex) {
-          if (songs.length === 0) return;
-          const song = songs[songIndex];
-          audioPlayer.src = song.src;
-          songTitleEl.textContent = song.title;
-          songArtistEl.textContent = song.artist;
-          if (albumArtImg && song.cover) {
-            albumArtImg.src = song.cover;
-          } else if (albumArtImg) {
-            albumArtImg.src = "Images/Logo.png";
-          }
-          updatePlaylistUI();
-        }
-
-        function playSong() {
-          if (songs.length === 0 || !audioPlayer.src) return;
-          const playPromise = audioPlayer.play();
-          if (playPromise !== undefined) {
-            playPromise
-              .then((_) => {
-                isPlaying = true;
-                playIcon.classList.remove("fa-play");
-                playIcon.classList.add("fa-pause");
-              })
-              .catch((error) => {
-                console.warn("Audio play prevented by browser:", error);
-                isPlaying = false;
-                playIcon.classList.remove("fa-pause");
-                playIcon.classList.add("fa-play");
-              });
-          }
-        }
-
-        function pauseSong() {
-          audioPlayer.pause();
-          isPlaying = false;
-          playIcon.classList.remove("fa-pause");
-          playIcon.classList.add("fa-play");
-        }
-
-        function prevSong() {
-          if (songs.length === 0) return;
-          currentSongIndex =
-            (currentSongIndex - 1 + songs.length) % songs.length;
-          loadSong(currentSongIndex);
-          if (playPauseBtn.dataset.userInteracted === "true") playSong();
-        }
-
-        function nextSong() {
-          if (songs.length === 0) return;
-          currentSongIndex = (currentSongIndex + 1) % songs.length;
-          loadSong(currentSongIndex);
-          if (playPauseBtn.dataset.userInteracted === "true") playSong();
-        }
-
-        function populatePlaylist() {
-          if (songs.length === 0) {
-            playlistListEl.innerHTML = "<li>No songs in playlist.</li>";
-            return;
-          }
-          playlistListEl.innerHTML = "";
-          songs.forEach((song, index) => {
-            const listItem = document.createElement("li");
-            listItem.textContent = `${song.title} - ${song.artist}`;
-            listItem.setAttribute("data-index", index);
-            if (index === currentSongIndex) {
-              listItem.classList.add("active-song");
-            }
-            listItem.addEventListener("click", () => {
-              currentSongIndex = index;
-              loadSong(currentSongIndex);
-              playPauseBtn.dataset.userInteracted = "true";
-              playSong();
-            });
-            playlistListEl.appendChild(listItem);
-          });
-        }
-
-        function updatePlaylistUI() {
-          if (songs.length === 0) return;
-          const items = playlistListEl.querySelectorAll("li");
-          items.forEach((item) => {
-            if (item.getAttribute("data-index") == currentSongIndex) {
-              item.classList.add("active-song");
-            } else {
-              item.classList.remove("active-song");
-            }
-          });
-        }
-
-        if (playPauseBtn) {
-          playPauseBtn.addEventListener("click", () => {
-            if (songs.length === 0) return;
-            playPauseBtn.dataset.userInteracted = "true";
-            if (
-              !audioPlayer.src ||
-              audioPlayer.src !== songs[currentSongIndex].src
-            ) {
-              loadSong(currentSongIndex);
-            }
-            if (isPlaying) {
-              pauseSong();
-            } else {
-              playSong();
-            }
-          });
-        }
-        if (prevBtn) prevBtn.addEventListener("click", prevSong);
-        if (nextBtn) nextBtn.addEventListener("click", nextSong);
-        if (audioPlayer) audioPlayer.addEventListener("ended", nextSong);
-
-        if (minimizeBtn) {
-          minimizeBtn.addEventListener("click", (event) => {
-            event.stopPropagation();
-            musicPlayerEl.classList.toggle("player-minimized");
-            if (musicPlayerEl.classList.contains("player-minimized")) {
-              minimizeIcon.classList.remove("fa-chevron-down");
-              minimizeIcon.classList.add("fa-chevron-up");
-            } else {
-              minimizeIcon.classList.remove("fa-chevron-up");
-              minimizeIcon.classList.add("fa-chevron-down");
-            }
-          });
-        }
-
-        document.addEventListener("click", function (event) {
-          const isMobile = window.innerWidth < 640;
-          if (
-            isMobile &&
-            musicPlayerEl &&
-            !musicPlayerEl.contains(event.target) &&
-            (!minimizeBtn || !minimizeBtn.contains(event.target)) &&
-            !musicPlayerEl.classList.contains("player-minimized")
-          ) {
-            musicPlayerEl.classList.add("player-minimized");
-            if (minimizeIcon) {
-              minimizeIcon.classList.remove("fa-chevron-down");
-              minimizeIcon.classList.add("fa-chevron-up");
-            }
-          }
-        });
-
-        if (songs.length > 0 && songs[0].src) {
-          loadSong(currentSongIndex);
-          populatePlaylist();
-          playPauseBtn.dataset.userInteracted = "false";
-        } else {
-          populatePlaylist();
-        }
-      });
-
-      // Name Typewriter Animation Script (Keine Änderungen)
-      const namePlaceholder = document.getElementById(
-        "animated-name-placeholder"
-      );
-      if (namePlaceholder) {
-        const phrases = [
-          { text: "Julian Lucca Karge", isJLZN: false },
-          { text: "JLZN", isJLZN: true },
-        ];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingSpeed = 120;
-        const deletingSpeed = 70;
-        const pauseBetweenPhrases = 3000;
-
-        function typeWriter() {
-          const currentPhraseObj = phrases[phraseIndex];
-          const currentText = currentPhraseObj.text;
-          let displayedText = "";
-
-          if (isDeleting) {
-            displayedText = currentText.substring(0, charIndex - 1);
-            namePlaceholder.textContent = displayedText;
-            charIndex--;
-          } else {
-            displayedText = currentText.substring(0, charIndex + 1);
-            namePlaceholder.textContent = displayedText;
-            charIndex++;
-          }
-
-          if (currentPhraseObj.isJLZN) {
-            namePlaceholder.classList.add("jlzn-font-style");
-            namePlaceholder.style.setProperty("--cursor-color", "#e94560");
-          } else {
-            namePlaceholder.classList.remove("jlzn-font-style");
-            namePlaceholder.style.setProperty("--cursor-color", "white");
-          }
-
-          let timeToNextChar = isDeleting ? deletingSpeed : typingSpeed;
-
-          if (!isDeleting && charIndex === currentText.length) {
-            timeToNextChar = pauseBetweenPhrases;
-            isDeleting = true;
-          } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            phraseIndex = (phraseIndex + 1) % phrases.length;
-            const nextPhraseObj = phrases[phraseIndex];
-            if (nextPhraseObj.isJLZN) {
-              namePlaceholder.classList.add("jlzn-font-style");
-              namePlaceholder.style.setProperty("--cursor-color", "#e94560");
-            } else {
-              namePlaceholder.classList.remove("jlzn-font-style");
-              namePlaceholder.style.setProperty("--cursor-color", "white");
-            }
-            timeToNextChar = 500;
-          }
-          setTimeout(typeWriter, timeToNextChar);
-        }
-        if (phrases[0].isJLZN) {
-          namePlaceholder.style.setProperty("--cursor-color", "#e94560");
-        } else {
-          namePlaceholder.style.setProperty("--cursor-color", "white");
-        }
-        typeWriter();
-      }
-      // About Me Slider JavaScript (Keine Änderungen)
-      const sliderTrack = document.getElementById("slider-track");
-      const slides = document.querySelectorAll(".about-slide");
-      const prevButton = document.getElementById("prev-slide");
-      const nextButton = document.getElementById("next-slide");
-      const dotsContainer = document.getElementById("slider-dots");
-      let currentIndex = 0;
-      const totalSlides = slides.length;
-
-      for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement("span");
-        dot.classList.add("dot");
-        dot.setAttribute("data-index", i);
-        dot.addEventListener("click", () => {
-          goToSlide(i);
-        });
-        dotsContainer.appendChild(dot);
-      }
-
-      const dots = document.querySelectorAll(".dot");
-
-      function updateSlider() {
-        sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-        dots.forEach((dot, index) => {
-          dot.classList.toggle("active", index === currentIndex);
-        });
-      }
-
-      function goToSlide(index) {
-        currentIndex = index;
-        updateSlider();
-      }
-
-      nextButton.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateSlider();
-      });
-
-      prevButton.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        updateSlider();
-      });
-
-      updateSlider();
-    </script>
+    <!-- 
+      *** THIS IS THE MOST IMPORTANT PART ***
+      Notice there are NO <script>...</script> blocks with code here.
+      There is only ONE line that loads your external script.js file.
+      This prevents the "flicker" issue.
+    -->
+    <script src="script.js" defer></script>
   </body>
 </html>

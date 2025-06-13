@@ -1,0 +1,386 @@
+body {
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+}
+
+.hero-bg {
+  background-image: linear-gradient(
+      rgba(26, 26, 46, 0.75),
+      rgba(26, 26, 46, 0.85)
+    ),
+    url("Images/MountainViewBackground.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .hero-bg {
+    background-attachment: scroll;
+  }
+
+  .slider-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  #prev-slide {
+    left: 5px;
+  }
+
+  #next-slide {
+    right: 5px;
+  }
+
+  .about-slide {
+    min-height: 550px;
+  }
+
+  /* MODIFIED CSS for .about-slide img (mobile) */
+  .about-slide img {
+    max-height: 250px; /* War vorher: height: 250px; */
+  }
+}
+
+#home > .text-center {
+  position: relative;
+  z-index: 1;
+}
+
+#home h1 {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+#home p.text-lg {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.section-title {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary {
+  background-color: #e94560;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #c7304a;
+}
+
+.achievement-card img,
+.latest-video-card img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+nav a:not(.brand-logo) {
+  transition: color 0.3s ease;
+}
+
+nav a:not(.brand-logo):hover {
+  color: #e94560;
+}
+
+.youtube-color {
+  color: #ff0000;
+}
+
+.x-color {
+  color: #ffffff;
+}
+
+.instagram-color {
+  color: #e1306c;
+}
+
+.linkedin-color {
+  color: #0077b5;
+}
+
+.tiktok-color {
+  color: #ffffff;
+}
+
+.social-icon {
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: inline-block;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
+#mobile-menu a {
+  transition: background-color 0.2s ease, color 0.2s ease;
+  color: #d1d5db;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#mobile-menu a:last-child {
+  border-bottom: none;
+}
+
+#mobile-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #e94560;
+}
+
+#music-player {
+  font-family: "Inter", sans-serif;
+  transition: width 0.3s ease, height 0.3s ease, padding 0.3s ease;
+}
+
+#playlist-list {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#playlist-list::-webkit-scrollbar {
+  display: none;
+}
+
+#playlist-list li {
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+#playlist-list li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#playlist-list li.active-song {
+  background-color: #e94560;
+  color: white;
+  font-weight: 600;
+}
+
+#music-player.player-minimized {
+  width: auto;
+  min-width: 180px;
+}
+
+@media (min-width: 640px) {
+  #music-player.player-minimized {
+    min-width: 200px;
+  }
+}
+
+#music-player.player-minimized #player-main-controls,
+#music-player.player-minimized #playlist-container {
+  display: none;
+}
+
+#music-player.player-minimized .flex.items-center.mb-3 {
+  margin-bottom: 0;
+}
+
+#animated-name-placeholder {
+  display: inline-block;
+  position: relative;
+  min-height: 1.2em;
+}
+
+.jlzn-font-style {
+  font-family: "Audiowide", sans-serif;
+  color: #e94560;
+}
+
+#animated-name-placeholder::after {
+  content: "|";
+  display: inline-block;
+  margin-left: 3px;
+  animation: blink-caret 0.75s step-end infinite;
+  color: var(--cursor-color, white);
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.about-slide {
+  min-height: 450px; /* Mindesthöhe für Desktop-Slide-Container */
+  display: flex;
+  align-items: center;
+}
+
+/* MODIFIED CSS for .about-slide img (desktop) */
+.about-slide img {
+  display: block;
+  max-width: 100%;
+  max-height: 400px; /* Maximale Höhe für das Bild auf Desktop */
+  object-fit: contain; /* Zeigt das gesamte Bild an */
+  border-radius: 0.5rem;
+  margin: 0 auto; /* Zentriert das Bild horizontal */
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-arrow:hover {
+  background-color: rgba(233, 69, 96, 0.7);
+  transform: translateY(-50%) scale(1.1);
+}
+
+#prev-slide {
+  left: 15px;
+}
+
+#next-slide {
+  right: 15px;
+}
+
+.slider-dots {
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 5px;
+  background-color: #6b7280;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.dot:hover {
+  background-color: #9ca3af;
+  transform: scale(1.1);
+}
+
+.dot.active {
+  background-color: #e94560;
+  transform: scale(1.2);
+}
+
+/* --- "Über Mich" Slider Improvements --- */
+
+/* MOBILE-FIRST STYLES: Default styles are for mobile */
+.about-slide {
+  display: flex; /* Use flexbox for vertical/horizontal centering on mobile */
+  align-items: center;
+  justify-content: center;
+  min-height: 550px;
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1.5rem;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  border: none; /* Hide the slide's own border on mobile */
+}
+
+/* The dark overlay for mobile */
+.about-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(17, 24, 39, 0.75);
+  backdrop-filter: blur(3px);
+  z-index: -1;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* The border is on the overlay */
+}
+
+/* The text container on mobile */
+.about-slide-text {
+  text-align: center;
+  color: #e5e7eb;
+  position: relative;
+  z-index: 10;
+  max-width: 90%;
+}
+
+.about-slide-text h3 {
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.about-slide-text p {
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.about-slide-img {
+  /* The image is hidden on mobile via HTML `hidden` class, but we set a default here */
+  display: none;
+}
+
+/* DESKTOP OVERRIDES: Apply these styles on screens 768px and wider */
+@media (min-width: 768px) {
+  /* Restore the grid layout for desktop */
+  .about-slide {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates the 2-column layout */
+    gap: 2rem;
+    padding: 2rem; /* Restore desktop padding */
+    min-height: 450px;
+    background-image: none; /* IMPORTANT: Remove the background image on desktop */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Restore the card border */
+  }
+
+  /* Remove the mobile overlay on desktop */
+  .about-slide::before {
+    content: none;
+  }
+
+  /* Restore the image display on desktop */
+  .about-slide-img {
+    display: block; /* This works with the `md:flex` in your HTML */
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    margin: 0 auto;
+  }
+  
+  /* Restore the text alignment and width for desktop */
+  .about-slide-text {
+    text-align: left;
+    max-width: 100%;
+    text-shadow: none; /* Remove text shadow on desktop for a cleaner look */
+  }
+}
