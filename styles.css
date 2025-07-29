@@ -384,3 +384,37 @@ nav a:not(.brand-logo):hover {
     text-shadow: none; /* Remove text shadow on desktop for a cleaner look */
   }
 }
+
+/* --- Contact Form Styles --- */
+.contact-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #d1d5db; /* gray-300 */
+  text-align: left;
+}
+
+.contact-input {
+  width: 100%;
+  background-color: rgba(31, 41, 55, 0.7); /* gray-800 with transparency */
+  border: 1px solid #4b5563; /* gray-600 */
+  color: #f3f4f6; /* gray-100 */
+  border-radius: 0.5rem; /* rounded-lg */
+  padding: 0.75rem 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1rem;
+}
+
+.contact-input:focus {
+  outline: none;
+  border-color: #e94560; /* pink-500 */
+  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.4);
+}
+
+#form-result.success {
+  color: #34d399; /* green-400 */
+}
+
+#form-result.error {
+  color: #f87171; /* red-400 */
+}

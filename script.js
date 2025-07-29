@@ -13,13 +13,18 @@ document.addEventListener("DOMContentLoaded", function () {
     mobileMenuIcon.classList.toggle("fa-times");
   });
 
+  // --- General & Navigation (IMPROVED SMOOTH SCROLL) ---
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
-      e.preventDefault();
       const targetId = this.getAttribute("href");
-      const targetElement = document.querySelector(targetId);
+      // Finde das Zielelement auf der Seite
+      const targetElement = targetId === "#" ? null : document.querySelector(targetId);
 
+      // Führe das sanfte Scrollen NUR aus, wenn das Ziel existiert
       if (targetElement) {
+        // Verhindere das Standardverhalten NUR für interne Links
+        e.preventDefault();
+
         const headerOffset = document.querySelector("header").offsetHeight;
         const elementPosition = targetElement.getBoundingClientRect().top;
         const offsetPosition =
@@ -29,16 +34,19 @@ document.addEventListener("DOMContentLoaded", function () {
           top: offsetPosition,
           behavior: "smooth",
         });
-      }
 
-      if (
-        !mobileMenu.classList.contains("hidden") &&
-        mobileMenu.contains(this)
-      ) {
-        mobileMenu.classList.add("hidden");
-        mobileMenuIcon.classList.remove("fa-times");
-        mobileMenuIcon.classList.add("fa-bars");
+        // Schließe das mobile Menü, falls es offen ist und ein Link geklickt wurde
+        if (
+          !mobileMenu.classList.contains("hidden") &&
+          mobileMenu.contains(this)
+        ) {
+          mobileMenu.classList.add("hidden");
+          mobileMenuIcon.classList.remove("fa-times");
+          mobileMenuIcon.classList.add("fa-bars");
+        }
       }
+      // Wenn targetElement null ist (z.B. bei href="#" oder einem externen Link),
+      // passiert nichts und der Browser führt die Standard-Aktion aus.
     });
   });
 
@@ -186,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
       minimizeIcon.classList.toggle("fa-chevron-up");
     });
   }
-  
+
   function attemptAutoplay() {
     const playPromise = audioPlayer.play();
     if (playPromise !== undefined) {
@@ -206,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (songs.length > 0) {
     loadSong(currentSongIndex);
     populatePlaylist();
-    attemptAutoplay();
+    // attemptAutoplay(); // Autoplay kann auf manchen Browsern störend sein, ggf. aktiviert lassen.
   } else {
     populatePlaylist();
   }
@@ -294,7 +302,7 @@ document.addEventListener("DOMContentLoaded", function () {
       currentIndex = index;
       updateSlider();
     }
-    
+
     function showNextSlide() {
       currentIndex = (currentIndex + 1) % totalSlides;
       updateSlider();
@@ -328,7 +336,7 @@ document.addEventListener("DOMContentLoaded", function () {
         showPrevSlide();
       }
     }
-    
+
     updateSlider();
   }
 
@@ -351,7 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return false;
   }
 
-fetch(
+  fetch(
     "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(rssUrl) + "&_=" + new Date().getTime()
   )
     .then((response) => {
@@ -364,37 +372,121 @@ fetch(
       if (data.status !== 'ok' || !data.items || data.items.length === 0) {
         throw new Error("No videos found in the feed.");
       }
-      
+
       const latestVideo = data.items.find(item => !isVideoShort(item));
 
+      // START DER KORREKTUR
       if (latestVideo) {
+        // Setze den Link für den Video-Wrapper und den Titel
         videoLinkWrapper.href = latestVideo.link;
         videoTitle.href = latestVideo.link;
+
+        // HINZUGEFÜGT: Sorge dafür, dass der Link in einem neuen Tab geöffnet wird
+        videoLinkWrapper.target = "_blank";
+        videoTitle.target = "_blank";
+        videoLinkWrapper.rel = "noopener noreferrer"; // Wichtig für Sicherheit & Performance
+        videoTitle.rel = "noopener noreferrer";
+
+        // Aktualisiere die restlichen Video-Informationen
         videoThumbnail.src = latestVideo.thumbnail;
-        videoThumbnail.alt = latestVideo.title;
+        videoThumbnail.alt = `Thumbnail für: ${latestVideo.title}`;
         videoTitle.textContent = latestVideo.title;
-        
+
+        // Bereinige und kürze die Videobeschreibung
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = latestVideo.description;
         let cleanDescription = tempDiv.textContent || "";
-        
+
         const maxLength = 150;
         if (cleanDescription.length > maxLength) {
           let lastSpace = cleanDescription.substring(0, maxLength).lastIndexOf(' ');
           cleanDescription = cleanDescription.substring(0, lastSpace > 0 ? lastSpace : maxLength) + "...";
         }
-        
+
         videoDescription.textContent = cleanDescription;
 
       } else {
+        // Fallback, wenn kein langes Video gefunden wird
         videoTitle.textContent = "Kein aktuelles langes Video gefunden.";
         videoDescription.textContent = "Schau direkt auf meinem Kanal vorbei, um die neuesten Shorts zu sehen!";
+        // Entfernt den Link, damit man nicht auf eine leere Seite kommt
+        videoLinkWrapper.removeAttribute("href");
+        videoTitle.removeAttribute("href");
       }
+      // ENDE DER KORREKTUR
     })
     .catch((err) => {
       console.error("Error loading latest video:", err);
       videoTitle.textContent = "Fehler beim Laden des Videos";
       videoDescription.textContent = "Die Video-Daten konnten nicht abgerufen werden.";
     });
+    
+  // --- Contact Form Handler ---
+  const contactForm = document.getElementById("contact-form");
+  const formSubmitBtn = document.getElementById("form-submit-btn");
+  const formResultDiv = document.getElementById("form-result");
 
+  if (contactForm) {
+    // !!! IMPORTANT: Replace this with your actual Web3Forms Access Key !!!
+    const web3formsKey = "03dada34-9ed2-423c-8290-d997ab61488c";
+    const accessKeyInput = contactForm.querySelector('input[name="access_key"]');
+
+    if (accessKeyInput) {
+      accessKeyInput.value = web3formsKey;
+    } else {
+      console.error("Access key input field not found in the form.");
+    }
+
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      if (web3formsKey === "YOUR_ACCESS_KEY_HERE") {
+        formResultDiv.innerHTML = "Bitte ersetze den Platzhalter-Access-Key in der `script.js`-Datei.";
+        formResultDiv.className = "error";
+        return;
+      }
+
+      const formData = new FormData(contactForm);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      formResultDiv.innerHTML = "Wird gesendet...";
+      formResultDiv.className = "";
+      formSubmitBtn.disabled = true;
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      })
+        .then(async (response) => {
+          let jsonResponse = await response.json();
+          if (response.status == 200) {
+            formResultDiv.innerHTML = jsonResponse.message || "Nachricht erfolgreich gesendet!";
+            formResultDiv.className = "success";
+          } else {
+            formResultDiv.innerHTML = jsonResponse.message || "Etwas ist schiefgelaufen.";
+            formResultDiv.className = "error";
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          formResultDiv.innerHTML = "Fehler! Konnte die Nachricht nicht senden.";
+          formResultDiv.className = "error";
+        })
+        .then(function () {
+          formSubmitBtn.disabled = false;
+          if (formResultDiv.classList.contains("success")) {
+            contactForm.reset();
+          }
+          setTimeout(() => {
+            formResultDiv.innerHTML = "";
+            formResultDiv.className = "";
+          }, 5000);
+        });
+    });
+  }
 });
