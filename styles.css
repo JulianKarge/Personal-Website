@@ -418,3 +418,68 @@ nav a:not(.brand-logo):hover {
 #form-result.error {
   color: #f87171; /* red-400 */
 }
+
+/* --- Snake Game Styles --- */
+#gameContainer {
+    /* Uses the existing card style */
+    position: relative;
+    overflow: hidden; /* Ensures overlay corners are rounded */
+}
+
+#snakeCanvas {
+    /* Ensures the canvas background is visible */
+    border: 1px solid #4b5563; /* gray-600 */
+}
+
+#gameOverOverlay {
+    display: flex; /* Hidden by default via JS */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Inset-0 and position absolute are handled by Tailwind classes in the HTML */
+}
+
+/* --- Game Modal Styles --- */
+#game-modal-backdrop.hidden {
+  display: none;
+}
+
+#game-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+#game-modal-content {
+  display: flex;
+  flex-direction: column;
+  width: min(90vw, 90vh);
+  height: min(90vw, 90vh);
+  max-width: 900px;
+  max-height: 900px;
+}
+
+#modal-canvas-wrapper {
+  flex-grow: 1;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-canvas-wrapper canvas {
+  border-radius: 0.375rem;
+}
+
+/* FIX: Hide the expand button on mobile devices (screen width < 768px) */
+@media (max-width: 767px) {
+  #expand-game-btn {
+    display: none;
+  }
+}
