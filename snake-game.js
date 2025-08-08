@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const SNAKE_HEAD_IMAGE_PATH = "Images/snake-head-placeholder.png";
-  const FOOD_IMAGE_PATH = "Images/food-placeholder.png";
+  // ====== Config ======
+  const SNAKE_HEAD_IMAGE_PATH = "Images/snake-head.png"; // high-res
+  const FOOD_IMAGE_PATH = "Images/food.png";             // high-res
   const SNAKE_COLOR = "#d1d5db";
 
   const gameCanvas = document.getElementById("snakeCanvas");
@@ -10,238 +11,295 @@ document.addEventListener("DOMContentLoaded", () => {
   // UI Elements
   const scoreElement = document.getElementById("gameScore");
   const personalHighScoreElement = document.getElementById("personalHighScore");
-  const originalCanvasParent = document.getElementById("canvas-wrapper");
   const messageOverlay = document.getElementById("messageOverlay");
   const messageTitle = document.getElementById("messageTitle");
   const messageScore = document.getElementById("messageScore");
   const finalScoreElement = document.getElementById("finalScore");
   const messageButton = document.getElementById("messageButton");
   const expandBtn = document.getElementById("expand-game-btn");
-  const closeModalBtn = document.getElementById("close-modal-btn");
-  const modalBackdrop = document.getElementById("game-modal-backdrop");
-  const modalCanvasWrapper = document.getElementById("modal-canvas-wrapper");
-  const modalScoreElement = document.getElementById("modal-score");
-  const modalPersonalHsElement = document.getElementById("modal-personal-hs");
 
-  const TILE_SIZE_NORMAL = 25, TILE_SIZE_MODAL = 40;
-  let tileSize = TILE_SIZE_NORMAL;
-  let isModalOpen = false;
-  let snake, food, score, direction, personalHighScore;
+  // Fullscreen Overlay (Highscores only)
+  const fullscreenScore = document.createElement("div");
+  fullscreenScore.id = "fullscreen-score";
+  fullscreenScore.innerHTML = `
+    <div>Personal High Score: <span id="fs-highscore">0</span></div>
+    <div>Global High Score: <span id="fs-global-highscore">0</span></div>
+  `;
+  document.body.appendChild(fullscreenScore);
+
+  // Game state
+  let tileSize = 20;
+  let gridCount = 20; // dynamic
+  let snake = [];
+  let food = {};
+  let direction = { x: 0, y: 0 };
+  let score = 0;
+  let personalHighScore = 0;
+  let gameState = "IDLE"; // IDLE, PLAYING, GAME_OVER
+  let lastRenderTime = 0;
+  let gameSpeed = 7;
   let touchStartX = 0, touchStartY = 0;
-  let gameState = 'IDLE'; // 'IDLE', 'PLAYING', 'GAME_OVER'
 
-  const snakeHeadImg = new Image(), foodImg = new Image();
+  // Images
+  const snakeHeadImg = new Image();
+  const foodImg = new Image();
   snakeHeadImg.src = SNAKE_HEAD_IMAGE_PATH;
   foodImg.src = FOOD_IMAGE_PATH;
 
-  function loadPersonalHighScore() {
-    personalHighScore = parseInt(localStorage.getItem('snakeHighScore')) || 0;
-    personalHighScoreElement.textContent = personalHighScore;
-    modalPersonalHsElement.textContent = personalHighScore;
+  // High-DPI scaling
+  let dpr = Math.max(1, Math.floor(window.devicePixelRatio || 1));
+  function applyHiDPIScale() {
+    const cssW = gameCanvas.clientWidth;
+    const cssH = gameCanvas.clientHeight;
+    gameCanvas.width  = Math.floor(cssW * dpr);
+    gameCanvas.height = Math.floor(cssH * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
   }
 
-  function savePersonalHighScore() {
+  // Highscores
+  function loadHighScore() {
+    personalHighScore = parseInt(localStorage.getItem("snakeHighScore")) || 0;
+    personalHighScoreElement.textContent = personalHighScore;
+    document.getElementById("fs-highscore").textContent = personalHighScore;
+
+    // TODO: Fetch global highscore from server
+    document.getElementById("fs-global-highscore").textContent = 0; // placeholder
+  }
+
+  function saveHighScore() {
     if (score > personalHighScore) {
       personalHighScore = score;
-      localStorage.setItem('snakeHighScore', personalHighScore);
+      localStorage.setItem("snakeHighScore", personalHighScore);
       personalHighScoreElement.textContent = personalHighScore;
-      modalPersonalHsElement.textContent = personalHighScore;
+      document.getElementById("fs-highscore").textContent = personalHighScore;
+      // TODO: Send new personal highscore to server for global leaderboard
     }
   }
 
-  function updateUI() {
-    if (gameState === 'PLAYING') {
-      messageOverlay.classList.add('hidden');
+function updateUI() {
+  // Show overlay in fullscreen regardless of game state
+  fullscreenScore.classList.toggle("visible", !!document.fullscreenElement);
+
+  if (gameState === "PLAYING") {
+    messageOverlay.classList.add("hidden");
+  } else {
+    if (gameState === "IDLE") {
+      messageTitle.textContent = "SNAKE";
+      messageScore.classList.add("hidden");
+      messageButton.textContent = "Start";
     } else {
-      if (gameState === 'IDLE') {
-        messageTitle.textContent = "SNAKE";
-        messageTitle.classList.remove('mb-2');
-        messageTitle.classList.add('mb-8');
-        messageScore.classList.add('hidden');
-        messageButton.textContent = "Start";
-      } else if (gameState === 'GAME_OVER') {
-        finalScoreElement.textContent = score;
-        messageTitle.textContent = "Game Over";
-        messageTitle.classList.remove('mb-8');
-        messageTitle.classList.add('mb-2');
-        messageScore.classList.remove('hidden');
-        messageButton.textContent = "Play Again";
-      }
-      messageOverlay.classList.remove('hidden');
+      messageTitle.textContent = "Game Over";
+      messageScore.classList.remove("hidden");
+      finalScoreElement.textContent = score;
+      messageButton.textContent = "Play Again";
     }
+    messageOverlay.classList.remove("hidden");
   }
+}
 
-  function openModal() {
-    isModalOpen = true;
-    tileSize = TILE_SIZE_MODAL;
-    modalBackdrop.classList.remove('hidden');
-    modalCanvasWrapper.appendChild(messageOverlay);
-    modalCanvasWrapper.appendChild(gameCanvas);
-    modalPersonalHsElement.textContent = personalHighScoreElement.textContent;
-    updateUI();
-    resizeCanvas();
-    draw();
-  }
 
-  function closeModal() {
-    isModalOpen = false;
-    tileSize = TILE_SIZE_NORMAL;
-    modalBackdrop.classList.add('hidden');
-    originalCanvasParent.appendChild(messageOverlay);
-    originalCanvasParent.appendChild(gameCanvas);
-    updateUI();
-    resizeCanvas();
-    draw();
-  }
-
-  // DEFINITIVE SIZING FIX
+  // Canvas & grid sizing
   function resizeCanvas() {
-    let size;
-    if (isModalOpen) {
-      // For the modal, create a perfect square that fits
-      const container = modalCanvasWrapper;
-      size = Math.min(container.clientWidth, container.clientHeight);
-    } else {
-      // For the default mobile/desktop view, just fill the container width
-      const container = originalCanvasParent;
-      size = container.clientWidth;
-    }
-    gameCanvas.width = size;
-    gameCanvas.height = size;
+    const container = gameCanvas.parentElement;
+    const size = Math.min(container.clientWidth, window.innerHeight * 0.7);
+    gameCanvas.style.width  = size + "px";
+    gameCanvas.style.height = size + "px";
+
+    gridCount = window.innerWidth < 768 ? 20 : 25;
+    tileSize = Math.floor(size / gridCount);
+    gameCanvas.style.width  = (tileSize * gridCount) + "px";
+    gameCanvas.style.height = (tileSize * gridCount) + "px";
+
+    dpr = Math.max(1, Math.floor(window.devicePixelRatio || 1));
+    applyHiDPIScale();
+  }
+
+  // Game logic
+  function getRandomTile() {
+    return {
+      x: Math.floor(Math.random() * gridCount),
+      y: Math.floor(Math.random() * gridCount)
+    };
   }
 
   function generateFood() {
-    food = getRandomTile();
-    while (snake.some(segment => segment.x === food.x && segment.y === food.y)) {
+    do {
       food = getRandomTile();
-    }
-  }
-  
-  function getRandomTile() {
-    const gridSize = Math.floor(gameCanvas.width / tileSize);
-    return { x: Math.floor(Math.random() * gridSize), y: Math.floor(Math.random() * gridSize) };
+    } while (snake.some(seg => seg.x === food.x && seg.y === food.y));
   }
 
-  function draw() {
-    ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-    const gridSize = Math.floor(gameCanvas.width / tileSize);
-    ctx.strokeStyle = "rgba(75, 85, 99, 0.2)";
-    for (let i = 0; i <= gridSize; i++) {
-        const pos = i * tileSize;
-        ctx.beginPath(); ctx.moveTo(pos, 0); ctx.lineTo(pos, gameCanvas.height); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(0, pos); ctx.lineTo(gameCanvas.width, pos); ctx.stroke();
-    }
-    if (gameState === 'PLAYING' && snake) {
-      ctx.fillStyle = SNAKE_COLOR;
-      for (let i = 1; i < snake.length; i++) {
-        ctx.fillRect(snake[i].x * tileSize, snake[i].y * tileSize, tileSize, tileSize);
-      }
-      if (snake.length > 0) ctx.drawImage(snakeHeadImg, snake[0].x * tileSize, snake[0].y * tileSize, tileSize, tileSize);
-      if(food) ctx.drawImage(foodImg, food.x * tileSize, food.y * tileSize, tileSize, tileSize);
-    }
-  }
-  
-  function update() {
-    if (gameState !== 'PLAYING') return;
+  function updateSnake() {
     const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
-    const gridSize = Math.floor(gameCanvas.width / tileSize);
-    if (head.x < 0 || head.x >= gridSize || head.y < 0 || head.y >= gridSize) { endGame(); return; }
-    for (let i = 1; i < snake.length; i++) { if (head.x === snake[i].x && head.y === snake[i].y) { endGame(); return; }}
+    if (head.x < 0 || head.x >= gridCount || head.y < 0 || head.y >= gridCount) return endGame();
+    if (snake.slice(1).some(seg => seg.x === head.x && seg.y === head.y)) return endGame();
+
     snake.unshift(head);
+
     if (head.x === food.x && head.y === food.y) {
       score++;
       scoreElement.textContent = score;
-      modalScoreElement.textContent = score;
       generateFood();
     } else {
       snake.pop();
     }
   }
 
-  function gameLoop() {
-    if (gameState !== 'PLAYING') return;
-    update();
-    draw();
-    setTimeout(gameLoop, 120);
-  }
-  
-  function startGame() {
-    gameState = 'PLAYING';
-    score = 0;
-    scoreElement.textContent = score;
-    modalScoreElement.textContent = score;
-    const gridSize = Math.floor(gameCanvas.width / tileSize);
-    const startPos = Math.floor(gridSize / 2);
-    snake = [{ x: startPos, y: startPos }];
-    direction = { x: 0, y: 0 };
-    generateFood();
-    updateUI();
-    gameLoop();
-  }
-  
-  function endGame() {
-    gameState = 'GAME_OVER';
-    savePersonalHighScore();
-    updateUI();
+  function drawGame() {
+    ctx.clearRect(0, 0, gameCanvas.clientWidth, gameCanvas.clientHeight);
+
+    ctx.strokeStyle = "rgba(255,255,255,0.06)";
+    for (let x = 0; x <= gridCount; x++) {
+      ctx.beginPath();
+      ctx.moveTo(x * tileSize, 0);
+      ctx.lineTo(x * tileSize, tileSize * gridCount);
+      ctx.stroke();
+    }
+    for (let y = 0; y <= gridCount; y++) {
+      ctx.beginPath();
+      ctx.moveTo(0, y * tileSize);
+      ctx.lineTo(tileSize * gridCount, y * tileSize);
+      ctx.stroke();
+    }
+
+    ctx.fillStyle = SNAKE_COLOR;
+    for (let i = 1; i < snake.length; i++) {
+      ctx.fillRect(snake[i].x * tileSize, snake[i].y * tileSize, tileSize, tileSize);
+    }
+
+    if (snake.length) {
+      ctx.drawImage(snakeHeadImg, snake[0].x * tileSize, snake[0].y * tileSize, tileSize, tileSize);
+    }
+    ctx.drawImage(foodImg, food.x * tileSize, food.y * tileSize, tileSize, tileSize);
   }
 
-  function handleKeyDown(e) {
-    const relevantKeys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Enter", "Escape"];
-    if (relevantKeys.includes(e.key)) e.preventDefault();
-    if (isModalOpen && e.key === 'Escape') { closeModal(); return; }
-    if (gameState !== 'PLAYING' && e.key === 'Enter') { startGame(); return; }
-    if(gameState !== 'PLAYING') return;
-    const isMovingVertically = direction.y !== 0;
-    switch (e.key) {
-      case "ArrowUp": if (!isMovingVertically) direction = { x: 0, y: -1 }; break;
-      case "ArrowDown": if (!isMovingVertically) direction = { x: 0, y: 1 }; break;
-      case "ArrowLeft": if (direction.x === 0) direction = { x: -1, y: 0 }; break;
-      case "ArrowRight": if (direction.x === 0) direction = { x: 1, y: 0 }; break;
+  function mainLoop(now) {
+    if (gameState !== "PLAYING") return;
+    requestAnimationFrame(mainLoop);
+    const elapsed = (now - lastRenderTime) / 1000;
+    if (elapsed < 1 / gameSpeed) return;
+    lastRenderTime = now;
+    updateSnake();
+    drawGame();
+  }
+
+  // Controls
+  function preventScrollWhenGaming(e) {
+    const keys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "];
+    if (keys.includes(e.key) && (gameState === "PLAYING" || document.activeElement === gameCanvas)) {
+      e.preventDefault();
     }
   }
 
+  function handleKey(e) {
+    preventScrollWhenGaming(e);
+    const isVertical = direction.y !== 0;
+    if (e.key === "ArrowUp" && !isVertical) direction = { x: 0, y: -1 };
+    if (e.key === "ArrowDown" && !isVertical) direction = { x: 0, y: 1 };
+    if (e.key === "ArrowLeft" && direction.x === 0) direction = { x: -1, y: 0 };
+    if (e.key === "ArrowRight" && direction.x === 0) direction = { x: 1, y: 0 };
+    if (e.key === "Enter" && gameState !== "PLAYING") startGame();
+  }
+
   function handleTouchStart(e) {
-      e.preventDefault();
-      touchStartX = e.changedTouches[0].screenX;
-      touchStartY = e.changedTouches[0].screenY;
+    e.preventDefault();
+    const t = e.changedTouches[0];
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
   }
 
   function handleTouchEnd(e) {
-      e.preventDefault();
-      if (gameState !== 'PLAYING') {
-          if(Math.abs(e.changedTouches[0].screenX - touchStartX) < 20 && Math.abs(e.changedTouches[0].screenY - touchStartY) < 20) {
-              startGame();
-          }
-          return;
-      };
-      const touchEndX = e.changedTouches[0].screenX;
-      const touchEndY = e.changedTouches[0].screenY;
-      const dx = touchEndX - touchStartX;
-      const dy = touchEndY - touchStartY;
-      if (Math.abs(dx) < 20 && Math.abs(dy) < 20) return;
-      const isMovingVertically = direction.y !== 0;
-      if (Math.abs(dx) > Math.abs(dy)) {
-          if (dx > 0 && direction.x === 0) direction = { x: 1, y: 0 };
-          else if (dx < 0 && direction.x === 0) direction = { x: -1, y: 0 };
-      } else {
-          if (dy > 0 && !isMovingVertically) direction = { x: 0, y: 1 };
-          else if (dy < 0 && !isMovingVertically) direction = { x: 0, y: -1 };
-      }
+    e.preventDefault();
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touchStartX;
+    const dy = t.clientY - touchStartY;
+
+    if (Math.abs(dx) < 20 && Math.abs(dy) < 20) {
+      if (gameState !== "PLAYING") startGame();
+      return;
+    }
+
+    const isVertical = direction.y !== 0;
+    if (Math.abs(dx) > Math.abs(dy)) {
+      if (dx > 0 && direction.x === 0) direction = { x: 1, y: 0 };
+      if (dx < 0 && direction.x === 0) direction = { x: -1, y: 0 };
+    } else {
+      if (dy > 0 && !isVertical) direction = { x: 0, y: 1 };
+      if (dy < 0 && !isVertical) direction = { x: 0, y: -1 };
+    }
   }
 
-  function init() {
-    messageButton.addEventListener("click", startGame);
-    expandBtn.addEventListener("click", openModal);
-    closeModalBtn.addEventListener("click", closeModal);
-    document.addEventListener("keydown", handleKeyDown);
-    gameCanvas.addEventListener('touchstart', handleTouchStart, { passive: false });
-    gameCanvas.addEventListener('touchend', handleTouchEnd, { passive: false });
-    window.addEventListener('resize', () => { resizeCanvas(); draw(); });
-    
-    loadPersonalHighScore();
+  // Fullscreen
+  function toggleFullscreen() {
+    const wrapper = gameCanvas.parentElement;
+    if (!document.fullscreenElement) {
+      wrapper.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
+  }
+
+   function onFullscreenChange() {
+  const icon = expandBtn.querySelector("i");
+  if (document.fullscreenElement) {
+    icon.classList.remove("fa-expand");
+    icon.classList.add("fa-compress");
+
+    fullscreenScore.classList.add("visible"); // <-- added line
+    gameCanvas.focus();
+  } else {
+    icon.classList.remove("fa-compress");
+    icon.classList.add("fa-expand");
+
+    fullscreenScore.classList.remove("visible"); // <-- added line
+  }
+  resizeCanvas();
+  drawGame();
+  updateUI();
+}
+document.addEventListener("fullscreenchange", onFullscreenChange);
+
+
+  // Game flow
+  function startGame() {
+    score = 0;
+    scoreElement.textContent = score;
+    const startPos = Math.floor(gridCount / 2);
+    snake = [{ x: startPos, y: startPos }];
+    direction = { x: 0, y: 0 };
+    generateFood();
+    gameState = "PLAYING";
     updateUI();
+    lastRenderTime = 0;
+    gameCanvas.focus();
+    requestAnimationFrame(mainLoop);
+  }
+
+  function endGame() {
+    gameState = "GAME_OVER";
+    saveHighScore();
+    updateUI();
+  }
+
+  // Init
+  function init() {
+    loadHighScore();
     resizeCanvas();
-    draw();
+    updateUI();
+    drawGame();
+
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      drawGame();
+    });
+    window.addEventListener("keydown", handleKey, { passive: false });
+    window.addEventListener("keydown", preventScrollWhenGaming, { passive: false });
+    gameCanvas.addEventListener("touchstart", handleTouchStart, { passive: false });
+    gameCanvas.addEventListener("touchend", handleTouchEnd, { passive: false });
+
+    messageButton.addEventListener("click", startGame);
+    expandBtn.addEventListener("click", toggleFullscreen);
   }
 
   init();
