@@ -74,8 +74,8 @@ class MottoGalaxy {
         this.galaxyGroup = new THREE.Group();
         // CHANGE PARTICLES HERE: Increase the numbers for more particles/stars
         // You can fine tune these values for more or less stars!
-        this.createParticleLayer(5000, 2, 4, 0.04); // Outer layer (was 600)
-        this.createParticleLayer(1000, 1, 2.5, 0.06); // Middle layer (was 400)
+        this.createParticleLayer(2000, 2, 4, 0.04); // Outer layer (was 600)
+        this.createParticleLayer(500, 1, 2.5, 0.06); // Middle layer (was 400)
         this.createParticleLayer(400, 0.5, 1.5, 0.08); // Inner layer (was 200)
         // Enhanced central orbs with glow
         this.createEnhancedCentralOrbs();
@@ -159,7 +159,7 @@ class MottoGalaxy {
         ];
         orbConfigs.forEach((config, index) => {
             // Main orb
-            const geometry = new THREE.SphereGeometry(0.4, 32, 32);
+            const geometry = new THREE.SphereGeometry(0.4, 32, 16);
             const material = new THREE.MeshBasicMaterial({
                 color: config.color,
                 transparent: true,
@@ -168,7 +168,7 @@ class MottoGalaxy {
             const orb = new THREE.Mesh(geometry, material);
             orb.visible = index === 0;
             // Glow ring
-            const ringGeometry = new THREE.RingGeometry(0.9, 0.5, 32);
+            const ringGeometry = new THREE.RingGeometry(0.9, 0.5, 16);
             const ringMaterial = new THREE.MeshBasicMaterial({
                 color: config.glow,
                 transparent: true,
