@@ -16,16 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const messageScore = document.getElementById("messageScore");
   const finalScoreElement = document.getElementById("finalScore");
   const messageButton = document.getElementById("messageButton");
-  const expandBtn = document.getElementById("expand-game-btn");
-
-  // Fullscreen Overlay (Highscores only)
-  const fullscreenScore = document.createElement("div");
-  fullscreenScore.id = "fullscreen-score";
-  fullscreenScore.innerHTML = `
-    <div>Personal High Score: <span id="fs-highscore">0</span></div>
-    <div>Global High Score: <span id="fs-global-highscore">0</span></div>
-  `;
-  document.body.appendChild(fullscreenScore);
+  // Removed fullscreen button reference
 
   // Game state
   let tileSize = 20;
@@ -62,10 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadHighScore() {
     personalHighScore = parseInt(localStorage.getItem("snakeHighScore")) || 0;
     personalHighScoreElement.textContent = personalHighScore;
-    document.getElementById("fs-highscore").textContent = personalHighScore;
-
-    // TODO: Fetch global highscore from server
-    document.getElementById("fs-global-highscore").textContent = 0; // placeholder
   }
 
   function saveHighScore() {
@@ -73,24 +60,19 @@ document.addEventListener("DOMContentLoaded", () => {
       personalHighScore = score;
       localStorage.setItem("snakeHighScore", personalHighScore);
       personalHighScoreElement.textContent = personalHighScore;
-      document.getElementById("fs-highscore").textContent = personalHighScore;
-      // TODO: Send new personal highscore to server for global leaderboard
     }
   }
 
 function updateUI() {
-  // Show overlay in fullscreen regardless of game state
-  fullscreenScore.classList.toggle("visible", !!document.fullscreenElement);
-
   if (gameState === "PLAYING") {
     messageOverlay.classList.add("hidden");
   } else {
     if (gameState === "IDLE") {
       messageTitle.textContent = "SNAKE";
       messageScore.classList.add("hidden");
-      messageButton.textContent = "Start";
+      messageButton.textContent = "Start Game";
     } else {
-      messageTitle.textContent = "Game Over";
+      messageTitle.textContent = "Game Over!";
       messageScore.classList.remove("hidden");
       finalScoreElement.textContent = score;
       messageButton.textContent = "Play Again";
@@ -100,19 +82,29 @@ function updateUI() {
 }
 
 
-  // Canvas & grid sizing
+  // Canvas & grid sizing (optimized for mobile)
   function resizeCanvas() {
     const container = gameCanvas.parentElement;
-    const size = Math.min(container.clientWidth, window.innerHeight * 0.7);
+    const isMobile = window.innerWidth < 768;
+
+    // Better mobile sizing
+    let size;
+    if (isMobile) {
+      size = Math.min(container.clientWidth * 0.95, window.innerHeight * 0.5);
+    } else {
+      size = Math.min(container.clientWidth, window.innerHeight * 0.7);
+    }
+
     gameCanvas.style.width  = size + "px";
     gameCanvas.style.height = size + "px";
 
-    gridCount = window.innerWidth < 768 ? 20 : 25;
+    gridCount = isMobile ? 18 : 25; // Slightly smaller grid for mobile
     tileSize = Math.floor(size / gridCount);
     gameCanvas.style.width  = (tileSize * gridCount) + "px";
     gameCanvas.style.height = (tileSize * gridCount) + "px";
 
-    dpr = Math.max(1, Math.floor(window.devicePixelRatio || 1));
+    // Lower DPR on mobile for performance
+    dpr = isMobile ? 1 : Math.max(1, Math.floor(window.devicePixelRatio || 1));
     applyHiDPIScale();
   }
 
@@ -149,7 +141,9 @@ function updateUI() {
   function drawGame() {
     ctx.clearRect(0, 0, gameCanvas.clientWidth, gameCanvas.clientHeight);
 
-    ctx.strokeStyle = "rgba(255,255,255,0.06)";
+    // Enhanced grid with subtle gradient
+    ctx.strokeStyle = "rgba(255,255,255,0.08)";
+    ctx.lineWidth = 0.5;
     for (let x = 0; x <= gridCount; x++) {
       ctx.beginPath();
       ctx.moveTo(x * tileSize, 0);
@@ -163,15 +157,46 @@ function updateUI() {
       ctx.stroke();
     }
 
-    ctx.fillStyle = SNAKE_COLOR;
+    // Draw snake body with gradient and rounded corners
     for (let i = 1; i < snake.length; i++) {
-      ctx.fillRect(snake[i].x * tileSize, snake[i].y * tileSize, tileSize, tileSize);
+      const gradient = ctx.createLinearGradient(
+        snake[i].x * tileSize,
+        snake[i].y * tileSize,
+        (snake[i].x + 1) * tileSize,
+        (snake[i].y + 1) * tileSize
+      );
+      gradient.addColorStop(0, '#9ca3af');
+      gradient.addColorStop(1, '#6b7280');
+      ctx.fillStyle = gradient;
+
+      // Rounded rectangles for snake segments
+      const padding = 2;
+      ctx.beginPath();
+      ctx.roundRect(
+        snake[i].x * tileSize + padding,
+        snake[i].y * tileSize + padding,
+        tileSize - padding * 2,
+        tileSize - padding * 2,
+        4
+      );
+      ctx.fill();
     }
 
+    // Draw snake head
     if (snake.length) {
+      ctx.save();
+      ctx.shadowColor = 'rgba(233, 69, 96, 0.5)';
+      ctx.shadowBlur = 10;
       ctx.drawImage(snakeHeadImg, snake[0].x * tileSize, snake[0].y * tileSize, tileSize, tileSize);
+      ctx.restore();
     }
+
+    // Draw food with glow effect
+    ctx.save();
+    ctx.shadowColor = 'rgba(233, 69, 96, 0.6)';
+    ctx.shadowBlur = 15;
     ctx.drawImage(foodImg, food.x * tileSize, food.y * tileSize, tileSize, tileSize);
+    ctx.restore();
   }
 
   function mainLoop(now) {
@@ -230,35 +255,7 @@ function updateUI() {
     }
   }
 
-  // Fullscreen
-  function toggleFullscreen() {
-    const wrapper = gameCanvas.parentElement;
-    if (!document.fullscreenElement) {
-      wrapper.requestFullscreen?.();
-    } else {
-      document.exitFullscreen?.();
-    }
-  }
-
-   function onFullscreenChange() {
-  const icon = expandBtn.querySelector("i");
-  if (document.fullscreenElement) {
-    icon.classList.remove("fa-expand");
-    icon.classList.add("fa-compress");
-
-    fullscreenScore.classList.add("visible"); // <-- added line
-    gameCanvas.focus();
-  } else {
-    icon.classList.remove("fa-compress");
-    icon.classList.add("fa-expand");
-
-    fullscreenScore.classList.remove("visible"); // <-- added line
-  }
-  resizeCanvas();
-  drawGame();
-  updateUI();
-}
-document.addEventListener("fullscreenchange", onFullscreenChange);
+  // Removed fullscreen functionality
 
 
   // Game flow
@@ -299,7 +296,6 @@ document.addEventListener("fullscreenchange", onFullscreenChange);
     gameCanvas.addEventListener("touchend", handleTouchEnd, { passive: false });
 
     messageButton.addEventListener("click", startGame);
-    expandBtn.addEventListener("click", toggleFullscreen);
   }
 
   init();

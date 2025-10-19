@@ -59,24 +59,30 @@ class MottoGalaxy {
             1000
         );
         this.camera.position.z = 6;
-        this.renderer = new THREE.WebGLRenderer({ 
-            antialias: true, 
+        this.renderer = new THREE.WebGLRenderer({
+            antialias: !this.isMobile, // Disable antialiasing on mobile for performance
             alpha: true,
-            powerPreference: 'high-performance' // Mobile optimization
+            powerPreference: this.isMobile ? 'low-power' : 'high-performance' // Mobile optimization
         });
         this.renderer.setSize(this.container.offsetWidth, this.container.offsetHeight);
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        // Lower pixel ratio on mobile for better performance
+        this.renderer.setPixelRatio(this.isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
         this.container.appendChild(this.renderer.domElement);
         window.addEventListener('resize', () => this.onWindowResize());
     }
     
     createEnhancedGalaxy() {
         this.galaxyGroup = new THREE.Group();
-        // CHANGE PARTICLES HERE: Increase the numbers for more particles/stars
-        // You can fine tune these values for more or less stars!
-        this.createParticleLayer(2000, 2, 4, 0.04); // Outer layer (was 600)
-        this.createParticleLayer(500, 1, 2.5, 0.06); // Middle layer (was 400)
-        this.createParticleLayer(400, 0.5, 1.5, 0.08); // Inner layer (was 200)
+        // Mobile optimization: Reduce particle count significantly for performance
+        if (this.isMobile) {
+            this.createParticleLayer(400, 2, 4, 0.04); // Outer layer - reduced for mobile
+            this.createParticleLayer(200, 1, 2.5, 0.06); // Middle layer - reduced for mobile
+            this.createParticleLayer(150, 0.5, 1.5, 0.08); // Inner layer - reduced for mobile
+        } else {
+            this.createParticleLayer(2000, 2, 4, 0.04); // Outer layer (desktop)
+            this.createParticleLayer(500, 1, 2.5, 0.06); // Middle layer (desktop)
+            this.createParticleLayer(400, 0.5, 1.5, 0.08); // Inner layer (desktop)
+        }
         // Enhanced central orbs with glow
         this.createEnhancedCentralOrbs();
         // Add ambient light effect

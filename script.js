@@ -195,6 +195,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Click anywhere outside music player to minimize it
+  document.addEventListener("click", (event) => {
+    // Check if click is outside the music player
+    if (!musicPlayerEl.contains(event.target)) {
+      // Only minimize if it's not already minimized
+      if (!musicPlayerEl.classList.contains("player-minimized")) {
+        musicPlayerEl.classList.add("player-minimized");
+        minimizeIcon.classList.remove("fa-chevron-down");
+        minimizeIcon.classList.add("fa-chevron-up");
+      }
+    }
+  });
+
+  // Prevent clicks inside the music player from bubbling up
+  musicPlayerEl.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
   function attemptAutoplay() {
     const playPromise = audioPlayer.play();
     if (playPromise !== undefined) {
@@ -489,4 +507,84 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
   }
+
+  // --- Interactive Timeline (Click Only) ---
+  const timelineCards = document.querySelectorAll('.timeline-card');
+  const yearNavBtns = document.querySelectorAll('.year-nav-btn');
+  const timelineTrack = document.getElementById('timeline-track');
+
+  if (timelineCards.length > 0 && timelineTrack) {
+    let currentActiveIndex = 0; // Default to "2023 - Heute"
+
+    function showCard(targetIndex) {
+      // Update card states
+      timelineCards.forEach((card, index) => {
+        card.classList.remove('active');
+        if (index === targetIndex) {
+          card.classList.add('active');
+        }
+      });
+
+      // Update navigation button states
+      yearNavBtns.forEach((btn, index) => {
+        if (index === targetIndex) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      currentActiveIndex = targetIndex;
+
+      // Adjust timeline track height based on active card height (desktop only)
+      if (window.innerWidth > 768) {
+        setTimeout(() => {
+          const activeCard = timelineCards[targetIndex];
+          if (activeCard) {
+            const cardHeight = activeCard.offsetHeight;
+            const minHeight = Math.max(400, cardHeight + 100); // At least 400px, or card height + padding
+            timelineTrack.style.minHeight = `${minHeight}px`;
+          }
+        }, 50);
+      } else {
+        // On mobile, reset min-height to auto
+        timelineTrack.style.minHeight = 'auto';
+      }
+    }
+
+    // Make year navigation buttons clickable
+    yearNavBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        showCard(index);
+      });
+    });
+
+    // Show initial card
+    showCard(currentActiveIndex);
+  }
+
+  // --- Internship Card Expand/Collapse ---
+  const internshipCards = document.querySelectorAll('.internship-card');
+
+  internshipCards.forEach(card => {
+    const header = card.querySelector('.internship-header');
+
+    if (header) {
+      header.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        const isExpanded = card.getAttribute('data-expanded') === 'true';
+
+        // Close all other internship cards
+        internshipCards.forEach(otherCard => {
+          if (otherCard !== card) {
+            otherCard.setAttribute('data-expanded', 'false');
+          }
+        });
+
+        // Toggle current card
+        card.setAttribute('data-expanded', !isExpanded ? 'true' : 'false');
+      });
+    }
+  });
 });
