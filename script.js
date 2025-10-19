@@ -508,13 +508,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // --- Interactive Timeline (Click Only) ---
+  // --- Interactive Timeline (Click & Swipe) ---
   const timelineCards = document.querySelectorAll('.timeline-card');
   const yearNavBtns = document.querySelectorAll('.year-nav-btn');
   const timelineTrack = document.getElementById('timeline-track');
 
   if (timelineCards.length > 0 && timelineTrack) {
     let currentActiveIndex = 0; // Default to "2023 - Heute"
+    const totalCards = timelineCards.length;
 
     function showCard(targetIndex) {
       // Update card states
@@ -552,12 +553,48 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
+    function showNextCard() {
+      const nextIndex = (currentActiveIndex + 1) % totalCards;
+      showCard(nextIndex);
+    }
+
+    function showPrevCard() {
+      const prevIndex = (currentActiveIndex - 1 + totalCards) % totalCards;
+      showCard(prevIndex);
+    }
+
     // Make year navigation buttons clickable
     yearNavBtns.forEach((btn, index) => {
       btn.addEventListener('click', () => {
         showCard(index);
       });
     });
+
+    // Add swipe functionality for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const swipeThreshold = 50;
+
+    timelineTrack.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    timelineTrack.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleTimelineSwipe();
+    }, { passive: true });
+
+    function handleTimelineSwipe() {
+      const swipeDistance = touchStartX - touchEndX;
+
+      if (swipeDistance > swipeThreshold) {
+        // Swiped left - show next card
+        showNextCard();
+      } else if (swipeDistance < -swipeThreshold) {
+        // Swiped right - show previous card
+        showPrevCard();
+      }
+    }
 
     // Show initial card
     showCard(currentActiveIndex);
