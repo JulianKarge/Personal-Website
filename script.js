@@ -573,26 +573,34 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add swipe functionality for mobile
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
     const swipeThreshold = 50;
 
     timelineTrack.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
     }, { passive: true });
 
     timelineTrack.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
       handleTimelineSwipe();
     }, { passive: true });
 
     function handleTimelineSwipe() {
-      const swipeDistance = touchStartX - touchEndX;
+      const swipeDistanceX = touchStartX - touchEndX;
+      const swipeDistanceY = touchStartY - touchEndY;
 
-      if (swipeDistance > swipeThreshold) {
-        // Swiped left - show next card
-        showNextCard();
-      } else if (swipeDistance < -swipeThreshold) {
-        // Swiped right - show previous card
-        showPrevCard();
+      // Only trigger card change if horizontal swipe is dominant
+      if (Math.abs(swipeDistanceX) > Math.abs(swipeDistanceY) && Math.abs(swipeDistanceX) > swipeThreshold) {
+        if (swipeDistanceX > swipeThreshold) {
+          // Swiped left - show next card
+          showNextCard();
+        } else if (swipeDistanceX < -swipeThreshold) {
+          // Swiped right - show previous card
+          showPrevCard();
+        }
       }
     }
 

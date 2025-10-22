@@ -1,0 +1,127 @@
+/**
+ * Springy Text - CSS styling for physics-based wiggly text
+ */
+
+/* Base styles for springy text container */
+.springy-text {
+    display: inline-block;
+    position: relative;
+    will-change: transform;
+    text-align: center;
+}
+
+/* Center the springy text within its parent */
+.section-title.springy-text {
+    display: block;
+    text-align: center;
+}
+
+.springy-text > span {
+    text-align: center;
+}
+
+/* Individual letter styling */
+.springy-letter {
+    display: inline-block;
+    position: relative;
+    transform-origin: center center;
+    will-change: transform;
+    transition: transform 0.05s ease-out;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.springy-letter:active {
+    cursor: grabbing;
+}
+
+/* Add a subtle glow effect on hover */
+.springy-letter:hover {
+    filter: drop-shadow(0 0 8px currentColor);
+    opacity: 0.9;
+}
+
+/* Smooth transitions for non-dragging state */
+.springy-letter:not(:active) {
+    transition: filter 0.2s ease;
+}
+
+/* Performance optimization */
+.springy-text * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Optional: Add different spring presets via data attributes */
+.springy-text[data-preset="bouncy"] {
+    --stiffness: 0.08;
+    --damping: 0.5;
+}
+
+.springy-text[data-preset="gentle"] {
+    --stiffness: 0.03;
+    --damping: 0.7;
+}
+
+.springy-text[data-preset="elastic"] {
+    --stiffness: 0.1;
+    --damping: 0.4;
+}
+
+/* Accessibility: Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .springy-text,
+    .springy-letter {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .springy-letter {
+        transform: none !important;
+    }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .springy-letter {
+        touch-action: none;
+    }
+}
+
+/* Loading state - optional */
+.springy-text.loading .springy-letter {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: springyFadeIn 0.6s ease-out forwards;
+}
+
+@keyframes springyFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    60% {
+        transform: scale(1.05) translateY(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Stagger the fade-in animation for each letter */
+.springy-text.loading .springy-letter:nth-child(1) { animation-delay: 0.05s; }
+.springy-text.loading .springy-letter:nth-child(2) { animation-delay: 0.1s; }
+.springy-text.loading .springy-letter:nth-child(3) { animation-delay: 0.15s; }
+.springy-text.loading .springy-letter:nth-child(4) { animation-delay: 0.2s; }
+.springy-text.loading .springy-letter:nth-child(5) { animation-delay: 0.25s; }
+.springy-text.loading .springy-letter:nth-child(6) { animation-delay: 0.3s; }
+.springy-text.loading .springy-letter:nth-child(7) { animation-delay: 0.35s; }
+.springy-text.loading .springy-letter:nth-child(8) { animation-delay: 0.4s; }
+.springy-text.loading .springy-letter:nth-child(9) { animation-delay: 0.45s; }
+.springy-text.loading .springy-letter:nth-child(10) { animation-delay: 0.5s; }
