@@ -71,24 +71,75 @@ document.addEventListener("DOMContentLoaded", function () {
       src: "music/ES_Heatwave (Clean Version) - Nyck Caution.wav",
       cover: "Images/MusikCover/Heatwave.jpg",
     },
+
     {
       title: "Need it",
       artist: "dreem",
       src: "music/ES_need it - dreem.wav",
       cover: "Images/MusikCover/NeedIt.jpg",
     },
-    {
-      title: "Weaver",
-      artist: "dreem",
-      src: "music/ES_weaver - dreem.wav",
-      cover: "Images/MusikCover/Weaver.jpg",
-    },
+
+{
+  title: "The Sun",
+  artist: "Ooyy",
+  src: "music/ES_The Sun - Ooyy.wav",
+  cover: "Images/MusikCover/TheSun.jpg",
+},
+
+       {
+  title: "The Closing",
+  artist: "Hanna Ekstrom",
+  src: "music/ES_The Closing - Hanna Ekstrom.wav",
+  cover: "Images/MusikCover/TheClosing.jpg",
+},
+
     {
       title: "Take Me To U",
       artist: "LeDorean",
       src: "music/ES_Take Me to U - LeDorean.wav",
       cover: "Images/MusikCover/TakeMeToU.jpg",
     },
+
+{
+  title: "Timeloop Grandma",
+  artist: "Jobii",
+  src: "music/ES_Timeloop Grandma - Jobii.wav",
+  cover: "Images/MusikCover/Timeloop.jpg",
+},
+
+{
+  title: "Siege",
+  artist: "STRLIGHT",
+  src: "music/ES_Siege - STRLIGHT (1).wav",
+  cover: "Images/MusikCover/Siege.jpg",
+},
+
+    {
+      title: "Weaver",
+      artist: "dreem",
+      src: "music/ES_weaver - dreem.wav",
+      cover: "Images/MusikCover/Weaver.jpg",
+    },
+{
+  title: "Gotta Move On",
+  artist: "STRLIGHT",
+  src: "music/GottaMoveOn.wav",
+  cover: "Images/MusikCover/GottaMoveOn.jpg",
+},
+
+{
+  title: "Presence",
+  artist: "Taelimb",
+  src: "music/ES_Presence - Taelimb.wav",
+  cover: "Images/MusikCover/Presence.jpg",
+},
+
+{
+  title: "Night Bus",
+  artist: "Focality",
+  src: "music/ES_Night Bus - Focality.wav",
+  cover: "Images/MusikCover/NightBus.jpg",
+},
   ];
 
   let currentSongIndex = 0;
