@@ -204,12 +204,6 @@ nav a:not(.brand-logo):hover {
   }
 }
 
-/* Mobile positioning for music player - move it higher on mobile */
-@media (max-width: 768px) {
-  #music-player {
-    bottom: 5rem !important;
-  }
-}
 
 #music-player.player-minimized #player-main-controls,
 #music-player.player-minimized #playlist-container {
@@ -705,12 +699,6 @@ nav a:not(.brand-logo):hover {
   }
 }
 
-/* Mobile positioning for music player - move it higher on mobile */
-@media (max-width: 768px) {
-  #music-player {
-    bottom: 5rem !important;
-  }
-}
 
 #music-player.player-minimized #player-main-controls,
 #music-player.player-minimized #playlist-container {

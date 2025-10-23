@@ -66,12 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const songs = [
     {
-      title: "Wacuka",
-      artist: "AVAION",
-      src: "music/AVAION, Sofiya Nzau - Wacuka (Official Visualizer).mp3",
-      cover: "Images/MusikCover/Wacuka.jpg",
-    },
-    {
       title: "Heatwave",
       artist: "Nyck Caution",
       src: "music/ES_Heatwave (Clean Version) - Nyck Caution.wav",
@@ -570,13 +564,17 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Add swipe functionality for mobile
+    // Add swipe functionality for mobile AND mouse drag for desktop
     let touchStartX = 0;
     let touchEndX = 0;
     let touchStartY = 0;
     let touchEndY = 0;
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
     const swipeThreshold = 50;
 
+    // Touch events for mobile
     timelineTrack.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
       touchStartY = e.changedTouches[0].screenY;
@@ -587,6 +585,52 @@ document.addEventListener("DOMContentLoaded", function () {
       touchEndY = e.changedTouches[0].screenY;
       handleTimelineSwipe();
     }, { passive: true });
+
+    // Mouse events for desktop drag
+    timelineTrack.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      currentX = e.clientX;
+      timelineTrack.style.cursor = 'grabbing';
+      timelineTrack.style.userSelect = 'none';
+    });
+
+    timelineTrack.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      currentX = e.clientX;
+    });
+
+    timelineTrack.addEventListener('mouseup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      timelineTrack.style.cursor = 'grab';
+      timelineTrack.style.userSelect = 'auto';
+
+      const dragDistance = startX - currentX;
+      if (Math.abs(dragDistance) > swipeThreshold) {
+        if (dragDistance > 0) {
+          // Dragged left - show next card
+          showNextCard();
+        } else {
+          // Dragged right - show previous card
+          showPrevCard();
+        }
+      }
+    });
+
+    timelineTrack.addEventListener('mouseleave', () => {
+      if (isDragging) {
+        isDragging = false;
+        timelineTrack.style.cursor = 'grab';
+        timelineTrack.style.userSelect = 'auto';
+      }
+    });
+
+    // Set initial cursor style for desktop
+    if (window.innerWidth > 768) {
+      timelineTrack.style.cursor = 'grab';
+    }
 
     function handleTimelineSwipe() {
       const swipeDistanceX = touchStartX - touchEndX;
