@@ -668,7 +668,182 @@
   </div>
 </section>
 
-<!-- START: Snake Game Section -->
+<!-- START: Asteroid Game Section -->
+<section id="asteroid-game" class="asteroid-game-section">
+  <div class="container mx-auto px-4 sm:px-6 py-8 md:py-12">
+    <h2 class="section-title text-white text-3xl md:text-4xl springy-text mb-4">
+      Asteroiden Angriff
+    </h2>
+    <p class="text-center text-gray-400 mb-6 max-w-2xl mx-auto text-base md:text-lg">
+      Verteidige dich gegen die herannahenden Asteroiden. Wie lange kannst du überleben? 🚀
+    </p>
+
+    <!-- Game Container -->
+    <div class="game-wrapper">
+      <canvas id="asteroidCanvas"></canvas>
+
+      <!-- Start Button Overlay -->
+      <div id="startOverlay" class="game-overlay">
+        <div class="start-overlay-content">
+          <button id="startButton" class="start-attack-btn">
+            <span class="btn-text">ANGRIFF STARTEN</span>
+            <span class="btn-glow"></span>
+          </button>
+          <p class="control-hint">
+            <span class="desktop-controls">⌨️ Pfeiltasten oder WASD zum Bewegen • ESC oder Pause-Taste zum Pausieren</span>
+            <span class="mobile-controls">📱 Tippen & Ziehen zum Bewegen • Pause-Taste zum Pausieren</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Game Over Overlay -->
+      <div id="gameOverOverlay" class="game-overlay hidden">
+        <div class="game-over-content">
+          <h3 class="game-over-title">MISSION GESCHEITERT</h3>
+          <div class="game-over-stats">
+            <p class="final-score-text">Endpunktzahl: <span id="finalScore">0</span></p>
+            <p class="high-score-text">Rekord: <span id="displayHighScore">0</span></p>
+          </div>
+
+          <!-- Global Leaderboard Display -->
+          <div id="leaderboardDisplay" class="leaderboard-display">
+            <h4 class="leaderboard-title">🏆 GLOBALE TOP 3 🏆</h4>
+            <div id="leaderboardList" class="leaderboard-list">
+              <div class="leaderboard-loading">Lädt...</div>
+            </div>
+          </div>
+
+          <button id="restartButton" class="start-attack-btn">
+            <span class="btn-text">NOCHMAL VERSUCHEN</span>
+            <span class="btn-glow"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Pause Overlay -->
+      <div id="pauseOverlay" class="game-overlay hidden">
+        <div class="game-over-content">
+          <h3 class="game-over-title">PAUSIERT</h3>
+          <p class="text-gray-400 text-lg mb-8">Spiel pausiert. Atme durch!</p>
+          <button id="resumeButton" class="start-attack-btn">
+            <span class="btn-text">FORTSETZEN</span>
+            <span class="btn-glow"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Game UI -->
+      <div id="gameUI" class="game-ui hidden">
+        <!-- Pause Button -->
+        <button id="pauseButton" class="pause-btn">
+          <i class="fas fa-pause"></i>
+        </button>
+
+        <!-- Lives -->
+        <div class="lives-container">
+          <i class="fas fa-heart heart-icon filled" id="heart1"></i>
+          <i class="fas fa-heart heart-icon filled" id="heart2"></i>
+          <i class="fas fa-heart heart-icon filled" id="heart3"></i>
+        </div>
+
+        <!-- Power-ups Display (Top Center) -->
+        <div class="powerups-container">
+          <div id="powerupShield" class="powerup-display hidden">
+            <div class="powerup-icon">🛡️</div>
+            <div class="powerup-timer"></div>
+          </div>
+          <div id="powerupDoubleShot" class="powerup-display hidden">
+            <div class="powerup-icon">↑↑</div>
+            <div class="powerup-count"></div>
+          </div>
+          <div id="powerupTripleShot" class="powerup-display hidden">
+            <div class="powerup-icon">✨</div>
+            <div class="powerup-count"></div>
+          </div>
+          <div id="powerupRocket" class="powerup-display hidden">
+            <div class="powerup-icon">🚀</div>
+            <div class="powerup-timer"></div>
+          </div>
+        </div>
+
+        <!-- Score -->
+        <div class="score-container">
+          <div class="current-score">
+            <span class="score-label">PUNKTE:</span>
+            <span class="score-value" id="currentScore">0</span>
+          </div>
+          <div class="high-score">
+            <span class="score-label">REKORD:</span>
+            <span class="score-value" id="highScore">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leaderboard Button -->
+    <div class="text-center mt-6">
+      <button id="viewLeaderboardButton" class="leaderboard-view-btn">
+        <i class="fas fa-trophy mr-2"></i>
+        GLOBALE BESTENLISTE ANZEIGEN
+      </button>
+    </div>
+
+    <!-- Standalone Leaderboard Modal -->
+    <div id="leaderboardModal" class="game-overlay hidden">
+      <div class="leaderboard-modal-content">
+        <button id="closeLeaderboardButton" class="close-modal-btn">
+          <i class="fas fa-times"></i>
+        </button>
+        <h3 class="game-over-title">🏆 GLOBALE TOP 3 🏆</h3>
+        <div id="standaloneLeaderboardList" class="leaderboard-list standalone">
+          <div class="leaderboard-loading">Lädt...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END: Asteroid Game Section -->
+
+<!-- High Score Modal (Outside game wrapper for full screen) -->
+<div id="highScoreModal" class="fixed inset-0 flex items-center justify-center hidden" style="z-index: 10000; background: rgba(10, 14, 26, 0.95); backdrop-filter: blur(10px);">
+  <div class="high-score-modal-content">
+    <h3 class="game-over-title achievement-title">🎉 NEUER REKORD! 🎉</h3>
+    <p class="achievement-subtitle">Du hast es in die GLOBALEN TOP 3 geschafft!</p>
+    <p class="final-score-text">Deine Punktzahl: <span id="modalFinalScore">0</span></p>
+
+    <div class="name-input-container">
+      <label for="playerName" class="input-label">Gib deinen Namen ein</label>
+      <input type="text" id="playerName" maxlength="15" placeholder="Dein Name" class="name-input">
+      <span class="char-counter"><span id="charCount">0</span>/15</span>
+    </div>
+
+    <div class="icon-picker-container">
+      <label class="input-label">Wähle dein Symbol</label>
+      <div class="icon-grid">
+        <button class="icon-btn active" data-icon="🚀">🚀</button>
+        <button class="icon-btn" data-icon="⭐">⭐</button>
+        <button class="icon-btn" data-icon="🔥">🔥</button>
+        <button class="icon-btn" data-icon="💎">💎</button>
+        <button class="icon-btn" data-icon="👑">👑</button>
+        <button class="icon-btn" data-icon="🎮">🎮</button>
+        <button class="icon-btn" data-icon="⚡">⚡</button>
+        <button class="icon-btn" data-icon="🌟">🌟</button>
+        <button class="icon-btn" data-icon="💫">💫</button>
+        <button class="icon-btn" data-icon="🏆">🏆</button>
+        <button class="icon-btn" data-icon="🎯">🎯</button>
+        <button class="icon-btn" data-icon="🛸">🛸</button>
+      </div>
+    </div>
+
+    <button id="submitScoreButton" class="start-attack-btn">
+      <span class="btn-text">PUNKTZAHL ABSENDEN</span>
+      <span class="btn-glow"></span>
+    </button>
+  </div>
+</div>
+
+<!-- START: Snake Game Section - COMMENTED OUT FOR NOW -->
+<!--
 <section id="snake-game" class="py-16 md:py-24 bg-gray-800">
   <div class="container mx-auto px-4 sm:px-6">
     <h2 class="section-title text-white text-3xl md:text-4xl springy-text">
@@ -677,7 +852,7 @@
     <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-base md:text-lg">
       Falls dir langweillig ist, habe ich dir hier ein kleines Snake Spiel erstellt. 🐍🐍
     </p>
-    
+
     <div id="gameContainer" class="max-w-lg mx-auto card rounded-lg p-4 md:p-6 shadow-xl relative">
         <div class="flex justify-between items-center mb-4">
             <div>
@@ -707,9 +882,11 @@
     </div>
   </div>
 </section>
-<!-- END: Snake Game Section -->
+-->
+<!-- END: Snake Game Section - COMMENTED OUT FOR NOW -->
 
-<!-- Game Modal Structure (Now only for Desktop) -->
+<!-- Game Modal Structure (Now only for Desktop) - COMMENTED OUT FOR NOW -->
+<!--
 <div id="game-modal-backdrop" class="hidden">
   <div id="game-modal-content" class="card rounded-lg p-4 shadow-xl">
       <div class="flex justify-between items-center mb-4">
@@ -726,12 +903,10 @@
       </div>
   </div>
 </div>
+-->
 
-
-
-
-
-    <!-- Fullscreen Game Container (This must be outside the section for proper layering) -->
+<!-- Fullscreen Game Container - COMMENTED OUT FOR NOW -->
+<!--
     <div id="fullscreen-container" style="display: none;">
         <div id="fullscreen-ui">
             <div class="score-display">SCORE: <span id="fullscreen-score">0</span></div>
@@ -740,7 +915,8 @@
             </button>
         </div>
         <!-- The canvas will be moved here when fullscreen is active -->
-    </div>
+    <!--</div>
+-->
 
 <section id="contact" class="py-16 md:py-24 hero-bg">
   <div class="container mx-auto px-4 sm:px-6">
@@ -881,11 +1057,28 @@
       </div>
     </div>
 
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99999; display: none;"></canvas>
+
     <!-- GALAXY YEAHH -->
   <script src="galaxy.js"></script>
     <!-- GALAXY YEAHH -->
     <script src="springy-text.js"></script>
     <script src="script.js" defer></script>
-    <script src="snake-game.js" defer></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+    <!-- Leaderboard & Confetti -->
+    <script src="leaderboard.js"></script>
+
+    <!-- Power-up System -->
+    <script src="powerup-system.js"></script>
+
+    <!-- Asteroid game -->
+    <script src="asteroid-game.js" defer></script>
+    <!-- Snake game JS commented out for now -->
+    <!-- <script src="snake-game.js" defer></script> -->
   </body>
 </html>
