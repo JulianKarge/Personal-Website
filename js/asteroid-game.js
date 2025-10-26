@@ -161,9 +161,6 @@
 
     ctx = canvas.getContext('2d');
 
-    // Clear localStorage for fresh deployment
-    localStorage.removeItem('asteroidHighScore');
-
     // Set canvas size
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);

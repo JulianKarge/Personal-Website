@@ -27,11 +27,11 @@
     />
 
     <!-- Your Custom Stylesheet -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
 
     <!-- GALAXY YEAHHH -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="three.min.js"></script>
+    <script src="js/three.min.js"></script>
 
 <!-- Futuristic font -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
@@ -104,9 +104,17 @@
           Hi, it's me :)<br class="sm:hidden" />
           <span id="animated-name-placeholder"></span>
         </h1>
-        <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8">
-           JAAAA ich bins der echte JLZN (Ich weiß hätte man fast nicht geglaubt)
+        <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 welcome-text">
+           <span class="wave-emoji">👋</span> Willkommen auf meiner persönlichen Website <span class="wave-emoji">👋</span>
         </p>
+        <div class="goal-statement-wrapper">
+          <div class="goal-statement-card">
+            <p class="goal-text" id="interactive-goal-text">
+              Mein Ziel dieser Website ist es, eine <span class="highlight-word">spannende</span> und <span class="highlight-word">interaktive</span> Darstellung meiner <span class="highlight-word">Erfolge</span>, meines <span class="highlight-word">Wertesystems</span> und meiner allgemeinen beruflichen <span class="highlight-word">Karriere</span> zu bieten.
+            </p>
+          </div>
+        </div>
+
         <a
           href="#latest-video"
           class="btn-primary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md mb-4"
@@ -353,7 +361,7 @@
       <div class="timeline-card" data-year="2023" data-index="1">
         <div class="timeline-year-badge">2023</div>
         <div class="timeline-card-content">
-          <h3 class="timeline-title">Abitur mit 1,0 abgeschlossen</h3>
+          <h3 class="timeline-title">Abitur in Deutschland abgeschlossen</h3>
           <p class="timeline-location"><a href="https://www.kbm-duisburg.org/" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400 transition-colors">Kaufmännisches Berufskolleg Duisburg Mitte</a></p>
           <p class="timeline-description">
             Erfolgreicher Abschluss des deutschen Abiturs mit der Bestnote 1,0. Ein wichtiger Meilenstein, der den Grundstein für meine akademische Laufbahn legte.
@@ -987,11 +995,11 @@
 
     <footer class="bg-gray-900 py-8 text-center px-4">
       <div class="mb-4">
-        <a href="impressum.html" class="text-gray-400 hover:text-pink-500 mx-2"
+        <a href="html/impressum.html" class="text-gray-400 hover:text-pink-500 mx-2"
           >Impressum</a
         >
         <a
-          href="datenschutz.html"
+          href="html/datenschutz.html"
           class="text-gray-400 hover:text-pink-500 mx-2"
           >Datenschutz</a
         >
@@ -1061,24 +1069,30 @@
     <canvas id="confettiCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99999; display: none;"></canvas>
 
     <!-- GALAXY YEAHH -->
-  <script src="galaxy.js"></script>
+  <script src="js/galaxy.js"></script>
     <!-- GALAXY YEAHH -->
-    <script src="springy-text.js"></script>
-    <script src="script.js" defer></script>
+    <script src="js/springy-text.js"></script>
+    <script src="js/script.js" defer></script>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
 
     <!-- Leaderboard & Confetti -->
-    <script src="leaderboard.js"></script>
+    <script src="js/leaderboard.js"></script>
 
     <!-- Power-up System -->
-    <script src="powerup-system.js"></script>
+    <script src="js/powerup-system.js"></script>
+
+    <!-- Interactive Goal Text -->
+    <script src="js/interactive-goal.js"></script>
+
+    <!-- Welcome Wave Animation -->
+    <script src="js/welcome-wave.js"></script>
 
     <!-- Asteroid game -->
-    <script src="asteroid-game.js" defer></script>
+    <script src="js/asteroid-game.js" defer></script>
     <!-- Snake game JS commented out for now -->
-    <!-- <script src="snake-game.js" defer></script> -->
+    <!-- <script src="js/snake-game.js" defer></script> -->
   </body>
 </html>
