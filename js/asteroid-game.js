@@ -138,7 +138,7 @@
   let touchY = 0;
 
   // UI Elements
-  let startButton, restartButton, pauseButton;
+  let startButton, restartButton, pauseButton, muteButton;
   let startOverlay, gameOverOverlay, gameUI, pauseOverlay;
   let scoreDisplay, highScoreDisplay, finalScoreDisplay;
   let hearts = [];
@@ -169,6 +169,7 @@
     startButton = document.getElementById('startButton');
     restartButton = document.getElementById('restartButton');
     pauseButton = document.getElementById('pauseButton');
+    muteButton = document.getElementById('muteButton');
     startOverlay = document.getElementById('startOverlay');
     gameOverOverlay = document.getElementById('gameOverOverlay');
     pauseOverlay = document.getElementById('pauseOverlay');
@@ -212,6 +213,7 @@
     startButton.addEventListener('click', startGame);
     restartButton.addEventListener('click', restartGame);
     pauseButton.addEventListener('click', togglePause);
+    muteButton.addEventListener('click', toggleMute);
     document.getElementById('resumeButton').addEventListener('click', togglePause);
 
     // Leaderboard event listeners
@@ -304,6 +306,12 @@
   // GAME LOOP
   // ============================================
   function startGame() {
+    // Initialize audio on first user interaction
+    if (window.gameAudio) {
+      window.gameAudio.init();
+      window.gameAudio.startBackgroundMusic();
+    }
+
     // Hide start overlay, show game UI
     startOverlay.classList.add('hidden');
     gameUI.classList.remove('hidden');
@@ -355,6 +363,10 @@
   }
 
   function restartGame() {
+    // Stop any existing music first
+    if (window.gameAudio) {
+      window.gameAudio.stopBackgroundMusic();
+    }
     gameOverOverlay.classList.add('hidden');
     startGame();
   }
@@ -365,16 +377,40 @@
     gamePaused = !gamePaused;
 
     if (gamePaused) {
+      // Pause audio
+      if (window.gameAudio) {
+        window.gameAudio.pauseAudio();
+      }
       // Show pause overlay
       pauseOverlay.classList.remove('hidden');
       gameRunning = false;
       cancelAnimationFrame(animationId);
     } else {
+      // Resume audio
+      if (window.gameAudio) {
+        window.gameAudio.resumeAudio();
+      }
       // Resume game
       pauseOverlay.classList.add('hidden');
       gameRunning = true;
       lastTime = performance.now();
       gameLoop(lastTime);
+    }
+  }
+
+  function toggleMute() {
+    if (!window.gameAudio) return;
+
+    const isMuted = window.gameAudio.toggleMute();
+
+    // Update button icon
+    const icon = muteButton.querySelector('i');
+    if (isMuted) {
+      icon.className = 'fas fa-volume-mute';
+      muteButton.classList.add('muted');
+    } else {
+      icon.className = 'fas fa-volume-up';
+      muteButton.classList.remove('muted');
     }
   }
 
@@ -582,6 +618,11 @@
 
   function shootBullet() {
     if (!ship) return;
+
+    // Play shoot sound
+    if (window.gameAudio) {
+      window.gameAudio.playShoot();
+    }
 
     // Use power-up system to create shot pattern
     if (window.PowerupSystem) {
@@ -847,6 +888,10 @@
 
         if (distance < CONFIG.SHIP_SIZE + powerup.size) {
           if (window.PowerupSystem.activatePowerup(activePowerups, powerup, performance.now())) {
+            // Play power-up sound
+            if (window.gameAudio) {
+              window.gameAudio.playPowerUp();
+            }
             powerups.splice(i, 1);
             updatePowerupUI();
           }
@@ -967,6 +1012,11 @@
     lives--;
     updateLives();
 
+    // Play damage sound
+    if (window.gameAudio) {
+      window.gameAudio.playDamage();
+    }
+
     // Shake heart
     if (lives >= 0 && hearts[lives]) {
       hearts[lives].classList.add('hit');
@@ -983,6 +1033,11 @@
   }
 
   function createExplosion(x, y, size) {
+    // Play explosion sound
+    if (window.gameAudio) {
+      window.gameAudio.playExplosion();
+    }
+
     const count = Math.floor(size / 2);
     for (let i = 0; i < count; i++) {
       const angle = (i / count) * Math.PI * 2;
@@ -1106,6 +1161,11 @@
     gameActive = false; // Disable game controls
     cancelAnimationFrame(animationId);
 
+    // Stop background music
+    if (window.gameAudio) {
+      window.gameAudio.stopBackgroundMusic();
+    }
+
     // Clear all keys
     for (let key in keys) {
       keys[key] = false;
@@ -1132,9 +1192,17 @@
 
     // Only show high score modal if it's a NEW high score AND qualifies for leaderboard
     if (qualifiesForLeaderboard && isNewHighScore) {
+      // Play victory sound
+      if (window.gameAudio) {
+        window.gameAudio.playVictory();
+      }
       // Show high score submission modal with confetti
       showHighScoreSubmission();
     } else {
+      // Play game over sound
+      if (window.gameAudio) {
+        window.gameAudio.playGameOver();
+      }
       // Show normal game over screen (pass if it's a new personal record)
       showGameOverScreen(isNewHighScore);
     }
