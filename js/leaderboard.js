@@ -328,9 +328,27 @@ async function displayLeaderboard(containerId) {
     });
 
     container.innerHTML = html;
+
+    // Add personal best score below leaderboard
+    addPersonalBestDisplay(container);
   } catch (error) {
     console.error('Error displaying leaderboard:', error);
     container.innerHTML = '<div class="leaderboard-error">Error loading leaderboard</div>';
+  }
+}
+
+// Display personal best score below the leaderboard
+function addPersonalBestDisplay(container) {
+  const personalBest = parseInt(localStorage.getItem('asteroidHighScore') || '0');
+
+  if (personalBest > 0) {
+    const personalBestDiv = document.createElement('div');
+    personalBestDiv.className = 'personal-best-display';
+    personalBestDiv.innerHTML = `
+      <div class="personal-best-label">Dein persönlicher Rekord</div>
+      <div class="personal-best-score">${personalBest} pts</div>
+    `;
+    container.appendChild(personalBestDiv);
   }
 }
 

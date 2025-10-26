@@ -472,12 +472,16 @@
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Video zum 20.000 Aufrufe Meilenstein ansehen"
+              class="video-thumbnail-wrapper"
             >
               <img
                 src="https://img.youtube.com/vi/3UKoYsFFwUI/hqdefault.jpg"
                 alt="Video Thumbnail: 20.000 Aufrufe erreicht"
                 class="rounded-md mb-4 w-full"
               />
+              <div class="play-button-overlay">
+                <i class="fas fa-play"></i>
+              </div>
             </a>
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
               <a
@@ -504,12 +508,16 @@
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Virales Video ansehen"
+              class="video-thumbnail-wrapper"
             >
               <img
                 src="https://img.youtube.com/vi/tqcm8JZCjiY/hqdefault.jpg"
                 alt="Video Thumbnail: Virales Video"
                 class="rounded-md mb-4 w-full"
               />
+              <div class="play-button-overlay">
+                <i class="fas fa-play"></i>
+              </div>
             </a>
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
               <a
@@ -536,12 +544,16 @@
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Video zum Community Projekt ansehen"
+              class="video-thumbnail-wrapper"
             >
               <img
                 src="https://img.youtube.com/vi/ksAGbAdZye8/hqdefault.jpg"
                 alt="Video Thumbnail: Community Projekt"
                 class="rounded-md mb-4 w-full"
               />
+              <div class="play-button-overlay">
+                <i class="fas fa-play"></i>
+              </div>
             </a>
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-white">
               <a
@@ -850,82 +862,6 @@
   </div>
 </div>
 
-<!-- START: Snake Game Section - COMMENTED OUT FOR NOW -->
-<!--
-<section id="snake-game" class="py-16 md:py-24 bg-gray-800">
-  <div class="container mx-auto px-4 sm:px-6">
-    <h2 class="section-title text-white text-3xl md:text-4xl springy-text">
-      Bock zu zocken?
-    </h2>
-    <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-base md:text-lg">
-      Falls dir langweillig ist, habe ich dir hier ein kleines Snake Spiel erstellt. 🐍🐍
-    </p>
-
-    <div id="gameContainer" class="max-w-lg mx-auto card rounded-lg p-4 md:p-6 shadow-xl relative">
-        <div class="flex justify-between items-center mb-4">
-            <div>
-                <h3 class="text-xl font-bold text-white">SNAKE</h3>
-                <p class="text-xs text-gray-400">
-                    Dein High Score: <span id="personalHighScore" class="font-bold text-pink-400">0</span>
-                </p>
-            </div>
-            <div class="text-right">
-                <div class="text-xl font-bold text-white">
-                    SCORE: <span id="gameScore" class="text-pink-400">0</span>
-                </div>
-            </div>
-        </div>
-
-        <div id="canvas-wrapper" class="relative">
-            <canvas id="snakeCanvas" class="bg-gray-900 rounded-md w-full"></canvas>
-
-            <div id="messageOverlay" class="absolute inset-0 bg-gray-900 bg-opacity-80 backdrop-blur-sm flex flex-col justify-center items-center text-center p-4 rounded-lg">
-                <h3 id="messageTitle" class="text-4xl md:text-5xl font-bold text-white mb-8">SNAKE</h3>
-                <p id="messageScore" class="text-lg md:text-xl text-gray-300 mb-6 hidden">Final Score: <span id="finalScore" class="text-pink-400 font-bold">0</span></p>
-                <button id="messageButton" class="btn-primary font-semibold py-3 px-8 rounded-lg text-lg md:text-xl inline-block shadow-lg">
-                    Start
-                </button>
-            </div>
-        </div>
-    </div>
-  </div>
-</section>
--->
-<!-- END: Snake Game Section - COMMENTED OUT FOR NOW -->
-
-<!-- Game Modal Structure (Now only for Desktop) - COMMENTED OUT FOR NOW -->
-<!--
-<div id="game-modal-backdrop" class="hidden">
-  <div id="game-modal-content" class="card rounded-lg p-4 shadow-xl">
-      <div class="flex justify-between items-center mb-4">
-          <div>
-            <div class="text-lg md:text-xl font-bold text-white">SCORE: <span id="modal-score" class="text-pink-400">0</span></div>
-            <p class="text-xs text-gray-400">Your High Score: <span id="modal-personal-hs" class="font-bold text-pink-400">0</span></p>
-          </div>
-          <button id="close-modal-btn" class="btn-primary font-semibold py-2 px-4 rounded-lg text-sm inline-block shadow-lg">
-              <i class="fas fa-compress-alt mr-2"></i>Exit
-          </button>
-      </div>
-
-      <div id="modal-canvas-wrapper" class="relative flex-grow">
-      </div>
-  </div>
-</div>
--->
-
-<!-- Fullscreen Game Container - COMMENTED OUT FOR NOW -->
-<!--
-    <div id="fullscreen-container" style="display: none;">
-        <div id="fullscreen-ui">
-            <div class="score-display">SCORE: <span id="fullscreen-score">0</span></div>
-            <button id="exitFullscreenBtn" aria-label="Exit Fullscreen">
-                <i class="fas fa-compress fa-lg"></i> Exit
-            </button>
-        </div>
-        <!-- The canvas will be moved here when fullscreen is active -->
-    <!--</div>
--->
-
 <section id="contact" class="py-16 md:py-24 hero-bg">
   <div class="container mx-auto px-4 sm:px-6">
     <div class="text-center">
@@ -1090,9 +1026,10 @@
     <!-- Welcome Wave Animation -->
     <script src="js/welcome-wave.js"></script>
 
+    <!-- Scroll Animations -->
+    <script src="js/scroll-animations.js"></script>
+
     <!-- Asteroid game -->
     <script src="js/asteroid-game.js" defer></script>
-    <!-- Snake game JS commented out for now -->
-    <!-- <script src="js/snake-game.js" defer></script> -->
   </body>
 </html>
