@@ -3569,6 +3569,10 @@ label[for="run-selector"] {
   border-radius: 1rem;
   padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 .detail-title {
@@ -3589,17 +3593,43 @@ label[for="run-selector"] {
   background: rgba(31, 41, 55, 0.5);
   border-radius: 0.5rem;
   border-left: 3px solid #e94560;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+}
+
+.hr-stat-row:hover {
+  background: rgba(31, 41, 55, 0.8);
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.2);
+}
+
+.hr-stat-row:active {
+  background: rgba(31, 41, 55, 0.9);
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(233, 69, 96, 0.3);
 }
 
 .hr-label {
   color: #9ca3af;
   font-size: 0.875rem;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 .hr-value {
   color: #ffffff;
   font-size: 1.25rem;
   font-weight: 700;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 .hr-value.max {
@@ -3628,17 +3658,39 @@ label[for="run-selector"] {
   padding: 0.75rem;
   background: rgba(31, 41, 55, 0.3);
   border-radius: 0.5rem;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 .elev-stat-row:hover {
-  background: rgba(31, 41, 55, 0.6);
-  transform: translateX(5px);
+  background: rgba(31, 41, 55, 0.7);
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+.elev-stat-row:active {
+  background: rgba(31, 41, 55, 0.8);
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
 }
 
 .elev-stat-row.highlight {
-  background: rgba(16, 185, 129, 0.1);
+  background: rgba(16, 185, 129, 0.15);
   border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.elev-stat-row.highlight:hover {
+  background: rgba(16, 185, 129, 0.25);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.elev-stat-row.highlight:active {
+  background: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
 }
 
 .elev-icon {
@@ -3651,12 +3703,20 @@ label[for="run-selector"] {
   color: #9ca3af;
   font-size: 0.875rem;
   flex: 1;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 .elev-value {
   color: #ffffff;
   font-weight: 700;
   font-size: 1rem;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 /* Elevation Visualization */
@@ -3677,14 +3737,25 @@ label[for="run-selector"] {
   border-radius: 0.75rem;
   padding: 1rem;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: default;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 .extra-stat-card:hover {
-  transform: translateY(-3px);
-  background: linear-gradient(135deg, rgba(55, 65, 81, 0.5) 0%, rgba(31, 41, 55, 0.5) 100%);
-  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.15);
+  transform: scale(1.05);
+  background: linear-gradient(135deg, rgba(55, 65, 81, 0.6) 0%, rgba(31, 41, 55, 0.6) 100%);
+  box-shadow: 0 6px 16px rgba(233, 69, 96, 0.25);
+  border: 1px solid rgba(233, 69, 96, 0.2);
+}
+
+.extra-stat-card:active {
+  transform: scale(1.02);
+  box-shadow: 0 3px 10px rgba(233, 69, 96, 0.3);
 }
 
 .extra-stat-icon {
@@ -3698,12 +3769,20 @@ label[for="run-selector"] {
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 .extra-stat-value {
   color: #ffffff;
   font-weight: 600;
   font-size: 1rem;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 /* Leaflet Map Customization */

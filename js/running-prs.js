@@ -229,7 +229,10 @@ async function loadRunSelector() {
     runs.forEach((run, index) => {
       const option = document.createElement('option');
       option.value = index;
-      const date = new Date(run.start_date_local).toLocaleDateString('de-DE');
+      const date = new Date(run.start_date_local).toLocaleDateString('de-DE', {
+        year: 'numeric',
+        month: 'long'
+      });
       const distance = (run.distance / 1000).toFixed(2);
       option.textContent = `${run.name} - ${date} (${distance} km)`;
       selector.appendChild(option);
@@ -281,10 +284,7 @@ function displayRunDetails(run) {
 
   const date = new Date(run.start_date_local).toLocaleDateString('de-DE', {
     year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
+    month: 'long'
   });
 
   const distance = (run.distance / 1000).toFixed(2);
