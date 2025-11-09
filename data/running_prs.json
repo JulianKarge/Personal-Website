@@ -1,0 +1,56 @@
+{
+  "lastUpdated": "2025-11-09T13:39:58.490808",
+  "totalRuns": 7,
+  "overallBests": {
+    "longestRun": {
+      "name": "Erster Marathon",
+      "date": "2024-04-14",
+      "distance_km": 42.49,
+      "time": "5:00:28",
+      "pace": "7:04",
+      "elevation_m": 658
+    },
+    "fastestPace": {
+      "name": "Letzter Lauf",
+      "date": "2025-11-08",
+      "distance_km": 11.12,
+      "time": "55:44",
+      "pace": "5:00",
+      "elevation_m": 89
+    },
+    "mostElevation": {
+      "name": "Erster Marathon",
+      "date": "2024-04-14",
+      "distance_km": 42.49,
+      "time": "5:00:28",
+      "pace": "7:04",
+      "elevation_m": 658
+    }
+  },
+  "distancePRs": {
+    "halfMarathon": {
+      "name": "HM2",
+      "date": "2025-09-11",
+      "distance_km": 21.35,
+      "time": "1:49:03",
+      "pace": "5:06",
+      "elevation_m": 204
+    },
+    "30k": {
+      "name": "30km in 3",
+      "date": "2024-10-05",
+      "distance_km": 30.33,
+      "time": "2:45:40",
+      "pace": "5:27",
+      "elevation_m": 187
+    },
+    "marathon": {
+      "name": "Erster Marathon",
+      "date": "2024-04-14",
+      "distance_km": 42.49,
+      "time": "5:00:28",
+      "pace": "7:04",
+      "elevation_m": 658
+    }
+  }
+}

@@ -59,6 +59,7 @@
           <a href="#home" class="nav-link relative whitespace-nowrap">Startseite</a>
           <a href="#about" class="nav-link relative whitespace-nowrap">Über Mich</a>
           <a href="#career" class="nav-link relative whitespace-nowrap">Werdegang</a>
+          <a href="#running-prs" class="nav-link relative whitespace-nowrap">Laufrekorde</a>
           <a href="#achievements" class="nav-link relative whitespace-nowrap">Errungenschaften</a>
           <a href="#contact" class="btn-primary py-2 px-4 lg:px-6 rounded-lg font-semibold transition-all hover:scale-105 whitespace-nowrap">Kontakt</a>
         </div>
@@ -79,6 +80,9 @@
         <a href="#career" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
           >Werdegang</a
         >
+        <a href="#running-prs" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
+          >Laufrekorde</a
+        >
         <a href="#achievements" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
           >Errungenschaften</a
         >
@@ -93,11 +97,33 @@
       class="hero-bg min-h-screen flex items-center justify-center pt-24 pb-12"
     >
       <div class="text-center px-4 sm:px-6">
-        <img
-          src="Images/Profile-Pic.png"
-          alt="JLZN"
-          class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto h-auto mb-6"
-        />
+        <div class="profile-with-yoyo">
+          <img
+            src="Images/Profile-Pic.png"
+            alt="JLZN"
+            class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto h-auto mb-6"
+          />
+
+          <!-- Mini Yoyo -->
+          <div id="mini-yoyo-wrapper" class="mini-yoyo-wrapper">
+            <div class="mini-yoyo-string"></div>
+            <div class="mini-yoyo">
+              <div class="yoyo-disc yoyo-disc-front">
+                <div class="yoyo-ring ring-1"></div>
+                <div class="yoyo-ring ring-2"></div>
+                <div class="yoyo-ring ring-3"></div>
+                <div class="yoyo-center"></div>
+              </div>
+              <div class="yoyo-band"></div>
+              <div class="yoyo-disc yoyo-disc-back">
+                <div class="yoyo-ring ring-1"></div>
+                <div class="yoyo-ring ring-2"></div>
+                <div class="yoyo-ring ring-3"></div>
+                <div class="yoyo-center"></div>
+              </div>
+            </div>
+          </div>
+        </div>
         <h1
           class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 text-white"
         >
@@ -450,6 +476,123 @@
   </div>
 </section>
 <!-- END: Career Timeline Section -->
+
+<!-- START: Personal Records Section -->
+<section id="running-prs" class="py-16 md:py-24 bg-gray-800">
+  <div class="container mx-auto px-4 sm:px-6">
+    <h2 class="section-title text-white text-3xl md:text-4xl springy-text">
+      Laufrekorde
+    </h2>
+    <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-base md:text-lg">
+      Meine persönlichen Bestleistungen beim laufen.
+    </p>
+
+    <!-- Overall Personal Bests -->
+    <div class="mb-16">
+      <h3 class="text-2xl font-bold text-white mb-6 text-center">
+        Gesamtbestleistungen
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Longest Run -->
+        <div class="pr-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
+          <div class="pr-icon-wrapper mb-4">
+            <i class="fas fa-route text-4xl"></i>
+          </div>
+          <h4 class="pr-title text-xl font-semibold mb-3 text-white">Längster Lauf</h4>
+          <div id="pr-longest-run" class="pr-content">
+            <div class="loading-spinner">Lädt...</div>
+          </div>
+        </div>
+
+        <!-- Fastest Pace -->
+        <div class="pr-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
+          <div class="pr-icon-wrapper mb-4">
+            <i class="fas fa-bolt text-4xl"></i>
+          </div>
+          <h4 class="pr-title text-xl font-semibold mb-3 text-white">Schnellstes Tempo</h4>
+          <div id="pr-fastest-pace" class="pr-content">
+            <div class="loading-spinner">Lädt...</div>
+          </div>
+        </div>
+
+        <!-- Most Elevation -->
+        <div class="pr-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
+          <div class="pr-icon-wrapper mb-4">
+            <i class="fas fa-mountain text-4xl"></i>
+          </div>
+          <h4 class="pr-title text-xl font-semibold mb-3 text-white">Meiste Höhenmeter</h4>
+          <div id="pr-most-elevation" class="pr-content">
+            <div class="loading-spinner">Lädt...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Distance-Specific PRs -->
+    <div>
+      <h3 class="text-2xl font-bold text-white mb-6 text-center">
+        Distanz-Rekorde
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- 5K PR -->
+        <div class="pr-card distance-pr card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
+          <div class="pr-distance-badge">5K</div>
+          <h4 class="pr-title text-lg font-semibold mb-3 text-white">Schnellste 5K</h4>
+          <div id="pr-5k" class="pr-content">
+            <div class="loading-spinner">Lädt...</div>
+          </div>
+        </div>
+
+        <!-- 10K PR -->
+        <div class="pr-card distance-pr card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
+          <div class="pr-distance-badge">10K</div>
+          <h4 class="pr-title text-lg font-semibold mb-3 text-white">Schnellste 10K</h4>
+          <div id="pr-10k" class="pr-content">
+            <div class="loading-spinner">Lädt...</div>
+          </div>
+        </div>
+
+        <!-- Half Marathon PR -->
+        <div class="pr-card distance-pr card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
+          <div class="pr-distance-badge">21.1K</div>
+          <h4 class="pr-title text-lg font-semibold mb-3 text-white">Schnellster Halbmarathon</h4>
+          <div id="pr-halfMarathon" class="pr-content">
+            <div class="loading-spinner">Lädt...</div>
+          </div>
+        </div>
+
+        <!-- 30K PR -->
+        <div class="pr-card distance-pr card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
+          <div class="pr-distance-badge">30K</div>
+          <h4 class="pr-title text-lg font-semibold mb-3 text-white">Schnellste 30K</h4>
+          <div id="pr-30k" class="pr-content">
+            <div class="loading-spinner">Lädt...</div>
+          </div>
+        </div>
+
+        <!-- Marathon PR -->
+        <div class="pr-card distance-pr card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
+          <div class="pr-distance-badge">42.2K</div>
+          <h4 class="pr-title text-lg font-semibold mb-3 text-white">Schnellster Marathon</h4>
+          <div id="pr-marathon" class="pr-content">
+            <div class="loading-spinner">Lädt...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Last Updated Info -->
+    <div class="text-center mt-8">
+      <p class="text-gray-500 text-sm">
+        Zuletzt aktualisiert: <span id="pr-last-updated">--</span>
+      </p>
+      <p class="text-gray-600 text-xs mt-1">
+        Daten von <a href="https://www.strava.com" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400">Strava</a>
+      </p>
+    </div>
+  </div>
+</section>
+<!-- END: Personal Records Section -->
 
     <section id="achievements" class="py-16 md:py-24 bg-gray-900">
         <!-- ... the rest of your achievements section ... -->
@@ -1038,7 +1181,13 @@
     <!-- Scroll Animations -->
     <script src="js/scroll-animations.js"></script>
 
+    <!-- Yoyo Interactive Animation -->
+    <script src="js/yoyo.js"></script>
+
     <!-- Asteroid game -->
     <script src="js/asteroid-game.js" defer></script>
+
+    <!-- Running Personal Records -->
+    <script src="js/running-prs.js" defer></script>
   </body>
 </html>
