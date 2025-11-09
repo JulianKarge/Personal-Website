@@ -29,17 +29,19 @@
         }, 1000);
     }
 
+    // Click to wave (works on both mobile and desktop)
+    welcomeText.addEventListener('click', triggerWave);
+    welcomeText.style.cursor = 'pointer';
+
     // Desktop: Hover to wave
     if (!isMobile) {
         welcomeText.addEventListener('mouseenter', triggerWave);
     }
 
-    // Mobile: Random auto-waving every 5-10 seconds
+    // Random auto-waving every 8-15 seconds (both desktop and mobile)
     function scheduleRandomWave() {
-        if (!isMobile) return;
-
-        // Random interval between 5000ms (5s) and 10000ms (10s)
-        const randomDelay = Math.random() * 5000 + 5000;
+        // Random interval between 8000ms (8s) and 15000ms (15s)
+        const randomDelay = Math.random() * 7000 + 8000;
 
         setTimeout(() => {
             triggerWave();
@@ -48,13 +50,10 @@
         }, randomDelay);
     }
 
-    // Start random waving for mobile
-    if (isMobile) {
-        // Initial wave after 2 seconds
-        setTimeout(() => {
-            triggerWave();
-            // Start random schedule after first wave
-            setTimeout(scheduleRandomWave, 1000);
-        }, 2000);
-    }
+    // Initial wave after 3 seconds, then start random schedule
+    setTimeout(() => {
+        triggerWave();
+        // Start random schedule after first wave
+        setTimeout(scheduleRandomWave, 1000);
+    }, 3000);
 })();

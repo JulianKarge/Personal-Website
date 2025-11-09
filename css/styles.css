@@ -339,8 +339,8 @@ nav a:not(.brand-logo):hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(17, 24, 39, 0.75);
-  backdrop-filter: blur(3px);
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
   z-index: -1;
   border-radius: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -3373,5 +3373,531 @@ section:has(#motto-galaxy) {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Run Selector Dropdown Styling */
+.run-selector-wrapper {
+  position: relative;
+  max-width: 28rem;
+  margin: 0 auto 1.5rem;
+}
+
+.dropdown-arrow {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: transform 0.3s ease;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.dropdown-arrow.open {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+#run-selector {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  background-color: #374151;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 3rem;
+  width: 100%;
+}
+
+#run-selector:hover {
+  border-color: #e94560;
+  background-color: #4b5563;
+  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.2);
+}
+
+#run-selector:hover + .dropdown-arrow {
+  color: #e94560;
+}
+
+#run-selector:focus {
+  border-color: #e94560;
+  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.3);
+  outline: none;
+  background-color: #4b5563;
+}
+
+/* Dropdown options styling */
+#run-selector option {
+  background-color: #1f2937 !important;
+  color: #ffffff !important;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#run-selector option:checked {
+  background: linear-gradient(135deg, rgba(233, 69, 96, 0.4) 0%, rgba(249, 115, 22, 0.4) 100%) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+/* Label styling */
+label[for="run-selector"] {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #e5e7eb;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Run Details Styling */
+#latest-run-details .card {
+  animation: slideInUp 0.6s ease-out;
+  padding-bottom: 3rem;
+  margin-bottom: 2rem;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Heart rate progress bar animation */
+.bg-pink-500 {
+  transition: width 1s ease-out;
+}
+
+/* Elevation gradient bar animation */
+.bg-gradient-to-t {
+  transition: height 1s ease-out;
+}
+
+/* Responsive map */
+#latest-run-details img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+/* Stats grid hover effects */
+#latest-run-details .bg-gray-700 {
+  transition: all 0.3s ease;
+}
+
+#latest-run-details .bg-gray-700:hover {
+  background-color: rgba(55, 65, 81, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.2);
+}
+
+/* Run Details Card Styling */
+.run-details-card {
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(17, 24, 39, 0.95) 100%);
+  border: 1px solid rgba(233, 69, 96, 0.2);
+}
+
+/* Main Stats Cards */
+.stat-card {
+  background: linear-gradient(135deg, rgba(55, 65, 81, 0.5) 0%, rgba(31, 41, 55, 0.5) 100%);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #e94560, #f59e0b);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(233, 69, 96, 0.3);
+  border-color: rgba(233, 69, 96, 0.5);
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+  color: #e94560;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  color: #ffffff;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-unit {
+  font-size: 1rem;
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+/* Detail Cards */
+.detail-card {
+  background: linear-gradient(135deg, rgba(55, 65, 81, 0.4) 0%, rgba(31, 41, 55, 0.4) 100%);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detail-title {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Heart Rate Stats */
+.hr-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: rgba(31, 41, 55, 0.5);
+  border-radius: 0.5rem;
+  border-left: 3px solid #e94560;
+}
+
+.hr-label {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.hr-value {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.hr-value.max {
+  color: #ef4444;
+}
+
+/* Heart Rate Gauge */
+.hr-gauge-container {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(17, 24, 39, 0.5);
+  border-radius: 0.75rem;
+}
+
+.hr-gauge {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* Elevation Stats */
+.elev-stat-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(31, 41, 55, 0.3);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.elev-stat-row:hover {
+  background: rgba(31, 41, 55, 0.6);
+  transform: translateX(5px);
+}
+
+.elev-stat-row.highlight {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.elev-icon {
+  font-size: 1.25rem;
+  width: 2rem;
+  text-align: center;
+}
+
+.elev-label {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  flex: 1;
+}
+
+.elev-value {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Elevation Visualization */
+.elevation-viz {
+  background: rgba(17, 24, 39, 0.5);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-top: 0.5rem;
+}
+
+.elevation-viz svg {
+  filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3));
+}
+
+/* Extra Stats Cards */
+.extra-stat-card {
+  background: linear-gradient(135deg, rgba(55, 65, 81, 0.3) 0%, rgba(31, 41, 55, 0.3) 100%);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.extra-stat-card:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, rgba(55, 65, 81, 0.5) 0%, rgba(31, 41, 55, 0.5) 100%);
+  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.15);
+}
+
+.extra-stat-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.extra-stat-label {
+  color: #9ca3af;
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.extra-stat-value {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Leaflet Map Customization */
+.leaflet-container {
+  background: linear-gradient(135deg, #1f2937 0%, #0f1419 100%) !important;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+  margin: 10px !important;
+}
+
+.leaflet-control-zoom a {
+  background-color: rgba(55, 65, 81, 0.9) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  width: 35px !important;
+  height: 35px !important;
+  line-height: 35px !important;
+  font-size: 20px !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: rgba(233, 69, 96, 0.9) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: rgba(31, 41, 55, 0.95) !important;
+  color: #ffffff !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Mobile Responsiveness for Running Section */
+@media (max-width: 768px) {
+  /* Map container mobile optimization */
+  #run-map {
+    height: 200px !important;
+  }
+
+  /* Run details card */
+  .run-details-card {
+    padding: 1rem !important;
+  }
+
+  .run-details-card h4 {
+    font-size: 1.5rem !important;
+  }
+
+  /* Stat cards mobile layout */
+  .stat-card {
+    padding: 0.75rem !important;
+  }
+
+  .stat-value {
+    font-size: 1.25rem !important;
+  }
+
+  .stat-icon {
+    font-size: 1rem !important;
+  }
+
+  .stat-label {
+    font-size: 0.75rem !important;
+  }
+
+  /* Detail cards stack on mobile */
+  .detail-card {
+    padding: 0.75rem !important;
+  }
+
+  .detail-title {
+    font-size: 0.875rem !important;
+  }
+
+  /* Heart rate stats mobile */
+  .hr-stat-row {
+    padding: 0.5rem !important;
+  }
+
+  .hr-label, .elev-label {
+    font-size: 0.75rem !important;
+  }
+
+  .hr-value, .elev-value {
+    font-size: 1rem !important;
+  }
+
+  /* Extra stat cards mobile */
+  .extra-stat-card {
+    padding: 0.5rem !important;
+  }
+
+  .extra-stat-label {
+    font-size: 0.625rem !important;
+  }
+
+  .extra-stat-value {
+    font-size: 0.75rem !important;
+  }
+
+  .extra-stat-icon {
+    font-size: 1.25rem !important;
+  }
+
+  /* Heart rate gauge mobile */
+  .hr-gauge-container {
+    padding: 0.25rem !important;
+  }
+
+  /* Elevation visualization mobile */
+  .elevation-viz {
+    padding: 0.25rem !important;
+  }
+
+  /* Run selector mobile */
+  #run-selector {
+    font-size: 0.875rem !important;
+    padding: 0.65rem !important;
+    padding-right: 2.5rem !important;
+  }
+
+  .dropdown-arrow {
+    font-size: 0.875rem !important;
+    right: 0.75rem !important;
+  }
+
+  /* Reduce gap on mobile */
+  .grid {
+    gap: 0.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small devices */
+  #run-map {
+    height: 180px !important;
+  }
+
+  .stat-card {
+    padding: 0.5rem !important;
+  }
+
+  .stat-value {
+    font-size: 1.1rem !important;
+  }
+
+  .stat-label {
+    font-size: 0.65rem !important;
+  }
+
+  .extra-stat-card {
+    padding: 0.4rem !important;
+  }
+
+  .extra-stat-value {
+    font-size: 0.7rem !important;
+  }
+
+  .extra-stat-label {
+    font-size: 0.55rem !important;
+  }
+
+  .run-details-card h4 {
+    font-size: 1.25rem !important;
+  }
+
+  .detail-title {
+    font-size: 0.8rem !important;
+  }
+}
+
+.leaflet-popup-tip {
+  background-color: rgba(31, 41, 55, 0.95) !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .stat-icon {
+    font-size: 1.25rem;
+  }
+
+  .hr-gauge-container {
+    padding: 0.5rem;
+  }
+
+  .extra-stat-icon {
+    font-size: 1.5rem;
   }
 }

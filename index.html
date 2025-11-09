@@ -578,6 +578,40 @@
             <div class="loading-spinner">Lädt...</div>
           </div>
         </div>
+
+        <!-- 50K PR -->
+        <div class="pr-card distance-pr card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
+          <div class="pr-distance-badge">50K</div>
+          <h4 class="pr-title text-lg font-semibold mb-3 text-white">Schnellste 50K</h4>
+          <div id="pr-50k" class="pr-content">
+            <div class="loading-spinner">Lädt...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Latest Run Section -->
+    <div class="mt-16">
+      <h3 class="text-2xl font-bold text-white mb-6 text-center">
+        Letzter Lauf
+      </h3>
+
+      <!-- Run Selector Dropdown -->
+      <div class="max-w-md mx-auto mb-6">
+        <label for="run-selector" class="block text-gray-300 mb-2 text-center">Lauf auswählen:</label>
+        <div class="run-selector-wrapper">
+          <select id="run-selector" class="bg-gray-700 text-white rounded-lg px-4 py-3 border border-gray-600 focus:border-pink-500 focus:outline-none">
+            <option value="">Lädt...</option>
+          </select>
+          <span class="dropdown-arrow">▼</span>
+        </div>
+      </div>
+
+      <!-- Run Details Card -->
+      <div id="latest-run-details" class="max-w-6xl mx-auto">
+        <div class="card rounded-lg p-6 md:p-8 shadow-xl">
+          <div class="loading-spinner text-center">Wähle einen Lauf aus...</div>
+        </div>
       </div>
     </div>
 
@@ -750,9 +784,9 @@
               <strong>Content Creator</strong> mit Fokus auf
               <strong>sportliche Entwicklung</strong> und
               <strong>persönliche Selbstverwirklichung</strong>. Mein Ziel
-              mit <strong class="text-pink-400">YouTube</strong> ist es,
+              mit <strong class="text-cyan-400">YouTube</strong> ist es,
               meine Reise zu dokumentieren und hoffentlich andere zu
-              <strong class="text-pink-400">inspirieren</strong>, ihre
+              <strong class="text-cyan-400">inspirieren</strong>, ihre
               eigenen Ziele zu verfolgen.
             </p>
             <p class="mb-4">
@@ -784,9 +818,9 @@
                 beschreiten. Meiner Meinung nach kann jeder diesen Weg
                 finden, wenn man lernt, <strong>in sich zu gucken</strong>.
                 So viele unserer Wünsche werden durch
-                <strong class="text-pink-400">äußere Einflüsse</strong>
+                <strong class="text-cyan-400">äußere Einflüsse</strong>
                 beeinflusst. Die
-                <strong class="text-pink-400">Challenge</strong> liegt also
+                <strong class="text-cyan-400">Challenge</strong> liegt also
                 darin, bei sich zu bleiben,
                 <strong>sich selbst zu vertrauen</strong>
                 und weitestgehend ohne diese Einflüsse seinen individuellen
@@ -807,15 +841,15 @@
         <!-- For example, your "Grenzen Überschreitung" and "Nachricht an dich" slides -->
         <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card" style="--bg-image: url('Images/Perspektiven Wechsel.png')">
             <div class="hidden md:flex md:items-center md:justify-center md:h-full md:pr-6"><img src="Images/Perspektiven Wechsel.png" alt="Perspektivenwechsel" class="about-slide-img"></div>
-            <div class="about-slide-text"><h3 class="text-2xl font-bold mb-4 text-white">Perspektivenwechsel</h3><p class="mb-4">Ein starres Selbstbild kann uns <strong class="text-pink-400">blockieren</strong> – weil es ja schon immer so war und man es ja schon immer so gemacht hat. Sätze wie <em>"Ich bin introvertiert"</em> oder <em>"Ich bin nicht sportlich"</em> werden schnell zur <strong class="text-pink-400">Ausrede</strong>, bestimmte Dinge gar nicht erst anzugehen.</p><p>Genau dieses starre Selbstbild versuche ich in meinen <strong>Challenges</strong> aufzubrechen und zu <strong>stärken</strong>. Wir sind nicht immer dieselbe Person in unterschiedlichen Situationen. Es geht darum, diese selbstauferlegten Grenzen zu erkennen und zu überschreiten.</p></div>
+            <div class="about-slide-text"><h3 class="text-2xl font-bold mb-4 text-white">Perspektivenwechsel</h3><p class="mb-4">Ein starres Selbstbild kann uns <strong class="text-cyan-400">blockieren</strong> – weil es ja schon immer so war und man es ja schon immer so gemacht hat. Sätze wie <em>"Ich bin introvertiert"</em> oder <em>"Ich bin nicht sportlich"</em> werden schnell zur <strong class="text-cyan-400">Ausrede</strong>, bestimmte Dinge gar nicht erst anzugehen.</p><p>Genau dieses starre Selbstbild versuche ich in meinen <strong>Challenges</strong> aufzubrechen und zu <strong>stärken</strong>. Wir sind nicht immer dieselbe Person in unterschiedlichen Situationen. Es geht darum, diese selbstauferlegten Grenzen zu erkennen und zu überschreiten.</p></div>
         </div>
         <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card" style="--bg-image: url('Images/MountainViewBackground.png')">
             <div class="hidden md:flex md:items-center md:justify-center md:h-full md:pr-6"><img src="Images/MountainViewBackground.png" alt="Grenzen Überschreitung" class="about-slide-img"></div>
-            <div class="about-slide-text"><h3 class="text-2xl font-bold mb-4 text-white">Grenzen Überschreitung</h3><p class="mb-4">Es geht nicht darum, unvorsichtig zu sein, sondern darum, sich <strong>bewusst</strong> neuen Herausforderungen zu stellen und daran zu <strong>wachsen</strong>. Das <strong class="text-pink-400">100-Meter-Tauchvideo</strong> hat mir das nochmal sehr klar gezeigt.</p><p>Es ist entscheidend, mein <strong>Limit</strong> zu kennen und den Bogen nicht zu überspannen, um sich nicht selbst zu gefährden. <strong>Welche Grenze möchtest du als Nächstes überschreiten?</strong></p></div>
+            <div class="about-slide-text"><h3 class="text-2xl font-bold mb-4 text-white">Grenzen Überschreitung</h3><p class="mb-4">Es geht nicht darum, unvorsichtig zu sein, sondern darum, sich <strong>bewusst</strong> neuen Herausforderungen zu stellen und daran zu <strong>wachsen</strong>. Das <strong class="text-cyan-400">100-Meter-Tauchvideo</strong> hat mir das nochmal sehr klar gezeigt.</p><p>Es ist entscheidend, mein <strong>Limit</strong> zu kennen und den Bogen nicht zu überspannen, um sich nicht selbst zu gefährden. <strong>Welche Grenze möchtest du als Nächstes überschreiten?</strong></p></div>
         </div>
         <div class="about-slide w-full flex-shrink-0 p-6 md:p-8 card" style="--bg-image: url('Images/UeberDich.png')">
             <div class="hidden md:flex md:items-center md:justify-center md:h-full md:pr-6"><img src="Images/UeberDich.png" alt="Nachricht an dich" class="about-slide-img"></div>
-            <div class="about-slide-text"><h3 class="text-2xl font-bold mb-4 text-white">Nachricht an dich</h3><p class="mb-4"><strong>Bleibe dir selbst treu.</strong> <em>Ein Leben, das immer mit dem Gedanken gelebt wird, was andere darüber sagen, ist ein Leben, das dir nicht selber gehört.</em></p><p>Wenn dich <strong>Selbstverwirklichung</strong> und <strong>Grenzen überschreiten</strong> genauso anziehen wie mich, dann bist du hier genau richtig. Wenn nicht, dann <strong>geh deinen eigenen Weg</strong> – das ist das Wichtigste!</p></div>
+            <div class="about-slide-text"><h3 class="text-2xl font-bold mb-4 text-white">Nachricht an dich</h3><p class="mb-4"><strong class="text-cyan-400">Bleibe dir selbst treu.</strong> <em>Ein Leben, das immer mit dem Gedanken gelebt wird, was andere darüber sagen, ist ein Leben, das dir nicht selber gehört.</em></p><p>Wenn dich <strong>Selbstverwirklichung</strong> und <strong>Grenzen überschreiten</strong> genauso anziehen wie mich, dann bist du hier genau richtig. Wenn nicht, dann <strong>geh deinen eigenen Weg</strong> – das ist das Wichtigste!</p></div>
         </div>
 
       </div>
@@ -1186,6 +1220,11 @@
 
     <!-- Asteroid game -->
     <script src="js/asteroid-game.js" defer></script>
+
+    <!-- Leaflet.js for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/@mapbox/polyline@1.1.1/src/polyline.js"></script>
 
     <!-- Running Personal Records -->
     <script src="js/running-prs.js" defer></script>
