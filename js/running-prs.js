@@ -306,7 +306,7 @@ function displayRunDetails(run) {
       </p>
 
       <!-- Map Container -->
-      <div class="mb-6 rounded-lg overflow-hidden" style="height: 250px; background: linear-gradient(135deg, #1f2937 0%, #0f1419 100%);">
+      <div class="mb-6 rounded-lg overflow-hidden map-container" style="height: 300px; background: linear-gradient(135deg, #1f2937 0%, #0f1419 100%);">
         <div id="run-map" style="width: 100%; height: 100%; border-radius: 0.5rem;"></div>
       </div>
 
@@ -488,15 +488,15 @@ function initializeRunMap(run) {
     // Decode polyline
     const coordinates = polyline.decode(run.map.summary_polyline);
 
-    // Create static map without any interaction
+    // Create interactive map with zoom and pan enabled
     const map = L.map('run-map', {
-      zoomControl: false,
-      scrollWheelZoom: false,
-      dragging: false,
-      touchZoom: false,
-      doubleClickZoom: false,
-      boxZoom: false,
-      keyboard: false,
+      zoomControl: false,  // Hide default +/- buttons
+      scrollWheelZoom: true,  // Enable mouse wheel zoom on desktop
+      dragging: true,  // Enable dragging/panning
+      touchZoom: true,  // Enable pinch-to-zoom on mobile
+      doubleClickZoom: true,  // Enable double-click zoom
+      boxZoom: true,  // Enable shift+drag zoom
+      keyboard: true,  // Enable keyboard navigation
       attributionControl: false
     });
 
@@ -606,6 +606,11 @@ function initializeRunMap(run) {
 
     // Fit map to route
     map.fitBounds(routeLine.getBounds(), { padding: [30, 30] });
+
+    // Ensure map fills container properly (especially important for mobile)
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 100);
 
   } catch (error) {
     console.error('Error rendering map:', error);

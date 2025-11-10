@@ -3503,6 +3503,26 @@ label[for="run-selector"] {
   border: 1px solid rgba(233, 69, 96, 0.2);
 }
 
+/* Map Container */
+.map-container {
+  height: 300px;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    height: 400px !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-container {
+    height: 350px !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
 /* Main Stats Cards */
 .stat-card {
   background: linear-gradient(135deg, rgba(55, 65, 81, 0.5) 0%, rgba(31, 41, 55, 0.5) 100%);
@@ -3512,6 +3532,10 @@ label[for="run-selector"] {
   border: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .stat-card::before {
@@ -3548,6 +3572,7 @@ label[for="run-selector"] {
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  width: 100%;
 }
 
 .stat-value {
@@ -3555,6 +3580,7 @@ label[for="run-selector"] {
   font-size: 1.75rem;
   font-weight: 700;
   line-height: 1;
+  width: 100%;
 }
 
 .stat-unit {
@@ -3599,6 +3625,11 @@ label[for="run-selector"] {
   -ms-user-select: text;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
+  margin-bottom: 0.5rem;
+}
+
+.hr-stat-row:last-child {
+  margin-bottom: 0;
 }
 
 .hr-stat-row:hover {
@@ -3821,9 +3852,14 @@ label[for="run-selector"] {
 
 /* Mobile Responsiveness for Running Section */
 @media (max-width: 768px) {
-  /* Map container mobile optimization */
+  /* Map container mobile optimization - Make it much larger and full width */
   #run-map {
-    height: 200px !important;
+    height: 400px !important;
+  }
+
+  /* Map parent container should also be larger */
+  .run-details-card > div[style*="height: 250px"] {
+    height: 400px !important;
   }
 
   /* Run details card */
@@ -3837,15 +3873,15 @@ label[for="run-selector"] {
 
   /* Stat cards mobile layout */
   .stat-card {
-    padding: 0.75rem !important;
+    padding: 1rem !important;
   }
 
   .stat-value {
-    font-size: 1.25rem !important;
+    font-size: 1.5rem !important;
   }
 
   .stat-icon {
-    font-size: 1rem !important;
+    font-size: 1.5rem !important;
   }
 
   .stat-label {
@@ -3854,51 +3890,90 @@ label[for="run-selector"] {
 
   /* Detail cards stack on mobile */
   .detail-card {
-    padding: 0.75rem !important;
+    padding: 1.25rem !important;
+    margin-bottom: 1rem !important;
   }
 
   .detail-title {
-    font-size: 0.875rem !important;
+    font-size: 1.05rem !important;
+    margin-bottom: 1.25rem !important;
   }
 
-  /* Heart rate stats mobile */
+  /* Heart rate stats mobile - Better spacing and sizing */
   .hr-stat-row {
-    padding: 0.5rem !important;
+    padding: 1rem 1rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .hr-stat-row:last-child {
+    margin-bottom: 0 !important;
   }
 
   .hr-label, .elev-label {
-    font-size: 0.75rem !important;
+    font-size: 0.85rem !important;
   }
 
   .hr-value, .elev-value {
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
   }
 
   /* Extra stat cards mobile */
   .extra-stat-card {
-    padding: 0.5rem !important;
+    padding: 1rem !important;
   }
 
   .extra-stat-label {
-    font-size: 0.625rem !important;
-  }
-
-  .extra-stat-value {
     font-size: 0.75rem !important;
   }
 
-  .extra-stat-icon {
-    font-size: 1.25rem !important;
+  .extra-stat-value {
+    font-size: 0.95rem !important;
   }
 
-  /* Heart rate gauge mobile */
+  .extra-stat-icon {
+    font-size: 1.75rem !important;
+  }
+
+  /* Heart rate gauge mobile - Reduce size to balance layout */
   .hr-gauge-container {
-    padding: 0.25rem !important;
+    padding: 0.75rem 0.5rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .hr-gauge {
+    max-width: 240px !important;
+    margin: 0 auto !important;
   }
 
   /* Elevation visualization mobile */
   .elevation-viz {
-    padding: 0.25rem !important;
+    padding: 0.75rem 0.25rem !important;
+    margin-top: 1rem !important;
+  }
+
+  /* Elevation stat rows mobile spacing */
+  .elev-stat-row {
+    padding: 1rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .elev-stat-row:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Add space below card content sections */
+  .detail-card > .space-y-4 {
+    gap: 0 !important;
+  }
+
+  .detail-card > .space-y-3 {
+    gap: 0 !important;
+  }
+
+  /* Add margin between detail cards on mobile */
+  .grid.grid-cols-1.md\\:grid-cols-2 {
+    gap: 1rem !important;
   }
 
   /* Run selector mobile */
@@ -3915,46 +3990,58 @@ label[for="run-selector"] {
 
   /* Reduce gap on mobile */
   .grid {
-    gap: 0.5rem !important;
+    gap: 0.75rem !important;
   }
 }
 
 @media (max-width: 480px) {
-  /* Extra small devices */
+  /* Extra small devices - Keep map large on small screens too */
   #run-map {
-    height: 180px !important;
+    height: 350px !important;
   }
 
   .stat-card {
-    padding: 0.5rem !important;
+    padding: 0.75rem !important;
   }
 
   .stat-value {
-    font-size: 1.1rem !important;
-  }
-
-  .stat-label {
-    font-size: 0.65rem !important;
-  }
-
-  .extra-stat-card {
-    padding: 0.4rem !important;
-  }
-
-  .extra-stat-value {
-    font-size: 0.7rem !important;
-  }
-
-  .extra-stat-label {
-    font-size: 0.55rem !important;
-  }
-
-  .run-details-card h4 {
     font-size: 1.25rem !important;
   }
 
-  .detail-title {
+  .stat-label {
+    font-size: 0.7rem !important;
+  }
+
+  .extra-stat-card {
+    padding: 0.6rem !important;
+  }
+
+  .extra-stat-value {
     font-size: 0.8rem !important;
+  }
+
+  .extra-stat-label {
+    font-size: 0.65rem !important;
+  }
+
+  .run-details-card h4 {
+    font-size: 1.35rem !important;
+  }
+
+  .detail-title {
+    font-size: 0.95rem !important;
+  }
+
+  .hr-stat-row {
+    padding: 1.15rem 0.85rem !important;
+  }
+
+  .hr-gauge-container {
+    padding: 1.25rem 0.75rem !important;
+  }
+
+  .elev-stat-row {
+    padding: 0.9rem !important;
   }
 }
 
