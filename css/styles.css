@@ -3392,16 +3392,10 @@ section:has(#motto-galaxy) {
     will-change: transform, opacity;
   }
 
-  /* Remove hover effect on mobile */
-  .pr-card:hover {
-    transform: none;
-    box-shadow: none;
-  }
-
   /* Center active card */
   .pr-card.active {
     opacity: 1;
-    transform: translateX(0) translateZ(0) scale(1) rotateY(0deg);
+    transform: translateX(0) translateZ(0) scale(1) rotateY(0deg) !important;
     z-index: 10;
     pointer-events: auto;
   }
@@ -3409,19 +3403,25 @@ section:has(#motto-galaxy) {
   /* Previous card (left side) */
   .pr-card.prev {
     opacity: 0.6;
-    transform: translateX(-90%) translateZ(-150px) scale(0.8) rotateY(35deg);
+    transform: translateX(-90%) translateZ(-150px) scale(0.8) rotateY(35deg) !important;
     z-index: 5;
-    pointer-events: auto;
+    pointer-events: none;
     filter: brightness(0.6);
   }
 
   /* Next card (right side) */
   .pr-card.next {
     opacity: 0.6;
-    transform: translateX(90%) translateZ(-150px) scale(0.8) rotateY(-35deg);
+    transform: translateX(90%) translateZ(-150px) scale(0.8) rotateY(-35deg) !important;
     z-index: 5;
-    pointer-events: auto;
+    pointer-events: none;
     filter: brightness(0.6);
+  }
+
+  /* Remove hover effect on mobile */
+  .pr-card:hover {
+    transform: none;
+    box-shadow: none;
   }
 
   /* Cards further away - hidden */
@@ -3429,7 +3429,7 @@ section:has(#motto-galaxy) {
   .pr-card.far-next,
   .pr-card.hidden {
     opacity: 0;
-    transform: translateX(0) translateZ(-300px) scale(0.5);
+    transform: translateX(0) translateZ(-300px) scale(0.5) !important;
     z-index: 1;
     pointer-events: none;
   }
