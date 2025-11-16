@@ -523,6 +523,7 @@ function initializeRunMap(run) {
       // Function to activate map
       const activateMap = function() {
         if (map.dragging) map.dragging.enable();
+        if (map.touchZoom) map.touchZoom.enable();
         mapActive = true;
         map.getContainer().style.border = '2px solid var(--theme-primary)';
         map.getContainer().style.boxShadow = '0 0 20px var(--theme-primary-50)';
@@ -531,6 +532,7 @@ function initializeRunMap(run) {
       // Function to deactivate map
       const deactivateMap = function() {
         if (map.dragging) map.dragging.disable();
+        if (map.touchZoom) map.touchZoom.disable();
         mapActive = false;
         map.getContainer().style.border = '';
         map.getContainer().style.boxShadow = '';
