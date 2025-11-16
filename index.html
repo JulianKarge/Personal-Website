@@ -27,6 +27,7 @@
     />
 
     <!-- Your Custom Stylesheet -->
+    <link rel="stylesheet" href="css/themes.css" />
     <link rel="stylesheet" href="css/styles.css" />
 
     <!-- GALAXY YEAHHH -->
@@ -61,14 +62,69 @@
           <a href="#career" class="nav-link relative whitespace-nowrap">Werdegang</a>
           <a href="#running-prs" class="nav-link relative whitespace-nowrap">Laufrekorde</a>
           <a href="#achievements" class="nav-link relative whitespace-nowrap">Errungenschaften</a>
+
+          <!-- Theme Switcher -->
+          <div class="theme-switcher">
+            <button id="theme-button" class="theme-button">
+              <i id="theme-button-icon" class="fas fa-bolt"></i>
+              <span id="theme-button-text">Cyber</span>
+            </button>
+            <div id="theme-dropdown" class="theme-dropdown">
+                            <div class="theme-option" data-theme="neon">
+                <i class="fas fa-fire"></i>
+                <span>Neon</span>
+              </div>
+              <div class="theme-option active" data-theme="cyber">
+                <i class="fas fa-bolt"></i>
+                <span>Cyber</span>
+              </div>
+              <div class="theme-option" data-theme="sunset">
+                <i class="fas fa-sun"></i>
+                <span>Sunset</span>
+              </div>
+              <div class="theme-option" data-theme="forest">
+                <i class="fas fa-leaf"></i>
+                <span>Forest</span>
+              </div>
+
+            </div>
+          </div>
+
           <a href="#contact" class="btn-primary py-2 px-4 lg:px-6 rounded-lg font-semibold transition-all hover:scale-105 whitespace-nowrap">Kontakt</a>
         </div>
-        <button
-          id="mobile-menu-button"
-          class="md:hidden text-white focus:outline-none transition-transform hover:scale-110"
-        >
-          <i class="fas fa-bars fa-xl"></i>
-        </button>
+        <div class="flex md:hidden items-center gap-2">
+          <!-- Mobile Theme Switcher -->
+          <div class="theme-switcher">
+            <button id="theme-button-mobile" class="theme-button">
+              <i id="theme-button-icon-mobile" class="fas fa-bolt"></i>
+              <span id="theme-button-text-mobile">Cyber</span>
+            </button>
+            <div id="theme-dropdown-mobile" class="theme-dropdown">
+              <div class="theme-option active" data-theme="cyber">
+                <i class="fas fa-bolt"></i>
+                <span>Cyber</span>
+              </div>
+              <div class="theme-option" data-theme="sunset">
+                <i class="fas fa-sun"></i>
+                <span>Sunset</span>
+              </div>
+              <div class="theme-option" data-theme="forest">
+                <i class="fas fa-leaf"></i>
+                <span>Forest</span>
+              </div>
+              <div class="theme-option" data-theme="neon">
+                <i class="fas fa-fire"></i>
+                <span>Neon</span>
+              </div>
+            </div>
+          </div>
+          <button
+            id="mobile-menu-button"
+            class="text-white focus:outline-none transition-transform hover:scale-110"
+          >
+            <i class="fas fa-bars fa-xl"></i>
+          </button>
+        </div>
       </nav>
       <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-95 backdrop-blur-md border-t border-gray-800">
         <a href="#home" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
@@ -141,17 +197,27 @@
           </div>
         </div>
 
-        <a
-          href="#latest-video"
-          class="btn-primary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md mb-4"
-        >
-          Schau dir mein neuestes Video an! <i class="fas fa-play ml-2"></i>
-        </a>
-        <a
-          href="#contact"
-          class="btn-primary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md mb-10"
-          >Kontakt aufnehmen</a
-        >
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
+          <a
+            href="#latest-video"
+            class="btn-primary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md"
+          >
+            Schau dir mein neuestes Video an! <i class="fas fa-play ml-2"></i>
+          </a>
+      <!--    
+          <a
+            href="collection.html"
+            class="btn-secondary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md"
+          >
+            Meine Sammlung <i class="fas fa-book ml-2"></i>
+          </a>
+      -->
+          <a
+            href="#contact"
+            class="btn-primary font-semibold py-3 px-8 rounded-lg text-base md:text-lg inline-block shadow-md"
+            >Kontakt aufnehmen</a
+          >
+        </div>
 
         <div class="flex justify-center space-x-4 sm:space-x-6 md:space-x-8">
           <a
@@ -1228,5 +1294,8 @@
 
     <!-- Running Personal Records -->
     <script src="js/running-prs.js" defer></script>
+
+    <!-- Theme Switcher -->
+    <script src="js/theme-switcher.js"></script>
   </body>
 </html>

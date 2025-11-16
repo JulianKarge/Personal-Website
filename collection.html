@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Julian Lucca Karge - Meine persönliche Sammlung: Gedichte, Erkenntnisse und inspirierende Zitate">
+  <link rel="icon" href="Images/favicon.ico" type="image/x-icon">
+  <title>Meine Sammlung - Julian Lucca Karge</title>
+
+  <!-- External Libraries & Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/themes.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/collection.css" />
+</head>
+
+<body class="bg-gray-900 text-gray-100">
+  <!-- Fixed Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-95 backdrop-blur-md shadow-lg border-b border-gray-800">
+    <nav class="container mx-auto px-4 sm:px-6 py-3 md:py-4 flex justify-between items-center">
+      <a href="index.html" class="brand-logo flex items-center text-lg md:text-xl lg:text-2xl font-bold text-white transition-transform hover:scale-105">
+        <img src="Images/Logo.png" alt="Julian Karge Logo" class="h-10 md:h-12 lg:h-14 w-auto mr-2 md:mr-3" />
+        <span class="whitespace-nowrap">Julian Lucca Karge</span>
+      </a>
+
+      <div class="flex items-center gap-4">
+        <!-- Theme Switcher -->
+        <div class="theme-switcher">
+          <button id="theme-button" class="theme-button">
+            <i id="theme-button-icon" class="fas fa-bolt"></i>
+            <span id="theme-button-text">Cyber</span>
+          </button>
+          <div id="theme-dropdown" class="theme-dropdown">
+            <div class="theme-option active" data-theme="cyber">
+              <i class="fas fa-bolt"></i>
+              <span>Cyber</span>
+            </div>
+            <div class="theme-option" data-theme="sunset">
+              <i class="fas fa-sun"></i>
+              <span>Sunset</span>
+            </div>
+            <div class="theme-option" data-theme="forest">
+              <i class="fas fa-leaf"></i>
+              <span>Forest</span>
+            </div>
+            <div class="theme-option" data-theme="neon">
+              <i class="fas fa-fire"></i>
+              <span>Neon</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="index.html" class="btn-primary py-2 px-6 rounded-lg font-semibold transition-all hover:scale-105">
+          <i class="fas fa-arrow-left mr-2"></i>Zurück
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <div class="collection-container">
+    <!-- Sidebar -->
+    <aside class="collection-sidebar">
+      <div class="sidebar-content">
+        <h2 class="sidebar-title">Meine Sammlung</h2>
+
+        <nav class="sidebar-nav">
+          <button class="sidebar-item active" data-section="poems">
+            <i class="fas fa-feather-alt"></i>
+            <span>Gedichte</span>
+          </button>
+
+          <button class="sidebar-item" data-section="findings">
+            <i class="fas fa-lightbulb"></i>
+            <span>Erkenntnisse</span>
+          </button>
+
+          <button class="sidebar-item" data-section="quotes">
+            <i class="fas fa-quote-left"></i>
+            <span>Zitate</span>
+          </button>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="collection-main">
+      <!-- Poems Section -->
+      <section id="poems-section" class="content-section active">
+        <div class="section-header">
+          <h1 class="section-title">
+            <i class="fas fa-feather-alt mr-3"></i>
+            Gedichte
+          </h1>
+          <p class="section-description">
+            Worte, die aus dem Herzen kommen und Geschichten erzählen.
+          </p>
+        </div>
+
+        <div class="content-grid">
+          <div class="content-card">
+            <h3 class="card-title">Der Weg</h3>
+            <div class="card-date">
+              <i class="far fa-calendar mr-2"></i>
+              15. März 2024
+            </div>
+            <div class="card-content">
+              <p class="poem-text">
+                Zwischen den Wolken, die sich teilen,<br>
+                Liegt ein Pfad, den wenige kennen.<br>
+                Wer ihn sucht, muss manchmal eilen,<br>
+                Um sich selbst dabei zu erkennen.<br><br>
+
+                Jeder Schritt, ein neuer Anfang,<br>
+                Jede Pause, Zeit zum Denken.<br>
+                Der Berg ist steil, doch der Empfang,<br>
+                Wird dir neue Kraft schenken.
+              </p>
+            </div>
+          </div>
+
+          <div class="content-card">
+            <h3 class="card-title">Grenzenlos</h3>
+            <div class="card-date">
+              <i class="far fa-calendar mr-2"></i>
+              8. Januar 2024
+            </div>
+            <div class="card-content">
+              <p class="poem-text">
+                Die Grenzen, die wir uns setzen,<br>
+                Sind oft nur Illusion.<br>
+                Sie können uns verletzen,<br>
+                Doch tragen auch Belohnung schon.<br><br>
+
+                Durchbreche, was dich hält,<br>
+                Spring über deinen Schatten.<br>
+                Die Freiheit, die dir gefällt,<br>
+                Liegt hinter diesen Matten.
+              </p>
+            </div>
+          </div>
+
+          <!-- Placeholder for more poems -->
+          <div class="content-card add-new-card">
+            <div class="add-new-content">
+              <i class="fas fa-plus fa-3x mb-4"></i>
+              <p>Weitere Gedichte folgen...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Findings Section -->
+      <section id="findings-section" class="content-section">
+        <div class="section-header">
+          <h1 class="section-title">
+            <i class="fas fa-lightbulb mr-3"></i>
+            Interessante Erkenntnisse
+          </h1>
+          <p class="section-description">
+            Tools, Techniken und Entdeckungen, die mich begeistern.
+          </p>
+        </div>
+
+        <div class="content-grid">
+          <div class="content-card">
+            <h3 class="card-title">VS Code Vim Extension</h3>
+            <div class="card-tags">
+              <span class="tag">Produktivität</span>
+              <span class="tag">Development</span>
+            </div>
+            <div class="card-content">
+              <p>
+                Die Vim-Extension für VS Code hat meine Art zu programmieren komplett verändert.
+                Durch modal editing kann ich deutlich effizienter navigieren und Code bearbeiten,
+                ohne ständig zur Maus greifen zu müssen.
+              </p>
+              <div class="card-meta">
+                <a href="https://marketplace.visualstudio.com/items?itemName=vscodevim.vim"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="card-link">
+                  <i class="fas fa-external-link-alt mr-2"></i>
+                  Mehr erfahren
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-card">
+            <h3 class="card-title">Stable Diffusion - Open Source AI Art</h3>
+            <div class="card-tags">
+              <span class="tag">AI</span>
+              <span class="tag">Kreativität</span>
+            </div>
+            <div class="card-content">
+              <p>
+                Ein bahnbrechendes Open-Source-Tool zur Bildgenerierung. Im Gegensatz zu proprietären
+                Lösungen läuft es lokal, ist kostenlos und bietet unendliche kreative Möglichkeiten
+                für digitale Kunst.
+              </p>
+              <div class="card-meta">
+                <a href="https://github.com/Stability-AI/stablediffusion"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="card-link">
+                  <i class="fas fa-external-link-alt mr-2"></i>
+                  Mehr erfahren
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Placeholder for more findings -->
+          <div class="content-card add-new-card">
+            <div class="add-new-content">
+              <i class="fas fa-plus fa-3x mb-4"></i>
+              <p>Weitere Erkenntnisse folgen...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quotes Section -->
+      <section id="quotes-section" class="content-section">
+        <div class="section-header">
+          <h1 class="section-title">
+            <i class="fas fa-quote-left mr-3"></i>
+            Inspirierende Zitate
+          </h1>
+          <p class="section-description">
+            Worte, die mich bewegen und zum Nachdenken anregen.
+          </p>
+        </div>
+
+        <div class="quotes-container">
+          <div class="quote-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right"></i>
+            </div>
+            <blockquote class="quote-text">
+              "One thing, all in."
+            </blockquote>
+            <div class="quote-author">— Alex Hormozi</div>
+          </div>
+
+          <div class="quote-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right"></i>
+            </div>
+            <blockquote class="quote-text">
+              "Be strict with yourself but tolerant with others."
+            </blockquote>
+            <div class="quote-author">— Marcus Aurelius</div>
+          </div>
+
+          <div class="quote-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right"></i>
+            </div>
+            <blockquote class="quote-text">
+              "If you have a goal to do something, whatever goal you have, if you wanna be successful and consistent with it, you kinda almost have to be a little crazy."
+            </blockquote>
+            <div class="quote-author">— Felix Kjellberg (PewDiePie)</div>
+          </div>
+
+          <div class="quote-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right"></i>
+            </div>
+            <blockquote class="quote-text">
+              "When love is real, it finds a way."
+            </blockquote>
+            <div class="quote-author">— Avatar Roku</div>
+          </div>
+
+          <div class="quote-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right"></i>
+            </div>
+            <blockquote class="quote-text">
+              "In all chaos there is a cosmos, in all disorder a secret order."
+            </blockquote>
+            <div class="quote-author">— Carl Jung</div>
+          </div>
+
+          <div class="quote-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right"></i>
+            </div>
+            <blockquote class="quote-text">
+              "Humans are just monkeys with a plan."
+            </blockquote>
+            <div class="quote-author">— Naval Ravikant</div>
+          </div>
+
+          <div class="quote-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right"></i>
+            </div>
+            <blockquote class="quote-text">
+              "The universe is change, life is judgement."
+            </blockquote>
+            <div class="quote-author">— Marcus Aurelius</div>
+          </div>
+
+          <div class="quote-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right"></i>
+            </div>
+            <blockquote class="quote-text">
+              "Eines Tages werden wir alle sterben, doch an all den anderen nicht."
+            </blockquote>
+            <div class="quote-author">— Provinz</div>
+          </div>
+
+          <div class="quote-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right"></i>
+            </div>
+            <blockquote class="quote-text">
+              "When you disconnect yourself from all the drama, you connect more to the whole."
+            </blockquote>
+            <div class="quote-author">— Me</div>
+          </div>
+
+          <div class="quote-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right"></i>
+            </div>
+            <blockquote class="quote-text">
+              "Know that wherever you are in your life right now is both temporary and exactly where you're supposed to be. You have arrived at this moment to learn what you must learn so that you can become the person you need to be to create everything you've ever wanted for your life."
+            </blockquote>
+            <div class="quote-author">— Liam Ottley</div>
+          </div>
+
+          <div class="quote-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right"></i>
+            </div>
+            <blockquote class="quote-text">
+              "Success requires both urgency and patience. Be urgent about making the effort and patient about seeing the results."
+            </blockquote>
+            <div class="quote-author">— Ralph Marston</div>
+          </div>
+
+          <div class="quote-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right"></i>
+            </div>
+            <blockquote class="quote-text">
+              "Today the value of knowledge is not in its volume but in its relevance and application."
+            </blockquote>
+            <div class="quote-author">— Iman Gadzhi</div>
+          </div>
+
+          <!-- Special Featured Quote Card - Alex Hormozi -->
+          <div class="quote-card featured-quote">
+            <div class="quote-icon">
+              <i class="fas fa-fire"></i>
+            </div>
+            <div class="quote-dialogue">
+              <p class="dialogue-intro">Imagine you get to pick the person you are going to be.</p>
+
+              <div class="dialogue-exchange">
+                <p class="dialogue-line">
+                  <span class="dialogue-speaker">You:</span>
+                  <span class="dialogue-want">"I want to be the most courageous."</span>
+                </p>
+                <p class="dialogue-line">
+                  <span class="dialogue-response">Then I will give you monsters to conquer to test your courage.</span>
+                </p>
+              </div>
+
+              <div class="dialogue-exchange">
+                <p class="dialogue-line">
+                  <span class="dialogue-speaker">You:</span>
+                  <span class="dialogue-want">"I want to be patient."</span>
+                </p>
+                <p class="dialogue-response">
+                  Then I will make you work hard and longer so you can learn to wait.
+                </p>
+              </div>
+
+              <div class="dialogue-exchange">
+                <p class="dialogue-line">
+                  <span class="dialogue-speaker">You:</span>
+                  <span class="dialogue-want">"I want to be wise."</span>
+                </p>
+                <p class="dialogue-response">
+                  Then I will give you failures that crush your spirit so that you can learn the value of judgement.
+                </p>
+              </div>
+
+              <p class="dialogue-question">"Sounds like a rough life."</p>
+
+              <div class="dialogue-conclusion">
+                <p>I measure you by what you are at the end, not the fire and the steel it took to make you.</p>
+                <p class="dialogue-final">
+                  <strong>A good life is not a life that is easy. A good life is a life that makes you into a better person—and that is a hard life.</strong>
+                </p>
+              </div>
+            </div>
+            <div class="quote-author featured-author">— Alex Hormozi</div>
+          </div>
+
+          <!-- Placeholder for more quotes -->
+          <div class="quote-card add-new-quote">
+            <div class="add-new-content">
+              <i class="fas fa-plus fa-3x mb-4"></i>
+              <p>Weitere Zitate folgen...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/theme-switcher.js"></script>
+  <script src="js/collection.js"></script>
+</body>
+</html>

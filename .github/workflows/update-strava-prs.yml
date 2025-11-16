@@ -27,21 +27,19 @@ jobs:
 
       - name: Create .env file with secrets
         run: |
-          echo "STRAVA_CLIENT_ID=${{ secrets.STRAVA_CLIENT_ID }}" > ../python/.env
-          echo "STRAVA_CLIENT_SECRET=${{ secrets.STRAVA_CLIENT_SECRET }}" >> ../python/.env
-          echo "STRAVA_REFRESH_TOKEN=${{ secrets.STRAVA_REFRESH_TOKEN }}" >> ../python/.env
-        working-directory: .
+          echo "STRAVA_CLIENT_ID=${{ secrets.STRAVA_CLIENT_ID }}" > .env
+          echo "STRAVA_CLIENT_SECRET=${{ secrets.STRAVA_CLIENT_SECRET }}" >> .env
+          echo "STRAVA_REFRESH_TOKEN=${{ secrets.STRAVA_REFRESH_TOKEN }}" >> .env
+        working-directory: python
 
       - name: Fetch Strava data and calculate PRs
-        run: |
-          cd ../python
-          python strava_fetch.py
-        working-directory: .
+        run: python strava_fetch.py
+        working-directory: python
 
-      - name: Check if PRs were updated
+      - name: Check if data was updated
         id: check_changes
         run: |
-          if git diff --quiet data/running_prs.json; then
+          if git diff --quiet data/running_prs.json data/strava_activities.json; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -52,8 +50,8 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add data/running_prs.json
-          git commit -m "🏃 Auto-update: Strava running PRs - $(date +'%Y-%m-%d %H:%M')"
+          git add data/running_prs.json data/strava_activities.json
+          git commit -m "🏃 Auto-update: Strava data - $(date +'%Y-%m-%d %H:%M')"
           git push
 
       - name: No changes detected

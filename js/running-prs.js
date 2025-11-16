@@ -350,7 +350,7 @@ function displayRunDetails(run) {
         ${avgHR && maxHR ? `
           <div class="detail-card">
             <h5 class="detail-title">
-              <i class="fas fa-heartbeat text-pink-500 mr-2"></i>
+              <i class="fas fa-heartbeat mr-2" style="color: var(--theme-primary);"></i>
               Herzfrequenz
             </h5>
             <div class="space-y-4">
@@ -378,8 +378,8 @@ function displayRunDetails(run) {
                   <!-- Colored arc -->
                   <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#hrGradient)" stroke-width="12" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="${251.2 - (251.2 * avgHR / maxHR)}"/>
                   <!-- Needle -->
-                  <line x1="100" y1="100" x2="${100 + 70 * Math.cos(Math.PI - (Math.PI * avgHR / maxHR))}" y2="${100 - 70 * Math.sin(Math.PI - (Math.PI * avgHR / maxHR))}" stroke="#e94560" stroke-width="3" stroke-linecap="round"/>
-                  <circle cx="100" cy="100" r="6" fill="#e94560"/>
+                  <line x1="100" y1="100" x2="${100 + 70 * Math.cos(Math.PI - (Math.PI * avgHR / maxHR))}" y2="${100 - 70 * Math.sin(Math.PI - (Math.PI * avgHR / maxHR))}" stroke="var(--theme-primary)" stroke-width="3" stroke-linecap="round"/>
+                  <circle cx="100" cy="100" r="6" fill="var(--theme-primary)"/>
                   <!-- Labels -->
                   <text x="20" y="115" fill="#9ca3af" font-size="12">0</text>
                   <text x="170" y="115" fill="#9ca3af" font-size="12">${maxHR}</text>
@@ -393,7 +393,7 @@ function displayRunDetails(run) {
 
         <div class="detail-card">
           <h5 class="detail-title">
-            <i class="fas fa-chart-area text-green-500 mr-2"></i>
+            <i class="fas fa-chart-area mr-2" style="color: var(--theme-accent);"></i>
             Höhenprofil
           </h5>
           <div class="space-y-3 mb-4">
@@ -488,17 +488,102 @@ function initializeRunMap(run) {
     // Decode polyline
     const coordinates = polyline.decode(run.map.summary_polyline);
 
-    // Create interactive map with zoom and pan enabled
+    // Create map with smart interaction controls
     const map = L.map('run-map', {
-      zoomControl: false,  // Hide default +/- buttons
-      scrollWheelZoom: true,  // Enable mouse wheel zoom on desktop
-      dragging: true,  // Enable dragging/panning
-      touchZoom: true,  // Enable pinch-to-zoom on mobile
-      doubleClickZoom: true,  // Enable double-click zoom
-      boxZoom: true,  // Enable shift+drag zoom
-      keyboard: true,  // Enable keyboard navigation
+      zoomControl: false,  // We'll add custom styled zoom buttons
+      scrollWheelZoom: false,  // Disable scroll wheel zoom (annoying on PC)
+      dragging: true,  // Enable dragging on PC
+      touchZoom: false,  // Disable pinch-to-zoom
+      doubleClickZoom: false,  // We'll use this for mobile activation instead
+      boxZoom: false,  // Disable shift+drag zoom
+      keyboard: false,  // Disable keyboard navigation
+      tap: true,  // Enable tap for mobile
       attributionControl: false
     });
+
+    // Disable scroll wheel zoom explicitly
+    if (map.scrollWheelZoom) map.scrollWheelZoom.disable();
+
+    // Mobile-specific: Disable dragging by default, enable on double-tap
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      // Disable dragging on mobile initially
+      if (map.dragging) map.dragging.disable();
+
+      let mapActive = false;
+      let tapCount = 0;
+      let tapTimer = null;
+
+      // Double-tap detection for mobile (on map container only, not zoom buttons)
+      map.getContainer().addEventListener('touchstart', function(e) {
+        // Ignore touches on zoom control buttons
+        if (e.target.closest('.leaflet-control-zoom')) {
+          return;
+        }
+
+        tapCount++;
+
+        if (tapCount === 1) {
+          // Start timer for double-tap detection
+          tapTimer = setTimeout(function() {
+            tapCount = 0;
+          }, 300);
+        } else if (tapCount === 2) {
+          // Double-tap detected
+          clearTimeout(tapTimer);
+          tapCount = 0;
+
+          if (!mapActive) {
+            // Activate map dragging
+            if (map.dragging) map.dragging.enable();
+            mapActive = true;
+
+            // Visual feedback
+            map.getContainer().style.border = '2px solid var(--theme-primary)';
+            map.getContainer().style.boxShadow = '0 0 20px var(--theme-primary-50)';
+          } else {
+            // Deactivate map dragging
+            if (map.dragging) map.dragging.disable();
+            mapActive = false;
+
+            // Remove visual feedback
+            map.getContainer().style.border = '';
+            map.getContainer().style.boxShadow = '';
+          }
+        }
+      });
+
+      // Deactivate map when touching outside
+      document.addEventListener('touchstart', function(e) {
+        if (!map.getContainer().contains(e.target) && mapActive) {
+          if (map.dragging) map.dragging.disable();
+          mapActive = false;
+          map.getContainer().style.border = '';
+          map.getContainer().style.boxShadow = '';
+        }
+      });
+
+      // Prevent map from becoming draggable after zoom button clicks
+      const preventDragOnZoom = function() {
+        if (mapActive) return; // Only prevent if map is not actively enabled
+        setTimeout(function() {
+          if (map.dragging && !mapActive) {
+            map.dragging.disable();
+          }
+        }, 10);
+      };
+
+      // Listen for zoom events to ensure dragging stays disabled
+      map.on('zoomend', preventDragOnZoom);
+    }
+
+    // Add custom styled zoom control buttons
+    L.control.zoom({
+      position: 'topright',
+      zoomInTitle: 'Hineinzoomen',
+      zoomOutTitle: 'Herauszoomen'
+    }).addTo(map);
 
     // Add a minimal grid background instead of map tiles
     const canvas = L.canvas({ padding: 0.5 });

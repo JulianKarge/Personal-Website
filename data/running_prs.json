@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-11-09T13:39:58.490808",
-  "totalRuns": 7,
+  "lastUpdated": "2025-11-16T16:21:28.945689",
+  "totalRuns": 8,
   "overallBests": {
     "longestRun": {
       "name": "Erster Marathon",
@@ -11,12 +11,12 @@
       "elevation_m": 658
     },
     "fastestPace": {
-      "name": "Letzter Lauf",
-      "date": "2025-11-08",
-      "distance_km": 11.12,
-      "time": "55:44",
-      "pace": "5:00",
-      "elevation_m": 89
+      "name": "Afternoon Run",
+      "date": "2025-11-16",
+      "distance_km": 5.01,
+      "time": "23:43",
+      "pace": "4:44",
+      "elevation_m": 52
     },
     "mostElevation": {
       "name": "Erster Marathon",
@@ -28,6 +28,14 @@
     }
   },
   "distancePRs": {
+    "5k": {
+      "name": "Afternoon Run",
+      "date": "2025-11-16",
+      "distance_km": 5.01,
+      "time": "23:43",
+      "pace": "4:44",
+      "elevation_m": 52
+    },
     "halfMarathon": {
       "name": "HM2",
       "date": "2025-09-11",
