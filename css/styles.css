@@ -3,6 +3,13 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Disable smooth scroll on mobile for better performance */
+@media (max-width: 768px) {
+  html, body {
+    scroll-behavior: auto;
+  }
+}
+
 /* Text Selection Styling */
 ::selection {
   background: var(--theme-primary-30);
@@ -3132,6 +3139,7 @@ section:has(#motto-galaxy) {
 
 #running-prs {
   position: relative;
+  touch-action: auto; /* Allow normal touch scrolling on mobile */
 }
 
 /* PR Cards */
@@ -3298,19 +3306,80 @@ section:has(#motto-galaxy) {
   font-size: 0.9rem;
 }
 
-/* Responsive Design */
+/* Responsive Design - Cover Flow Carousel */
 @media (max-width: 768px) {
-  /* Vertical stacking container for mobile - NO horizontal scrolling */
+  /* Container wrapper for carousel with perspective */
   #running-prs .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding-bottom: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 550px;
+    margin-top: 1rem; /* Add space from title */
+    padding: 4rem 0;
+    overflow: visible; /* Allow cards to show fully */
+    perspective: 1200px;
+    touch-action: pan-y; /* Allow vertical scrolling */
   }
 
   .pr-card {
-    padding: 1rem;
-    width: 100%;
+    position: absolute;
+    width: 75%;
+    max-width: 320px;
+    padding: 1.5rem;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    opacity: 0;
+    pointer-events: none;
+    touch-action: pan-y; /* Allow vertical scrolling */
+    will-change: transform, opacity;
+  }
+
+  /* Remove hover effect on mobile */
+  .pr-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Center active card */
+  .pr-card.active {
+    opacity: 1;
+    transform: translateX(0) translateZ(0) scale(1) rotateY(0deg);
+    z-index: 10;
+    pointer-events: auto;
+  }
+
+  /* Previous card (left side) */
+  .pr-card.prev {
+    opacity: 0.6;
+    transform: translateX(-90%) translateZ(-150px) scale(0.8) rotateY(35deg);
+    z-index: 5;
+    pointer-events: auto;
+    filter: brightness(0.6);
+  }
+
+  /* Next card (right side) */
+  .pr-card.next {
+    opacity: 0.6;
+    transform: translateX(90%) translateZ(-150px) scale(0.8) rotateY(-35deg);
+    z-index: 5;
+    pointer-events: auto;
+    filter: brightness(0.6);
+  }
+
+  /* Cards further away - hidden */
+  .pr-card.far-prev,
+  .pr-card.far-next,
+  .pr-card.hidden {
+    opacity: 0;
+    transform: translateX(0) translateZ(-300px) scale(0.5);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Hide scroll indicators */
+  .pr-scroll-indicators {
+    display: none !important;
   }
 
   .pr-icon-wrapper i {

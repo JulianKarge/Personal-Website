@@ -507,13 +507,31 @@ function initializeRunMap(run) {
     // Mobile-specific: Disable dragging by default, enable on double-tap
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+    // Declare mapActive outside so zoom buttons can access it
+    let mapActive = false;
+
     if (isMobile) {
       // Disable dragging on mobile initially
       if (map.dragging) map.dragging.disable();
 
-      let mapActive = false;
       let tapCount = 0;
       let tapTimer = null;
+
+      // Function to activate map
+      const activateMap = function() {
+        if (map.dragging) map.dragging.enable();
+        mapActive = true;
+        map.getContainer().style.border = '2px solid var(--theme-primary)';
+        map.getContainer().style.boxShadow = '0 0 20px var(--theme-primary-50)';
+      };
+
+      // Function to deactivate map
+      const deactivateMap = function() {
+        if (map.dragging) map.dragging.disable();
+        mapActive = false;
+        map.getContainer().style.border = '';
+        map.getContainer().style.boxShadow = '';
+      };
 
       // Double-tap detection for mobile (on map container only, not zoom buttons)
       map.getContainer().addEventListener('touchstart', function(e) {
@@ -535,21 +553,9 @@ function initializeRunMap(run) {
           tapCount = 0;
 
           if (!mapActive) {
-            // Activate map dragging
-            if (map.dragging) map.dragging.enable();
-            mapActive = true;
-
-            // Visual feedback
-            map.getContainer().style.border = '2px solid var(--theme-primary)';
-            map.getContainer().style.boxShadow = '0 0 20px var(--theme-primary-50)';
+            activateMap();
           } else {
-            // Deactivate map dragging
-            if (map.dragging) map.dragging.disable();
-            mapActive = false;
-
-            // Remove visual feedback
-            map.getContainer().style.border = '';
-            map.getContainer().style.boxShadow = '';
+            deactivateMap();
           }
         }
       });
@@ -557,10 +563,7 @@ function initializeRunMap(run) {
       // Deactivate map when touching outside
       document.addEventListener('touchstart', function(e) {
         if (!map.getContainer().contains(e.target) && mapActive) {
-          if (map.dragging) map.dragging.disable();
-          mapActive = false;
-          map.getContainer().style.border = '';
-          map.getContainer().style.boxShadow = '';
+          deactivateMap();
         }
       });
 
@@ -576,14 +579,33 @@ function initializeRunMap(run) {
 
       // Listen for zoom events to ensure dragging stays disabled
       map.on('zoomend', preventDragOnZoom);
+
+      // Store functions on map object so zoom buttons can use them
+      map._activateMap = activateMap;
+      map._deactivateMap = deactivateMap;
     }
 
     // Add custom styled zoom control buttons
-    L.control.zoom({
+    const zoomControl = L.control.zoom({
       position: 'topright',
       zoomInTitle: 'Hineinzoomen',
       zoomOutTitle: 'Herauszoomen'
     }).addTo(map);
+
+    // Activate map dragging when zoom buttons are clicked (mobile only)
+    if (isMobile && map._activateMap) {
+      // Get zoom buttons after they're added to the map
+      setTimeout(() => {
+        const zoomButtons = map.getContainer().querySelectorAll('.leaflet-control-zoom a');
+        zoomButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Activate map using the shared function
+            map._activateMap();
+          });
+        });
+      }, 100);
+    }
 
     // Add a minimal grid background instead of map tiles
     const canvas = L.canvas({ padding: 0.5 });
@@ -728,7 +750,130 @@ function formatTime(seconds) {
   return `${minutes}:${secs.toString().padStart(2, '0')}`;
 }
 
+/**
+ * Initialize Cover Flow Carousel for mobile
+ */
+function initCoverFlowCarousel() {
+  // Only run on mobile devices
+  if (window.innerWidth > 768) return;
+
+  const carousels = [
+    { grid: 'overall-bests-grid' },
+    { grid: 'distance-prs-grid' }
+  ];
+
+  carousels.forEach(({ grid }) => {
+    const gridElement = document.getElementById(grid);
+    if (!gridElement) return;
+
+    const cards = Array.from(gridElement.querySelectorAll('.pr-card'));
+    if (cards.length === 0) return;
+
+    let currentIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    // Update card positions based on current index with circular logic
+    function updateCarousel() {
+      const totalCards = cards.length;
+
+      cards.forEach((card, index) => {
+        // Remove all position classes
+        card.classList.remove('active', 'prev', 'next', 'far-prev', 'far-next', 'hidden');
+
+        // Calculate circular difference
+        let diff = index - currentIndex;
+
+        // Normalize difference to handle wrapping
+        // If diff is more than half the carousel, wrap it around
+        if (diff > totalCards / 2) {
+          diff -= totalCards;
+        } else if (diff < -totalCards / 2) {
+          diff += totalCards;
+        }
+
+        if (diff === 0) {
+          card.classList.add('active');
+        } else if (diff === -1) {
+          card.classList.add('prev');
+        } else if (diff === 1) {
+          card.classList.add('next');
+        } else if (diff < -1) {
+          card.classList.add('far-prev');
+        } else if (diff > 1) {
+          card.classList.add('far-next');
+        }
+      });
+    }
+
+    // Navigate to specific index with loop
+    function goToSlide(index) {
+      // Loop around if going past the edges
+      if (index >= cards.length) {
+        currentIndex = 0;
+      } else if (index < 0) {
+        currentIndex = cards.length - 1;
+      } else {
+        currentIndex = index;
+      }
+      updateCarousel();
+    }
+
+    // Next slide (loops to beginning)
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    // Previous slide (loops to end)
+    function prevSlide() {
+      goToSlide(currentIndex - 1);
+    }
+
+    // Touch event handlers - swipe only
+    function handleTouchStart(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }
+
+    function handleTouchEnd(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swiped left - go to next
+          nextSlide();
+        } else {
+          // Swiped right - go to previous
+          prevSlide();
+        }
+      }
+    }
+
+    // Add touch event listeners
+    gridElement.addEventListener('touchstart', handleTouchStart, { passive: true });
+    gridElement.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+    // Initialize carousel
+    updateCarousel();
+  });
+}
+
 // Load run selector when page loads
 document.addEventListener('DOMContentLoaded', function() {
   loadRunSelector();
+  initCoverFlowCarousel();
+});
+
+// Re-initialize on window resize
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    initCoverFlowCarousel();
+  }, 250);
 });

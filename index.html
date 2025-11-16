@@ -558,7 +558,7 @@
       <h3 class="text-2xl font-bold text-white mb-6 text-center">
         Gesamtbestleistungen
       </h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div id="overall-bests-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Longest Run -->
         <div class="pr-card card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
           <div class="pr-icon-wrapper mb-4">
@@ -592,6 +592,8 @@
           </div>
         </div>
       </div>
+      <!-- Scroll indicators for mobile -->
+      <div id="overall-indicators" class="pr-scroll-indicators hidden md:hidden"></div>
     </div>
 
     <!-- Distance-Specific PRs -->
@@ -599,7 +601,7 @@
       <h3 class="text-2xl font-bold text-white mb-6 text-center">
         Distanz-Rekorde
       </h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div id="distance-prs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- 5K PR -->
         <div class="pr-card distance-pr card rounded-lg p-6 shadow-xl transform hover:scale-105 transition-all duration-300">
           <div class="pr-distance-badge">5K</div>
@@ -654,6 +656,8 @@
           </div>
         </div>
       </div>
+      <!-- Scroll indicators for mobile -->
+      <div id="distance-indicators" class="pr-scroll-indicators hidden md:hidden"></div>
     </div>
 
     <!-- Latest Run Section -->
