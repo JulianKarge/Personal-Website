@@ -1,12 +1,69 @@
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   font-family: "Inter", sans-serif;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 /* Disable smooth scroll on mobile for better performance */
 @media (max-width: 768px) {
   html, body {
     scroll-behavior: auto;
+  }
+
+  /* Fix mobile navigation positioning */
+  header nav {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .brand-logo {
+    font-size: 0.75rem !important;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .brand-logo img {
+    height: 2rem !important;
+    margin-right: 0.25rem !important;
+    flex-shrink: 0;
+  }
+
+  .brand-logo span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Mobile menu controls container */
+  .flex.md\\:hidden {
+    gap: 0.25rem !important;
+    flex-shrink: 0;
+  }
+
+  /* Better mobile menu button spacing */
+  #mobile-menu-button {
+    padding: 0.25rem !important;
+    flex-shrink: 0;
+  }
+
+  /* Theme switcher mobile adjustments */
+  .theme-switcher {
+    flex-shrink: 0;
+  }
+
+  .theme-button {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.75rem !important;
+    white-space: nowrap;
   }
 }
 
@@ -3935,6 +3992,18 @@ label[for="run-selector"] {
     font-size: 1.5rem !important;
   }
 
+  /* Force ALL grids to be single column on mobile - override Tailwind */
+  #latest-run-details .grid,
+  #latest-run-details .grid.grid-cols-1,
+  #latest-run-details .grid.grid-cols-2,
+  #latest-run-details .grid.grid-cols-3,
+  #latest-run-details .grid.grid-cols-4,
+  #latest-run-details .grid.lg\\:grid-cols-4,
+  #latest-run-details .grid.md\\:grid-cols-4 {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+  }
+
   /* Stat cards mobile layout */
   .stat-card {
     padding: 1rem !important;
@@ -4062,6 +4131,18 @@ label[for="run-selector"] {
   /* Extra small devices - Keep map large on small screens too */
   #run-map {
     height: 350px !important;
+  }
+
+  /* Force ALL grids to be single column on extra small mobile */
+  #latest-run-details .grid,
+  #latest-run-details .grid.grid-cols-1,
+  #latest-run-details .grid.grid-cols-2,
+  #latest-run-details .grid.grid-cols-3,
+  #latest-run-details .grid.grid-cols-4,
+  #latest-run-details .grid.lg\\:grid-cols-4,
+  #latest-run-details .grid.md\\:grid-cols-4 {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
   }
 
   .stat-card {

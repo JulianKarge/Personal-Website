@@ -311,7 +311,7 @@ function displayRunDetails(run) {
       </div>
 
       <!-- Main Stats Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="flex flex-col xl:flex-row xl:grid xl:grid-cols-4 gap-4 mb-6">
         <div class="stat-card">
           <div class="stat-icon">
             <i class="fas fa-route"></i>
@@ -346,7 +346,7 @@ function displayRunDetails(run) {
       </div>
 
       <!-- Heart Rate & Elevation Details -->
-      <div class="grid grid-cols-1 ${avgHR && maxHR ? 'md:grid-cols-2' : 'md:grid-cols-1'} gap-6 mb-6">
+      <div class="flex flex-col ${avgHR && maxHR ? 'xl:flex-row xl:grid xl:grid-cols-2' : ''} gap-6 mb-6">
         ${avgHR && maxHR ? `
           <div class="detail-card">
             <h5 class="detail-title">
@@ -432,7 +432,7 @@ function displayRunDetails(run) {
       </div>
 
       <!-- Additional Stats -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="flex flex-col xl:flex-row xl:grid xl:grid-cols-4 gap-4">
         ${run.average_cadence ? `
           <div class="extra-stat-card">
             <div class="extra-stat-icon">👟</div>
@@ -488,11 +488,14 @@ function initializeRunMap(run) {
     // Decode polyline
     const coordinates = polyline.decode(run.map.summary_polyline);
 
+    // Detect if mobile BEFORE creating map
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
     // Create map with smart interaction controls
     const map = L.map('run-map', {
       zoomControl: false,  // We'll add custom styled zoom buttons
       scrollWheelZoom: false,  // Disable scroll wheel zoom (annoying on PC)
-      dragging: true,  // Enable dragging on PC
+      dragging: !isMobileDevice,  // Disable dragging on mobile initially, enable on desktop
       touchZoom: false,  // Disable pinch-to-zoom
       doubleClickZoom: false,  // We'll use this for mobile activation instead
       boxZoom: false,  // Disable shift+drag zoom
@@ -505,7 +508,7 @@ function initializeRunMap(run) {
     if (map.scrollWheelZoom) map.scrollWheelZoom.disable();
 
     // Mobile-specific: Disable dragging by default, enable on double-tap
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isMobile = isMobileDevice;
 
     // Declare mapActive outside so zoom buttons can access it
     let mapActive = false;
