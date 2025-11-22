@@ -5,6 +5,215 @@
       "id": 193506546,
       "resource_state": 1
     },
+    "name": "Afternoon Workout",
+    "distance": 1718.7,
+    "moving_time": 1387,
+    "elapsed_time": 2272,
+    "total_elevation_gain": 20.0,
+    "type": "Workout",
+    "sport_type": "Workout",
+    "workout_type": null,
+    "device_name": "Garmin Forerunner 165",
+    "id": 16533452929,
+    "start_date": "2025-11-22T12:48:55Z",
+    "start_date_local": "2025-11-22T13:48:55Z",
+    "timezone": "(GMT+01:00) Europe/Berlin",
+    "utc_offset": 3600.0,
+    "location_city": null,
+    "location_state": null,
+    "location_country": null,
+    "achievement_count": 0,
+    "kudos_count": 0,
+    "comment_count": 0,
+    "athlete_count": 1,
+    "photo_count": 0,
+    "map": {
+      "id": "a16533452929",
+      "summary_polyline": "ybphHeoqv@DEI?IH@BDA?EGD@@FIMN?CDEDKB?KN?BD@AEAH?GC?BL@GAG?BBG?H@A?@A?@AACFEB?ACBA?@SF@J@KE@?DB?BOCA@NAICFBC?D@AEGDF@AAACNDMA@?AC@@B?AFBCEDMAA?FAA@??D@IC?D??A@@G?GDDBHKAEAFE?CEDFF?BECAIDEABDBG@@BA?BDCCGGB@NB@AKCFBB@I?BAACB@@E??FDKFCIE?FD?CS?LBB@LAOECEFCPDABK?ADAAGCLB??E@HCC@CBD@MCF@E?B@CGB@B?GCDBACKCF?FBK@FE??GADBCAE@DIB@CD@HKGBDF@EEB@AD@A@C?@EB@E?DDGI?FA?@E?DB@@G?BCCAF?C?@CA?JACCL@@?E?@FGED?ABFCCDAA@CCC@B??E?D@CCB@A?ACD@C@BAGBFGC@BDID@?GA@?A?B?C@BAg@D_@DEX?LBp@GN@LJ?^G~@?`@DXEP@j@`@|FC|DDXBFPFz@@n@JTRXFX@VC`@?b@Dr@BVPXf@HTDT?n@RfAH~@AfBBb@JhAh@bEJnBVp@DRd@VD`@Gn@AlARp@@\\f@hBAPI?AFDH@XWRPENK",
+      "resource_state": 2
+    },
+    "trainer": false,
+    "commute": false,
+    "manual": false,
+    "private": false,
+    "visibility": "everyone",
+    "flagged": false,
+    "gear_id": null,
+    "start_latlng": [
+      48.748132,
+      9.105956
+    ],
+    "end_latlng": [
+      48.744139,
+      9.09596
+    ],
+    "average_speed": 1.239,
+    "max_speed": 7.52,
+    "average_cadence": 69.2,
+    "average_temp": 19,
+    "has_heartrate": true,
+    "average_heartrate": 114.3,
+    "max_heartrate": 152.0,
+    "heartrate_opt_out": false,
+    "display_hide_heartrate_option": true,
+    "elev_high": 469.0,
+    "elev_low": 455.0,
+    "upload_id": 17620571601,
+    "upload_id_str": "17620571601",
+    "external_id": "garmin_ping_504823791225",
+    "from_accepted_tag": false,
+    "pr_count": 0,
+    "total_photo_count": 0,
+    "has_kudoed": false,
+    "suffer_score": 4.0
+  },
+  {
+    "resource_state": 2,
+    "athlete": {
+      "id": 193506546,
+      "resource_state": 1
+    },
+    "name": "Afternoon Run",
+    "distance": 10012.7,
+    "moving_time": 3335,
+    "elapsed_time": 3340,
+    "total_elevation_gain": 131.0,
+    "type": "Run",
+    "sport_type": "Run",
+    "workout_type": null,
+    "device_name": "Garmin Forerunner 165",
+    "id": 16524893120,
+    "start_date": "2025-11-21T14:23:12Z",
+    "start_date_local": "2025-11-21T15:23:12Z",
+    "timezone": "(GMT+01:00) Europe/Berlin",
+    "utc_offset": 3600.0,
+    "location_city": null,
+    "location_state": null,
+    "location_country": null,
+    "achievement_count": 5,
+    "kudos_count": 0,
+    "comment_count": 0,
+    "athlete_count": 1,
+    "photo_count": 0,
+    "map": {
+      "id": "a16524893120",
+      "summary_polyline": "ujohHonov@ITPDG@FNARBVKfALd@D\\CFq@G[Ds@Z[\\KDMO}@wA]c@QM[E[Ak@FKJGLKx@]z@Yl@]d@q@lAWlAKzAYbBITIFw@x@OJ}@Zg@Ze@Fw@?cATa@T]VIDg@BODUJc@ZE@IAGG_@e@QMa@u@QKYKw@Ms@Bk@Ei@UeAk@SUsAiAW]{BwB]e@o@qAU]w@mBMM[m@I_@KcASuBAc@UyAKsADuBVeFDsBD_ABMDIJGT]Vm@B]V}@f@u@r@i@VY`@Yd@i@fAeARGDGBeBR}D?]HaAPwFPgCBaAJ}A@}@VkEFmCN{AFkCFc@PyBWoFQ{CE{AKsBMuGOqAKm@Uy@c@cC[u@q@yBg@qAc@oA]y@CM?YJ[LId@OxAYhC]vAMtAApANvB`@d@RxAh@LPNp@x@tCTn@DRJvAPp@DRBr@NbBTt@FHTPUYSm@[U]CKEGGWa@KIe@?e@Gu@Q]Si@MW?g@Qi@?i@G{@BMDy@L]?sANs@DGBAD?ZZxAVbABTCHs@De@Ne@E[HMCIDKJYf@IHqAh@MLKXEd@ErCHbB@x@Dl@Gj@E`BK`BBt@AzDGtCAvA@hCEvAGlAo@nE[`DUnAOhBEjHUpH@f@Cl@@j@p@bDHz@AfAGv@EfBY|E?bBBh@J~@FbAd@zDBXIl@[tASjBK~A@|@EdAMVQHa@FCBAHPl@LRLNLFr@Lj@\\PDJAHEJQDa@Io@?OHGJDr@pAZbBNl@r@vAHFNFV?PQVc@ZaAFINB`@^HBPDR?b@K`CkA\\C`@FXHVLJJ\\b@JTn@rBRRXJTBZ@b@CZGd@Sz@u@f@k@\\Wp@Ut@Oj@[`@]d@m@Zs@`@yB@k@K}@?_@Jw@TcAHs@VqD@}@@wCGk@g@wBAUDk@Lc@@S?QK_A?YDo@Pm@@Q?a@UmB?[B]?k@Ok@Wg@GEMT@HB@T?LHNVF`@CzAPrA@b@CXWlA?`@JdACf@In@C^@Z\\lANx@Dx@?v@[hGK|@Cb@YjAEX?j@Jz@AVY`BM^INIRL@NDTRd@XDJIvB@j@Hn@@n@C`@E^_@lACb@TnJPtENvCFdCBHQqFUaFGkBCkBOcD?]B[FYVw@Fu@@k@MsA",
+      "resource_state": 2
+    },
+    "trainer": false,
+    "commute": false,
+    "manual": false,
+    "private": false,
+    "visibility": "everyone",
+    "flagged": false,
+    "gear_id": null,
+    "start_latlng": [
+      48.744275,
+      9.095605
+    ],
+    "end_latlng": [
+      48.747032,
+      9.090649
+    ],
+    "average_speed": 3.002,
+    "max_speed": 4.38,
+    "average_cadence": 78.9,
+    "average_temp": 24,
+    "average_watts": 365.3,
+    "max_watts": 619,
+    "weighted_average_watts": 378,
+    "device_watts": true,
+    "kilojoules": 1219.4,
+    "has_heartrate": true,
+    "average_heartrate": 157.2,
+    "max_heartrate": 189.0,
+    "heartrate_opt_out": false,
+    "display_hide_heartrate_option": true,
+    "elev_high": 473.4,
+    "elev_low": 411.2,
+    "upload_id": 17611901460,
+    "upload_id_str": "17611901460",
+    "external_id": "garmin_ping_504504567301",
+    "from_accepted_tag": false,
+    "pr_count": 0,
+    "total_photo_count": 0,
+    "has_kudoed": false,
+    "suffer_score": 78.0
+  },
+  {
+    "resource_state": 2,
+    "athlete": {
+      "id": 193506546,
+      "resource_state": 1
+    },
+    "name": "Evening Workout",
+    "distance": 2430.2,
+    "moving_time": 1445,
+    "elapsed_time": 2757,
+    "total_elevation_gain": 22.0,
+    "type": "Workout",
+    "sport_type": "Workout",
+    "workout_type": null,
+    "device_name": "Garmin Forerunner 165",
+    "id": 16497174743,
+    "start_date": "2025-11-18T17:12:04Z",
+    "start_date_local": "2025-11-18T18:12:04Z",
+    "timezone": "(GMT+01:00) Europe/Berlin",
+    "utc_offset": 3600.0,
+    "location_city": null,
+    "location_state": null,
+    "location_country": null,
+    "achievement_count": 0,
+    "kudos_count": 0,
+    "comment_count": 0,
+    "athlete_count": 1,
+    "photo_count": 0,
+    "map": {
+      "id": "a16497174743",
+      "summary_polyline": "mbohHmspv@QOEKUAKBKLSNSBICM?GBI@ECGSIKWII?KSICi@CISKc@[u@o@Ea@?oAM[Gs@Cm@IQBs@AYUSKy@Mk@Ea@ESKBo@FgDM_BIs@?UKq@DmA_@eAE_@?]G]_AGSB?p@QT@X@W@BEJ@B?EC?@B@CAA@?ANDOABAA?GCJ@H@AC?BMF?EB@?AA@@AABAEB@@A@?GCB?DLSAIA?@@A?AA?@BAF@G@GLAHDHCCBOFC?BEC@CA@F?C@?DAEGD?H@FAG@BA@?WCR@I@N?KCADB@A@AG@B@@AEBHE?GIBBBALDK@SFE@EC?@DCB@D@?@CEGFCEBCF?CA?DL@CE@HJEG?CCA@@AC@@@CC@@FAGCBBE@DKB?BBFB?CGEAAD?ADEAB?E@L?ME?@HBA?BBM?FACCHBCAEHGAGB??HCA@AAI?H@CAGADB?EF@B@C@@CECHBC@@CALDGA?@ACC?D@CGD]?QCAB@@S@AfAFNAT`@H\\H~@?XIz@F~AZrCIpB@xABDp@IVJV^HF~ARPTJFd@AzAL`@h@BJd@lEBjAA^B\\FHNhC?r@F@FPLrBFb@Vr@TTD@NRLZ@ACr@Gb@A~@P|@PJLxADPHBCZDX?T@K?b@AEB?BMDJ",
+      "resource_state": 2
+    },
+    "trainer": false,
+    "commute": false,
+    "manual": false,
+    "private": false,
+    "visibility": "everyone",
+    "flagged": false,
+    "gear_id": null,
+    "start_latlng": [
+      48.742957,
+      9.101519
+    ],
+    "end_latlng": [
+      48.744046,
+      9.095823
+    ],
+    "average_speed": 1.682,
+    "max_speed": 5.138,
+    "average_cadence": 76.2,
+    "average_temp": 17,
+    "has_heartrate": true,
+    "average_heartrate": 92.0,
+    "max_heartrate": 141.0,
+    "heartrate_opt_out": false,
+    "display_hide_heartrate_option": true,
+    "elev_high": 460.6,
+    "elev_low": 445.2,
+    "upload_id": 17583921571,
+    "upload_id_str": "17583921571",
+    "external_id": "garmin_ping_503476719113",
+    "from_accepted_tag": false,
+    "pr_count": 0,
+    "total_photo_count": 0,
+    "has_kudoed": false,
+    "suffer_score": 2.0
+  },
+  {
+    "resource_state": 2,
+    "athlete": {
+      "id": 193506546,
+      "resource_state": 1
+    },
     "name": "Afternoon Run",
     "distance": 5005.4,
     "moving_time": 1423,
@@ -69,7 +278,8 @@
     "from_accepted_tag": false,
     "pr_count": 0,
     "total_photo_count": 0,
-    "has_kudoed": false
+    "has_kudoed": false,
+    "suffer_score": 43.0
   },
   {
     "resource_state": 2,
@@ -136,7 +346,8 @@
     "from_accepted_tag": false,
     "pr_count": 0,
     "total_photo_count": 0,
-    "has_kudoed": false
+    "has_kudoed": false,
+    "suffer_score": 1.0
   },
   {
     "resource_state": 2,
@@ -203,7 +414,8 @@
     "from_accepted_tag": false,
     "pr_count": 0,
     "total_photo_count": 0,
-    "has_kudoed": false
+    "has_kudoed": false,
+    "suffer_score": 4.0
   },
   {
     "resource_state": 2,
@@ -270,7 +482,8 @@
     "from_accepted_tag": false,
     "pr_count": 0,
     "total_photo_count": 0,
-    "has_kudoed": false
+    "has_kudoed": false,
+    "suffer_score": 1.0
   },
   {
     "resource_state": 2,
@@ -337,7 +550,8 @@
     "from_accepted_tag": false,
     "pr_count": 0,
     "total_photo_count": 0,
-    "has_kudoed": false
+    "has_kudoed": false,
+    "suffer_score": 2.0
   },
   {
     "resource_state": 2,
@@ -403,7 +617,8 @@
     "from_accepted_tag": false,
     "pr_count": 0,
     "total_photo_count": 0,
-    "has_kudoed": false
+    "has_kudoed": false,
+    "suffer_score": 1.0
   },
   {
     "resource_state": 2,
@@ -475,7 +690,8 @@
     "from_accepted_tag": false,
     "pr_count": 3,
     "total_photo_count": 0,
-    "has_kudoed": false
+    "has_kudoed": false,
+    "suffer_score": 134.0
   },
   {
     "resource_state": 2,
@@ -547,7 +763,8 @@
     "from_accepted_tag": false,
     "pr_count": 1,
     "total_photo_count": 0,
-    "has_kudoed": false
+    "has_kudoed": false,
+    "suffer_score": 248.0
   },
   {
     "resource_state": 2,
@@ -611,7 +828,8 @@
     "from_accepted_tag": false,
     "pr_count": 0,
     "total_photo_count": 0,
-    "has_kudoed": false
+    "has_kudoed": false,
+    "suffer_score": 174.0
   },
   {
     "resource_state": 2,
@@ -675,7 +893,8 @@
     "from_accepted_tag": false,
     "pr_count": 2,
     "total_photo_count": 0,
-    "has_kudoed": false
+    "has_kudoed": false,
+    "suffer_score": 512.0
   },
   {
     "resource_state": 2,
@@ -739,7 +958,8 @@
     "from_accepted_tag": false,
     "pr_count": 0,
     "total_photo_count": 0,
-    "has_kudoed": false
+    "has_kudoed": false,
+    "suffer_score": 258.0
   },
   {
     "resource_state": 2,
@@ -803,7 +1023,8 @@
     "from_accepted_tag": false,
     "pr_count": 1,
     "total_photo_count": 0,
-    "has_kudoed": false
+    "has_kudoed": false,
+    "suffer_score": 302.0
   },
   {
     "resource_state": 2,
@@ -867,6 +1088,7 @@
     "from_accepted_tag": false,
     "pr_count": 0,
     "total_photo_count": 0,
-    "has_kudoed": false
+    "has_kudoed": false,
+    "suffer_score": 533.0
   }
 ]

@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-11-16T17:32:39.593733",
-  "totalRuns": 8,
+  "lastUpdated": "2025-11-22T15:35:49.255173",
+  "totalRuns": 9,
   "overallBests": {
     "longestRun": {
       "name": "Erster Marathon",
@@ -35,6 +35,14 @@
       "time": "23:43",
       "pace": "4:44",
       "elevation_m": 52
+    },
+    "10k": {
+      "name": "Afternoon Run",
+      "date": "2025-11-21",
+      "distance_km": 10.01,
+      "time": "55:35",
+      "pace": "5:33",
+      "elevation_m": 131
     },
     "halfMarathon": {
       "name": "HM2",
