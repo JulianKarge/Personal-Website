@@ -265,6 +265,94 @@
     </section>
 
 
+<template>
+<!-- START: Network Topology Visualization Section -->
+<section id="network-topology" class="network-topology-section py-16 md:py-24 bg-gray-900">
+  <div class="container mx-auto px-4 sm:px-6">
+    <h2 class="section-title text-white text-3xl md:text-4xl springy-text">
+      Netzwerktopologien
+    </h2>
+    <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-base md:text-lg">
+      Entdecke verschiedene Netzwerkstrukturen und beobachte, wie Daten durch sie fließen. Wähle eine Topologie und interagiere mit den Knoten.
+    </p>
+
+    <!-- Topology Selector -->
+    <div class="topology-controls mb-8">
+      <button class="topology-btn active" data-topology="star">
+        <i class="fas fa-star"></i>
+        <span>Star</span>
+      </button>
+      <button class="topology-btn" data-topology="ring">
+        <i class="fas fa-circle-notch"></i>
+        <span>Ring</span>
+      </button>
+      <button class="topology-btn" data-topology="mesh">
+        <i class="fas fa-project-diagram"></i>
+        <span>Mesh</span>
+      </button>
+      <button class="topology-btn" data-topology="bus">
+        <i class="fas fa-minus"></i>
+        <span>Bus</span>
+      </button>
+      <button class="topology-btn" data-topology="tree">
+        <i class="fas fa-sitemap"></i>
+        <span>Tree</span>
+      </button>
+      <button class="topology-btn" data-topology="hybrid">
+        <i class="fas fa-network-wired"></i>
+        <span>Hybrid</span>
+      </button>
+    </div>
+
+    <!-- Canvas Container -->
+    <div class="topology-canvas-container">
+      <canvas id="topologyCanvas"></canvas>
+
+      <!-- Node Info Tooltip -->
+      <div id="nodeTooltip" class="node-tooltip hidden">
+        <div class="tooltip-content">
+          <h4 class="tooltip-title">Node <span id="tooltipNodeId"></span></h4>
+          <p class="tooltip-text">Status: <span class="status-active">Active</span></p>
+          <p class="tooltip-text">Connections: <span id="tooltipConnections">0</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Topology Information -->
+    <div class="topology-info-grid">
+      <div class="topology-info-card">
+        <div class="info-header">
+          <i class="fas fa-info-circle"></i>
+          <h3 id="topologyName">Star Topology</h3>
+        </div>
+        <p id="topologyDescription" class="info-description">
+          Alle Knoten sind mit einem zentralen Hub verbunden. Einfache Verwaltung, aber der zentrale Punkt ist kritisch.
+        </p>
+      </div>
+
+      <div class="topology-stats-card">
+        <div class="stat-item">
+          <i class="fas fa-check-circle stat-icon-pro"></i>
+          <span id="topologyPro1" class="stat-text">Einfache Fehlerdiagnose</span>
+        </div>
+        <div class="stat-item">
+          <i class="fas fa-check-circle stat-icon-pro"></i>
+          <span id="topologyPro2" class="stat-text">Einfach erweiterbar</span>
+        </div>
+        <div class="stat-item">
+          <i class="fas fa-exclamation-triangle stat-icon-con"></i>
+          <span id="topologyCon1" class="stat-text">Single Point of Failure</span>
+        </div>
+        <div class="stat-item">
+          <i class="fas fa-exclamation-triangle stat-icon-con"></i>
+          <span id="topologyCon2" class="stat-text">Hoher Kabelaufwand</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ <!--END: Network Topology Visualization Section -->
+</template>
 
 
 
@@ -283,13 +371,6 @@
 </section>
 
 <!--Galaxy-->
-
-
-
-
-
-
-
 
 
 <section id="latest-video" class="py-16 md:py-24 bg-gray-800">
@@ -1260,6 +1341,10 @@
     <!-- GALAXY YEAHH -->
   <script src="js/galaxy.js"></script>
     <!-- GALAXY YEAHH -->
+
+    <!-- Network Topology Visualization -->
+    <script src="js/network-topology.js"></script>
+
     <script src="js/springy-text.js"></script>
     <script src="js/script.js" defer></script>
 
