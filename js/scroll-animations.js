@@ -33,7 +33,8 @@
             .latest-video-card,
             .value-card,
             .goal-statement-card,
-            .about-slide
+            .about-slide,
+            .book-3d
         `);
 
         // Add scroll-animate class and observe each element

@@ -21,10 +21,10 @@
     INVINCIBILITY_TIME: 2000, // 2 seconds after hit
 
     // Bullets
-    BULLET_SPEED: 8,
+    BULLET_SPEED: 6,
     BULLET_SIZE: 4,
     BULLET_COLOR: '#e94560',
-    FIRE_RATE: 150, // milliseconds between shots
+    FIRE_RATE: 250, // milliseconds between shots
 
     // Asteroids (Normal)
     ASTEROID_MIN_SIZE: 20,
@@ -81,7 +81,7 @@
     SHIELD_DURATION: 30000, // 30 seconds
     ROCKET_DURATION: 20000, // 20 seconds
     SHIELD_EXPLOSION_RADIUS: 150,
-    ROCKET_FIRE_RATE: 1000, // Fire rocket every 1 second
+    ROCKET_FIRE_RATE: 1500, // Fire rocket every 1.5 seconds
     ROCKET_DAMAGE: 2,
 
     // Power-up quality tiers (score-based)
@@ -1190,8 +1190,8 @@
       }
     }
 
-    // Only show high score modal if it's a NEW high score AND qualifies for leaderboard
-    if (qualifiesForLeaderboard && isNewHighScore) {
+    // Show high score modal if score qualifies for global top 3
+    if (qualifiesForLeaderboard) {
       // Play victory sound
       if (window.gameAudio) {
         window.gameAudio.playVictory();
@@ -1757,23 +1757,21 @@
       const originalText = btnText.textContent;
       btnText.textContent = 'WIRD GESENDET...';
 
-      // Always proceed to game over after a short delay (testing mode without Firebase)
-      setTimeout(() => {
-        console.log(`Score would be submitted: ${name} (${selectedIcon}) - ${score} points`);
-
-        // Try Firebase if available
+      try {
+        // Submit to Firebase and wait for it to complete
         if (window.LeaderboardAPI) {
-          window.LeaderboardAPI.submitScore(name, selectedIcon, score).catch(() => {
-            console.log('Firebase not configured, skipping submission');
-          });
+          await window.LeaderboardAPI.submitScore(name, selectedIcon, score);
+          console.log(`Score submitted: ${name} (${selectedIcon}) - ${score} points`);
         }
+      } catch (error) {
+        console.error('Score submission failed:', error);
+      }
 
-        // Show success and proceed
-        highScoreModal.classList.add('hidden');
-        submitScoreButton.disabled = false;
-        btnText.textContent = originalText;
-        showGameOverScreen();
-      }, 800);
+      // Show success and proceed
+      highScoreModal.classList.add('hidden');
+      submitScoreButton.disabled = false;
+      btnText.textContent = originalText;
+      showGameOverScreen();
     });
 
     // View leaderboard button

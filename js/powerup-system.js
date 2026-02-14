@@ -315,7 +315,7 @@
       x: ship.x,
       y: ship.y - 20,
       vx: 0,
-      vy: -bulletSpeed * 1.5, // Rockets are faster
+      vy: -bulletSpeed * 1.2, // Rockets are slightly faster
       size: bulletSize * 1.5,
       color: '#f59e0b',
       isRocket: true,

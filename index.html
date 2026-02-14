@@ -7,7 +7,7 @@
     <meta property="og:title" content="Julian Lucca Karge">
     <meta property="og:description" content="Inspiration für persönliches Wachstum durch Challenges und Sport.">
     <meta property="og:image" content="https://juliankarge.com/Images/Profile-Pic.png"> <!-- Replace with absolute URL -->
-    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:url" content="https://juliankarge.com">
     <link rel="icon" href="Images/favicon.ico" type="image/x-icon"> <!-- Create a favicon if needed -->
     <title>Julian Lucca Karge</title>
 
@@ -34,8 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="js/three.min.js"></script>
 
-<!-- Futuristic font -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
+<!-- Duplicate Orbitron import removed (already loaded above) -->
 
   </head>
 
@@ -59,9 +58,9 @@
         <div class="hidden md:flex space-x-4 lg:space-x-8 text-sm lg:text-base xl:text-lg items-center flex-shrink-0">
           <a href="#home" class="nav-link relative whitespace-nowrap">Startseite</a>
           <a href="#about" class="nav-link relative whitespace-nowrap">Über Mich</a>
-          <a href="#career" class="nav-link relative whitespace-nowrap">Werdegang</a>
           <a href="#running-prs" class="nav-link relative whitespace-nowrap">Laufrekorde</a>
           <a href="#achievements" class="nav-link relative whitespace-nowrap">Errungenschaften</a>
+          <a href="#books" class="nav-link relative whitespace-nowrap">Bücher</a>
 
           <!-- Theme Switcher -->
           <div class="theme-switcher">
@@ -133,14 +132,14 @@
         <a href="#about" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
           >Über Mich</a
         >
-        <a href="#career" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
-          >Werdegang</a
-        >
         <a href="#running-prs" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
           >Laufrekorde</a
         >
         <a href="#achievements" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
           >Errungenschaften</a
+        >
+        <a href="#books" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
+          >Bücher</a
         >
         <a href="#contact" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
           >Kontakt</a
@@ -415,7 +414,8 @@
 </section>
 
 
-<!-- START: Career Timeline Section -->
+<!-- START: Career Timeline Section (COMMENTED OUT - to restore, remove the outer comment markers) -->
+<!--
 <section id="career" class="career-section bg-gray-900">
   <div class="container mx-auto px-4 sm:px-6 py-16 md:py-24">
     <h2 class="section-title text-white text-3xl md:text-4xl springy-text">
@@ -426,22 +426,16 @@
     </p>
   </div>
 
-  <!-- Timeline Content Wrapper -->
   <div class="timeline-wrapper">
-    <!-- Year Navigation Buttons -->
     <div id="year-navigation" class="year-navigation">
       <button class="year-nav-btn active" data-target-index="0">2023 - Heute</button>
       <button class="year-nav-btn" data-target-index="1">2023</button>
       <button class="year-nav-btn" data-target-index="2">2020</button>
       <button class="year-nav-btn" data-target-index="3">2018</button>
-   <!--   <button class="year-nav-btn" data-target-index="4">2017</button>
-      <button class="year-nav-btn" data-target-index="5">2016</button><! -->
     </div>
 
-    <!-- Timeline Track -->
     <div id="timeline-track" class="timeline-track">
 
-      <!-- Timeline Item 1: 2023-Present (HPE + DHBW) -->
       <div class="timeline-card timeline-card-current" data-year="2023" data-index="0">
         <div class="timeline-year-badge">2023 - Heute</div>
         <div class="timeline-card-content">
@@ -460,7 +454,6 @@
             <li>• Internationale Projekterfahrung</li>
           </ul>
 
-          <!-- Internship Subsections -->
           <div class="internship-section">
             <h4 class="internship-section-title">
               <i class="fas fa-briefcase mr-2"></i>Praxisphasen bei HPE
@@ -531,7 +524,6 @@
         </div>
       </div>
 
-      <!-- Timeline Item 2: 2023 (Abitur) -->
       <div class="timeline-card" data-year="2023" data-index="1">
         <div class="timeline-year-badge">2023</div>
         <div class="timeline-card-content">
@@ -549,7 +541,6 @@
         </div>
       </div>
 
-      <!-- Timeline Item 3: 2020 -->
       <div class="timeline-card" data-year="2020" data-index="2">
         <div class="timeline-year-badge">2020</div>
         <div class="timeline-card-content">
@@ -567,7 +558,6 @@
         </div>
       </div>
 
-      <!-- Timeline Item 4: 2018 -->
       <div class="timeline-card" data-year="2018" data-index="3">
         <div class="timeline-year-badge">2018</div>
         <div class="timeline-card-content">
@@ -585,43 +575,10 @@
         </div>
       </div>
 
-      <!-- Timeline Item 5: 2017 
-      <div class="timeline-card" data-year="2017" data-index="4">
-        <div class="timeline-year-badge">2017</div>
-        <div class="timeline-card-content">
-          <h3 class="timeline-title">Platzhalter 2017</h3>
-          <p class="timeline-location">Platzhalter Location</p>
-          <p class="timeline-description">
-             Meilensteine aus 2017.
-          </p>
-          <ul class="timeline-details">
-            <li>• Detail 1</li>
-            <li>• Detail 2</li>
-            <li>• Detail 3</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Timeline Item 6: 2016 
-      <div class="timeline-card" data-year="2016" data-index="5">
-        <div class="timeline-year-badge">2016</div>
-        <div class="timeline-card-content">
-          <h3 class="timeline-title">Platzhalter 2016</h3>
-          <p class="timeline-location">Platzhalter Location</p>
-          <p class="timeline-description">
-            Meilensteine aus 2016.
-          </p>
-          <ul class="timeline-details">
-            <li>• Detail 1</li>
-            <li>• Detail 2</li>
-            <li>• Detail 3</li>
-          </ul>
-        </div>
-      </div>
--->
     </div>
   </div>
 </section>
+-->
 <!-- END: Career Timeline Section -->
 
 <!-- START: Personal Records Section -->
@@ -855,7 +812,7 @@
                 rel="noopener noreferrer"
                 class="hover:text-pink-400"
               >
-                Der Start einer gesammten Video-Reihe
+                Der Start einer gesamten Video-Reihe
               </a>
             </h3>
             <p class="text-gray-400 text-sm md:text-base">
@@ -896,7 +853,7 @@
             </h3>
             <p class="text-gray-400 text-sm md:text-base">
               Der wichtigste Schritt ist überhaupt anzufangen. Das ist auch der
-              Schritt, am dem die meißten Leute scheitern. Darum ist dieses
+              Schritt, an dem die meisten Leute scheitern. Darum ist dieses
               Video so wichtig für mich, weil es der Beginn meiner YouTube Ära
               ist.
             </p>
@@ -1017,6 +974,138 @@
   </div>
 </section>
 
+<!-- START: Book Recommendations Section -->
+<section id="books" class="book-section py-16 md:py-24">
+  <div class="container mx-auto px-4 sm:px-6">
+    <h2 class="section-title text-white text-3xl md:text-4xl springy-text">
+      Meine Buchempfehlungen
+    </h2>
+    <p class="text-center text-gray-400 mb-4 max-w-2xl mx-auto text-base md:text-lg">
+      Diese fünf Bücher haben meine Denkweise nachhaltig verändert.
+    </p>
+    <div class="bookshelf">
+
+      <!-- Book 1: Almanack of Naval -->
+      <div class="book-3d" data-color="#06b6d4" tabindex="0">
+        <div class="book-model">
+          <div class="book-cover-front">
+            <div class="book-cover-content">
+              <span class="book-cover-number">#1</span>
+              <i class="fas fa-compass book-cover-icon"></i>
+              <h3 class="book-cover-title">The Almanack of Naval Ravikant</h3>
+              <p class="book-cover-author">Eric Jorgenson</p>
+            </div>
+          </div>
+          <div class="book-pages"></div>
+          <div class="book-cover-back"></div>
+          <div class="book-spine">
+            <span class="book-spine-title">Almanack of Naval</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <p class="book-info-quote">"Mein absoluter Favorit. Auf jedenfall zu empfehlen. Sehr gut lesbar und trotzdem sehr lehrreich"</p>
+          <span class="book-info-tag">Hebelwirkung & Selbstverwirklichung</span>
+        </div>
+      </div>
+
+      <!-- Book 2: Atomic Habits -->
+      <div class="book-3d" data-color="#f59e0b" tabindex="0">
+        <div class="book-model">
+          <div class="book-cover-front">
+            <div class="book-cover-content">
+              <span class="book-cover-number">#2</span>
+              <i class="fas fa-atom book-cover-icon"></i>
+              <h3 class="book-cover-title">Atomic Habits</h3>
+              <p class="book-cover-author">James Clear</p>
+            </div>
+          </div>
+          <div class="book-pages"></div>
+          <div class="book-cover-back"></div>
+          <div class="book-spine">
+            <span class="book-spine-title">Atomic Habits</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <p class="book-info-quote">"Ein klassiker. Wirklich gut, um sich seiner angewohnheiten bewusster zu werden und es liest sich auch echt gut."</p>
+          <span class="book-info-tag">Systeme statt Ziele</span>
+        </div>
+      </div>
+
+      <!-- Book 3: Skin in the Game -->
+      <div class="book-3d" data-color="#ef4444" tabindex="0">
+        <div class="book-model">
+          <div class="book-cover-front">
+            <div class="book-cover-content">
+              <span class="book-cover-number">#3</span>
+              <i class="fas fa-shield-halved book-cover-icon"></i>
+              <h3 class="book-cover-title">Skin in the Game</h3>
+              <p class="book-cover-author">Nassim Taleb</p>
+            </div>
+          </div>
+          <div class="book-pages"></div>
+          <div class="book-cover-back"></div>
+          <div class="book-spine">
+            <span class="book-spine-title">Skin in the Game</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <p class="book-info-quote">"Wahre Verantwortung existiert nur dort, wo der Entscheidungsträger die negativen Folgen seiner Fehler am eigenen Leib spürt."</p>
+          <span class="book-info-tag">Risiko & Authentizität</span>
+        </div>
+      </div>
+
+      <!-- Book 4: Reality Transurfing -->
+      <div class="book-3d" data-color="#8b5cf6" tabindex="0">
+        <div class="book-model">
+          <div class="book-cover-front">
+            <div class="book-cover-content">
+              <span class="book-cover-number">#4</span>
+              <i class="fas fa-infinity book-cover-icon"></i>
+              <h3 class="book-cover-title">Reality Transurfing</h3>
+              <p class="book-cover-author">Vadim Zeland</p>
+            </div>
+          </div>
+          <div class="book-pages"></div>
+          <div class="book-cover-back"></div>
+          <div class="book-spine">
+            <span class="book-spine-title">Reality Transurfing</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <p class="book-info-quote">"Ein wirklich neuer Blickwinkel auf das Mysterium Leben und Existenz. Ein echt langes Buch aber auch wirklich sehr interessant"</p>
+          <span class="book-info-tag">Realität gestalten</span>
+        </div>
+      </div>
+
+      <!-- Book 5: $100M Offers -->
+      <div class="book-3d" data-color="#10b981" tabindex="0">
+        <div class="book-model">
+          <div class="book-cover-front">
+            <div class="book-cover-content">
+              <span class="book-cover-number">#5</span>
+              <i class="fas fa-rocket book-cover-icon"></i>
+              <h3 class="book-cover-title">$100M Offers</h3>
+              <p class="book-cover-author">Alex Hormozi</p>
+            </div>
+          </div>
+          <div class="book-pages"></div>
+          <div class="book-cover-back"></div>
+          <div class="book-spine">
+            <span class="book-spine-title">$100M Offers</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <p class="book-info-quote">"Hier lernt man ein Angebot so gut zu machen, dass die andere Person sich dumm fühlt es nicht zu kaufen."</p>
+          <span class="book-info-tag">Wert schaffen</span>
+        </div>
+      </div>
+
+    </div>
+    <div id="book-carousel-dots" class="book-carousel-dots"></div>
+  </div>
+</section>
+<!-- END: Book Recommendations Section -->
+
 <!-- START: Asteroid Game Section -->
 <section id="asteroid-game" class="asteroid-game-section">
   <div class="container mx-auto px-4 sm:px-6 py-8 md:py-12">
@@ -1024,7 +1113,7 @@
       Asteroiden Angriff
     </h2>
     <p class="text-center text-gray-400 mb-6 max-w-2xl mx-auto text-base md:text-lg">
-      Verteidige dich gegen die herannahenden Asteroiden. Wie lange kannst du überleben? 🚀
+      Ein kleines Asteroiden Game just for fun. Wie lange kannst du überleben? 🚀
     </p>
 
     <!-- Game Container -->
@@ -1369,6 +1458,83 @@
 
     <!-- Scroll Animations -->
     <script src="js/scroll-animations.js"></script>
+
+    <!-- Book 3D carousel (mobile) -->
+    <script>
+    (function() {
+      var shelf = document.querySelector('.bookshelf');
+      if (!shelf) return;
+      var books = Array.from(shelf.querySelectorAll('.book-3d'));
+      if (books.length === 0) return;
+
+      var currentBook = 0;
+      var touchStartX = 0;
+      var touchEndX = 0;
+
+      function isMobile() { return window.innerWidth <= 768; }
+
+      function updateCarousel() {
+        books.forEach(function(book, i) {
+          book.classList.remove('carousel-active', 'carousel-prev', 'carousel-next', 'carousel-hidden');
+          var diff = i - currentBook;
+          if (diff === 0) book.classList.add('carousel-active');
+          else if (diff === -1 || (currentBook === 0 && i === books.length - 1)) book.classList.add('carousel-prev');
+          else if (diff === 1 || (currentBook === books.length - 1 && i === 0)) book.classList.add('carousel-next');
+          else book.classList.add('carousel-hidden');
+        });
+        updateDots();
+      }
+
+      // Dot indicators
+      var dotsContainer = document.getElementById('book-carousel-dots');
+      function updateDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        books.forEach(function(_, i) {
+          var dot = document.createElement('span');
+          dot.className = 'book-dot' + (i === currentBook ? ' active' : '');
+          dot.addEventListener('click', function() { currentBook = i; updateCarousel(); });
+          dotsContainer.appendChild(dot);
+        });
+      }
+
+      function goTo(index) {
+        if (index >= books.length) currentBook = 0;
+        else if (index < 0) currentBook = books.length - 1;
+        else currentBook = index;
+        updateCarousel();
+      }
+
+      // Swipe
+      shelf.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+      shelf.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        var diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) goTo(currentBook + 1);
+          else goTo(currentBook - 1);
+        }
+      }, { passive: true });
+
+      // Init + resize
+      function init() {
+        if (isMobile()) {
+          shelf.classList.add('carousel-mode');
+          updateCarousel();
+        } else {
+          shelf.classList.remove('carousel-mode');
+          books.forEach(function(b) { b.classList.remove('carousel-active', 'carousel-prev', 'carousel-next', 'carousel-hidden'); });
+        }
+      }
+
+      init();
+      var resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(init, 250);
+      });
+    })();
+    </script>
 
     <!-- Yoyo Interactive Animation -->
     <script src="js/yoyo.js"></script>
