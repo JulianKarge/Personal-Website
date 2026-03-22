@@ -60,6 +60,7 @@
           <a href="#about" class="nav-link relative whitespace-nowrap">Über Mich</a>
           <a href="#running-prs" class="nav-link relative whitespace-nowrap">Laufrekorde</a>
           <a href="#achievements" class="nav-link relative whitespace-nowrap">Errungenschaften</a>
+          <a href="#own-books" class="nav-link relative whitespace-nowrap">Meine Bücher</a>
           <a href="#books" class="nav-link relative whitespace-nowrap">Bücher</a>
 
           <!-- Theme Switcher -->
@@ -137,6 +138,9 @@
         >
         <a href="#achievements" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
           >Errungenschaften</a
+        >
+        <a href="#own-books" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
+          >Meine Bücher</a
         >
         <a href="#books" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
           >Bücher</a
@@ -974,6 +978,66 @@
   </div>
 </section>
 
+<!-- START: Own Books Section -->
+<section id="own-books" class="own-books-section py-16 md:py-24">
+  <div class="container mx-auto px-4 sm:px-6">
+    <h2 class="section-title text-white text-3xl md:text-4xl springy-text">
+      Meine eigenen Bücher <i class="fas fa-star ml-2" style="color:#f59e0b;font-size:0.75em;"></i>
+    </h2>
+    <p class="text-center text-gray-400 mb-10 max-w-2xl mx-auto text-base md:text-lg">
+      Ich habe selbst Tracker-Bücher veröffentlicht – jetzt auf Amazon erhältlich.
+    </p>
+    <div class="own-books-shelf">
+
+      <!-- Calisthenics Tracker -->
+      <div class="own-book-card" tabindex="0">
+        <div class="own-book-3d-wrapper">
+          <div class="own-book-model" style="--own-book-color:#e11d48;">
+            <div class="own-book-front">
+              <img src="Images/OwnBooks/CaliTracker.png" alt="Calisthenics Tracker Cover" class="own-book-cover-img">
+            </div>
+            <div class="own-book-pages"></div>
+            <div class="own-book-back" style="--own-book-color:#e11d48;"></div>
+            <div class="own-book-spine" style="--own-book-color:#e11d48;"></div>
+          </div>
+        </div>
+        <div class="own-book-info">
+          <h3 class="own-book-title">Calisthenics Tracker</h3>
+          <p class="own-book-desc">Verfolge deine Calisthenics-Fortschritte strukturiert und halte jeden Workout-Tag fest.</p>
+          <span class="own-book-tag" style="--own-book-color:#e11d48;">Fitness & Tracking</span>
+          <a href="https://amzn.eu/d/059Vz53w" target="_blank" rel="noopener noreferrer" class="own-book-buy-btn">
+            <i class="fab fa-amazon mr-2"></i>Auf Amazon kaufen
+          </a>
+        </div>
+      </div>
+
+      <!-- Habit Tracker -->
+      <div class="own-book-card" tabindex="0">
+        <div class="own-book-3d-wrapper">
+          <div class="own-book-model" style="--own-book-color:#7c3aed;">
+            <div class="own-book-front">
+              <img src="Images/OwnBooks/HabitTracker.png" alt="Habit Tracker Cover" class="own-book-cover-img">
+            </div>
+            <div class="own-book-pages"></div>
+            <div class="own-book-back" style="--own-book-color:#7c3aed;"></div>
+            <div class="own-book-spine" style="--own-book-color:#7c3aed;"></div>
+          </div>
+        </div>
+        <div class="own-book-info">
+          <h3 class="own-book-title">Habit Tracker</h3>
+          <p class="own-book-desc">Baue langfristige Gewohnheiten auf und mach deinen täglichen Fortschritt sichtbar.</p>
+          <span class="own-book-tag" style="--own-book-color:#7c3aed;">Gewohnheiten & Wachstum</span>
+          <a href="https://amzn.eu/d/030E090l" target="_blank" rel="noopener noreferrer" class="own-book-buy-btn">
+            <i class="fab fa-amazon mr-2"></i>Auf Amazon kaufen
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- END: Own Books Section -->
+
 <!-- START: Book Recommendations Section -->
 <section id="books" class="book-section py-16 md:py-24">
   <div class="container mx-auto px-4 sm:px-6">
@@ -1542,6 +1606,23 @@
     <!-- Asteroid game -->
     <script src="js/asteroid-game.js" defer></script>
 
+    <!-- Own Books Promo Popup -->
+    <div id="own-books-promo" class="own-books-promo" role="dialog" aria-label="Buchpromo">
+      <button class="promo-close" id="promo-close" aria-label="Schließen">&times;</button>
+      <div class="promo-inner">
+        <div class="promo-images">
+          <img src="Images/OwnBooks/CaliTracker.png" alt="Calisthenics Tracker" class="promo-thumb">
+          <img src="Images/OwnBooks/HabitTracker.png" alt="Habit Tracker" class="promo-thumb">
+        </div>
+        <div class="promo-text-block">
+          <span class="promo-badge">NEU</span>
+          <p class="promo-headline">Meine eigenen Bücher sind da!</p>
+          <p class="promo-sub">Calisthenics & Habit Tracker – jetzt auf Amazon</p>
+          <a href="#own-books" class="promo-cta" id="promo-link">Jetzt ansehen →</a>
+        </div>
+      </div>
+    </div>
+
     <!-- Leaflet.js for maps -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -1552,5 +1633,24 @@
 
     <!-- Theme Switcher -->
     <script src="js/theme-switcher.js"></script>
+
+    <!-- Own Books Promo Popup Script -->
+    <script>
+      (function() {
+        var popup = document.getElementById('own-books-promo');
+        var closeBtn = document.getElementById('promo-close');
+        var promoLink = document.getElementById('promo-link');
+        if (!popup) return;
+        setTimeout(function() {
+          popup.classList.add('promo-visible');
+        }, 3000);
+        function dismissPopup() {
+          popup.classList.remove('promo-visible');
+          setTimeout(function() { popup.style.display = 'none'; }, 400);
+        }
+        closeBtn.addEventListener('click', dismissPopup);
+        promoLink.addEventListener('click', dismissPopup);
+      })();
+    </script>
   </body>
 </html>
