@@ -59,8 +59,9 @@
           <a href="#home" class="nav-link relative whitespace-nowrap">Startseite</a>
           <a href="#about" class="nav-link relative whitespace-nowrap">Über Mich</a>
           <a href="#running-prs" class="nav-link relative whitespace-nowrap">Laufrekorde</a>
+          <a href="#books-promo" class="nav-link relative whitespace-nowrap">Meine Bücher</a>
           <a href="#achievements" class="nav-link relative whitespace-nowrap">Errungenschaften</a>
-          <a href="#books" class="nav-link relative whitespace-nowrap">Bücher</a>
+          <a href="#books" class="nav-link relative whitespace-nowrap">Empfehlungen</a>
 
           <!-- Theme Switcher -->
           <div class="theme-switcher">
@@ -135,11 +136,14 @@
         <a href="#running-prs" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
           >Laufrekorde</a
         >
+        <a href="#books-promo" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
+          >Meine Bücher</a
+        >
         <a href="#achievements" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
           >Errungenschaften</a
         >
         <a href="#books" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
-          >Bücher</a
+          >Empfehlungen</a
         >
         <a href="#contact" class="block text-center py-3 px-6 text-lg hover:bg-gray-800 transition-colors"
           >Kontakt</a
@@ -735,6 +739,61 @@
   </div>
 </section>
 <!-- END: Personal Records Section -->
+
+<!-- START: Amazon Books Promo Section -->
+<section id="books-promo" class="books-promo-section py-16 md:py-24">
+  <div class="container mx-auto px-4 sm:px-6">
+    <h2 class="section-title text-white text-3xl md:text-4xl springy-text">
+      Meine Bücher
+    </h2>
+    <p class="text-center text-gray-400 mb-10 max-w-2xl mx-auto text-base md:text-lg">
+      Jetzt auf Amazon erhältlich – entwickelt aus echten Erfahrungen und gebaut für deinen Fortschritt.
+    </p>
+
+    <div class="promo-books-container">
+
+      <!-- Book 1: Calisthenics Trainingslogbuch -->
+      <div class="promo-book-item promo-book-3d">
+        <div class="promo-book-model" style="--promo-book-color: #1a1a2e;">
+          <div class="promo-book-cover-front">
+            <img src="Images/AmazonBooks/Calisthenics_Cover.png" alt="Calisthenics Trainingslogbuch" />
+          </div>
+          <div class="promo-book-pages"></div>
+          <div class="promo-book-cover-back"></div>
+          <div class="promo-book-spine"></div>
+        </div>
+        <div class="promo-book-details">
+          <h3 class="promo-book-title">Calisthenics Trainingslogbuch</h3>
+          <p class="promo-book-desc">79 Seiten klare Struktur für dein Bodyweight-Training. Tracke Reps, Holds, Weight und durchbrich deine Plateaus.</p>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="promo-amazon-btn">
+            <i class="fab fa-amazon"></i> Auf Amazon kaufen
+          </a>
+        </div>
+      </div>
+
+      <!-- Book 2: Habit Tracker -->
+      <div class="promo-book-item promo-book-3d">
+        <div class="promo-book-model" style="--promo-book-color: #1a1a2e;">
+          <div class="promo-book-cover-front">
+            <img src="Images/AmazonBooks/HabitTracker_Cover.png" alt="Habit Tracker" />
+          </div>
+          <div class="promo-book-pages"></div>
+          <div class="promo-book-cover-back"></div>
+          <div class="promo-book-spine"></div>
+        </div>
+        <div class="promo-book-details">
+          <h3 class="promo-book-title">Habit Tracker</h3>
+          <p class="promo-book-desc">Dein täglicher Begleiter für bessere Gewohnheiten. 2 Jahre, 5 Gewohnheiten tracken, monatliche Reflexion und Jahresrückblick.</p>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="promo-amazon-btn">
+            <i class="fab fa-amazon"></i> Auf Amazon kaufen
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- END: Amazon Books Promo Section -->
 
     <section id="achievements" class="py-16 md:py-24 bg-gray-900">
         <!-- ... the rest of your achievements section ... -->
@@ -1552,5 +1611,44 @@
 
     <!-- Theme Switcher -->
     <script src="js/theme-switcher.js"></script>
+
+    <!-- Book Promo Toast -->
+    <div class="promo-toast" id="promoToast">
+      <button class="promo-toast-close" id="promoToastClose" aria-label="Schließen">&times;</button>
+      <img src="Images/AmazonBooks/Calisthenics_Cover.png" alt="Buch" class="promo-toast-img" />
+      <div class="promo-toast-content">
+        <div class="promo-toast-title">Neu auf Amazon!</div>
+        <div class="promo-toast-text">Meine Bücher sind jetzt erhältlich – für deinen Fortschritt.</div>
+        <a href="#books-promo" class="promo-toast-link">Mehr erfahren &rarr;</a>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        if (sessionStorage.getItem('promoToastDismissed')) return;
+
+        const toast = document.getElementById('promoToast');
+        const closeBtn = document.getElementById('promoToastClose');
+        if (!toast || !closeBtn) return;
+
+        let autoHideTimer;
+
+        // Show after 8 seconds
+        setTimeout(function() {
+          toast.classList.add('visible');
+          // Auto-hide after 15 seconds
+          autoHideTimer = setTimeout(function() {
+            toast.classList.remove('visible');
+            sessionStorage.setItem('promoToastDismissed', '1');
+          }, 15000);
+        }, 8000);
+
+        closeBtn.addEventListener('click', function() {
+          clearTimeout(autoHideTimer);
+          toast.classList.remove('visible');
+          sessionStorage.setItem('promoToastDismissed', '1');
+        });
+      })();
+    </script>
   </body>
 </html>

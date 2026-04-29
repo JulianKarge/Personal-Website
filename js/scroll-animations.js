@@ -34,7 +34,8 @@
             .value-card,
             .goal-statement-card,
             .about-slide,
-            .book-3d
+            .book-3d,
+            .promo-book-3d
         `);
 
         // Add scroll-animate class and observe each element
