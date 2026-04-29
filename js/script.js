@@ -703,6 +703,38 @@ document.addEventListener("DOMContentLoaded", function () {
     showCard(currentActiveIndex);
   }
 
+  // --- Own Book Cards: Desktop entrance / Mobile scroll-in animation ---
+  const ownBookCards = Array.from(document.querySelectorAll('.own-book-card'));
+  if (ownBookCards.length > 0) {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      // Mobile: come forward at 60% visible, go back below 25% (hysteresis prevents flicker)
+      const mobileObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.6) {
+            entry.target.classList.add('theater-in');
+          } else if (entry.intersectionRatio < 0.25) {
+            entry.target.classList.remove('theater-in');
+          }
+        });
+      }, { threshold: [0.25, 0.6] });
+      ownBookCards.forEach(card => {
+        card.classList.add('visible');
+        mobileObserver.observe(card);
+      });
+    } else {
+      // Desktop: staggered entrance
+      const ownBookObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            ownBookObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      ownBookCards.forEach(card => ownBookObserver.observe(card));
+    }
+  }
+
   // --- Internship Card Expand/Collapse ---
   const internshipCards = document.querySelectorAll('.internship-card');
 
@@ -728,3 +760,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+

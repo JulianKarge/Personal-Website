@@ -2020,6 +2020,356 @@ section:has(#motto-galaxy) {
 }
 
 /* ========================================
+   OWN BOOKS SECTION
+   ======================================== */
+
+.own-books-section {
+  position: relative;
+  background: linear-gradient(180deg, #0c0f1a 0%, #12101f 50%, #0c0f1a 100%);
+  overflow: hidden;
+}
+
+.own-books-shelf {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0 1rem;
+  flex-wrap: wrap;
+}
+
+/* Card container */
+.own-book-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.own-book-card.visible,
+.own-book-card.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.own-book-card:nth-child(1) { transition-delay: 0.05s; }
+.own-book-card:nth-child(2) { transition-delay: 0.15s; }
+
+/* 3D book model */
+.own-book-3d-wrapper {
+  perspective: 1000px;
+  width: 170px;
+  height: 240px;
+  cursor: pointer;
+  position: relative;
+}
+
+.own-book-model {
+  --own-book-width: 170px;
+  --own-book-height: 240px;
+  --own-book-depth: 42px;
+  width: var(--own-book-width);
+  height: var(--own-book-height);
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-25deg) rotateX(5deg);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Shadow via box-shadow on a pseudo-element so preserve-3d is unaffected */
+.own-book-3d-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 10%;
+  width: 80%;
+  height: 30px;
+  background: rgba(0,0,0,0.45);
+  border-radius: 50%;
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+.own-book-card:hover .own-book-model,
+.own-book-card:focus-visible .own-book-model {
+  transform: rotateY(-10deg) rotateX(3deg) scale(1.04);
+}
+
+/* Front cover */
+.own-book-front {
+  position: absolute;
+  width: var(--own-book-width);
+  height: var(--own-book-height);
+  border-radius: 3px 8px 8px 3px;
+  transform: translateZ(calc(var(--own-book-depth) / 2));
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.25);
+}
+
+.own-book-cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  display: block;
+}
+
+/* Page edges */
+.own-book-pages {
+  position: absolute;
+  width: var(--own-book-depth);
+  height: calc(var(--own-book-height) - 6px);
+  top: 3px;
+  right: 0;
+  background: linear-gradient(90deg,
+    #f5f0e8, #ede8dc 15%, #f5f0e8 15.5%, #ede8dc 30%,
+    #f5f0e8 30.5%, #ede8dc 45%, #f5f0e8 45.5%, #ede8dc 60%,
+    #f5f0e8 60.5%, #ede8dc 75%, #f5f0e8 75.5%, #e8e3d7
+  );
+  transform: rotateY(90deg) translateZ(calc(var(--own-book-depth) / 2));
+  border-radius: 0 2px 2px 0;
+}
+
+/* Back cover */
+.own-book-back {
+  position: absolute;
+  width: var(--own-book-width);
+  height: var(--own-book-height);
+  background: linear-gradient(145deg,
+    color-mix(in srgb, var(--own-book-color) 50%, #000),
+    color-mix(in srgb, var(--own-book-color) 30%, #000)
+  );
+  border-radius: 8px 3px 3px 8px;
+  transform: translateZ(calc(var(--own-book-depth) / -2));
+}
+
+/* Spine */
+.own-book-spine {
+  position: absolute;
+  width: var(--own-book-depth);
+  height: var(--own-book-height);
+  left: 0;
+  background: linear-gradient(90deg, #111 0%, #1e1e1e 50%, #111 100%);
+  transform: rotateY(-90deg) translateZ(calc(var(--own-book-depth) / 2));
+}
+
+
+/* Info below the book */
+.own-book-info {
+  text-align: center;
+  max-width: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.own-book-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.own-book-desc {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.own-book-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--own-book-color);
+  background: color-mix(in srgb, var(--own-book-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--own-book-color) 30%, transparent);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2rem;
+  letter-spacing: 0.3px;
+}
+
+.own-book-buy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  padding: 0.55rem 1.2rem;
+  background: linear-gradient(135deg, #ff9900, #e47911);
+  color: #111;
+  font-size: 0.8rem;
+  font-weight: 800;
+  border-radius: 2rem;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(255,153,0,0.35);
+}
+
+.own-book-buy-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 20px rgba(255,153,0,0.5);
+}
+
+/* ---- Promo Popup ---- */
+.own-books-promo {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  background: linear-gradient(135deg, #1a1030 0%, #0f172a 100%);
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  border-radius: 1rem;
+  padding: 1rem 1.2rem;
+  max-width: 320px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 0 1px rgba(124,58,237,0.15);
+  opacity: 0;
+  transform: translateY(20px) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.own-books-promo.promo-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.promo-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.7rem;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.2rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.2rem 0.3rem;
+  transition: color 0.2s;
+}
+
+.promo-close:hover { color: #f1f5f9; }
+
+.promo-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.promo-images {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.promo-thumb {
+  width: 44px;
+  height: 62px;
+  object-fit: cover;
+  object-position: right center;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.promo-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.promo-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #f59e0b;
+  background: rgba(245,158,11,0.12);
+  border: 1px solid rgba(245,158,11,0.3);
+  padding: 0.1rem 0.45rem;
+  border-radius: 2rem;
+  width: fit-content;
+}
+
+.promo-headline {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.promo-sub {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.promo-cta {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #a78bfa;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.promo-cta:hover { color: #c4b5fd; }
+
+@media (max-width: 480px) {
+  .own-books-promo {
+    left: 1rem;
+    right: 1rem;
+    max-width: none;
+    bottom: 1rem;
+  }
+  .own-books-shelf {
+    gap: 2.5rem;
+  }
+}
+
+/* ---- Mobile: vertical stack + scroll-in animation ---- */
+@media (max-width: 767px) {
+  .own-books-shelf {
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  .own-book-card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Back position (default) */
+  .own-book-model {
+    transform: rotateY(-28deg) rotateX(6deg) scale(0.82) !important;
+    transition: transform 0.7s ease !important;
+  }
+
+  .own-book-info {
+    opacity: 0;
+    transition: opacity 0.5s ease !important;
+  }
+
+  /* Front position */
+  .own-book-card.theater-in .own-book-model {
+    transform: rotateY(0deg) rotateX(0deg) scale(1.05) !important;
+  }
+
+  .own-book-card.theater-in .own-book-info {
+    opacity: 1;
+  }
+}
+
+/* ========================================
    ASTEROID GAME STYLES - Ultra Polished
    ======================================== */
 
