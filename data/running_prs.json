@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-04-29T21:58:36.386377",
-  "totalRuns": 31,
+  "lastUpdated": "2026-05-20T10:41:22.740738",
+  "totalRuns": 46,
   "overallBests": {
     "longestRun": {
       "name": "Erster Marathon",
@@ -11,12 +11,12 @@
       "elevation_m": 658
     },
     "fastestPace": {
-      "name": "Afternoon Run",
-      "date": "2025-11-16",
-      "distance_km": 5.01,
-      "time": "23:43",
-      "pace": "4:44",
-      "elevation_m": 52
+      "name": "Stuttgarter 10k lauf let's goo",
+      "date": "2026-05-17",
+      "distance_km": 10.09,
+      "time": "43:30",
+      "pace": "4:18",
+      "elevation_m": 54
     },
     "mostElevation": {
       "name": "Erster Marathon",
@@ -37,12 +37,12 @@
       "elevation_m": 52
     },
     "10k": {
-      "name": "Evening Run",
-      "date": "2026-04-23",
-      "distance_km": 10.01,
-      "time": "50:01",
-      "pace": "4:59",
-      "elevation_m": 119
+      "name": "Stuttgarter 10k lauf let's goo",
+      "date": "2026-05-17",
+      "distance_km": 10.09,
+      "time": "43:30",
+      "pace": "4:18",
+      "elevation_m": 54
     },
     "halfMarathon": {
       "name": "HM2",
