@@ -5,7 +5,7 @@
       "id": 193506546,
       "resource_state": 1
     },
-    "name": "Day 30",
+    "name": "Day 28",
     "distance": 7007.2,
     "moving_time": 2880,
     "elapsed_time": 2884,
@@ -23,8 +23,8 @@
     "location_state": null,
     "location_country": null,
     "achievement_count": 0,
-    "kudos_count": 1,
-    "comment_count": 0,
+    "kudos_count": 2,
+    "comment_count": 1,
     "athlete_count": 1,
     "photo_count": 0,
     "map": {
@@ -77,7 +77,7 @@
       "id": 193506546,
       "resource_state": 1
     },
-    "name": "Day29",
+    "name": "Day27",
     "distance": 7009.4,
     "moving_time": 3948,
     "elapsed_time": 4128,
